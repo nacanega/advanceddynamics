@@ -1,8 +1,6 @@
 # advanceddynamics - Advanced Dynamics Notation Package
 ## v1.0 (2023/08/24)
 ---
-This package provides a set of macros and commands to easily create equations and typeset in the notation of the graduate courses [*MAE 511 - Advanced Dynamics I*][1] and [*MAE 789 - Advanced Dynamics II*][2] taught by [Dr. Mazzoleni][3][^1] at [North Carolina State University][4][^2].
-
 >--------------------------------------------------------------------------------
 >Copyright (c) 2023 by Nolan Canegallo <nacanega at ncsu dot edu>
 >--------------------------------------------------------------------------------
@@ -51,10 +49,19 @@ This package provides a set of macros and commands to easily create equations an
 >    advanceddynamicsmanual.pdf
 >    advdyndoc.sty
 
+`advanceddynamics` provides a set of macros and commands to easily create equations and typeset in the notation of the graduate courses [*MAE 511 - Advanced Dynamics I*][1] and [*MAE 789 - Advanced Dynamics II*][2] taught by [Dr. Mazzoleni][3][^1] at [North Carolina State University][4][^2]. The primary intended use is to aid in typesetting derivations of equations of motion and to that end, in addition to providing commands to easily typeset individual terms, the package also includes many of the fundamental equations and definitions written in the notation of the aforementioned courses. 
+
+A full list of commands with examples, required packages, basic installation instructions, and more is located in the [Advanced Dynamics Notation Package Manual][5]. The manual is fully linked using hyperref, so downloading it is recommended.
+
+To easily get started, there are currently two main ways to use this package:
+- The first is to download the `advanceddynamics.sty` file from GitHub and simply place it in the same folder as your document. 
+- The second is to copy the package to your local distribution so that you can use it from any document. More information can be found in the manual.
+
 [1]: https://www.engineeringonline.ncsu.edu/course/mae-511-advanced-dynamics-with-applications-to-aerospace-systems/
 [2]: https://www.engineeringonline.ncsu.edu/course/mae-789-advanced-dynamics-ii/
 [3]: https://www.mae.ncsu.edu/people/apmazzol/
 [4]: https://www.ncsu.edu/
+[5]: ../master/doc/latex/advanceddynamics/advanceddynamicsmanual.pdf
 
 [^1]: The material located in this respository is not endorsed, sponsored, or provided by or on behalf of Dr. Mazzoleni. Please do not contact Dr. Mazzoleni about this package, all communications about this package should be directed to Nolan Canegallo.
 [^2]: The material located in this repository is not endorsed, sponsored, or provided by or on behalf of North Carolina State University. 
