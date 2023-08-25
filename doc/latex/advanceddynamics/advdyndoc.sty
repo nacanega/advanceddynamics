@@ -1,0 +1,835 @@
+%% The LaTeX package advdyndoc - version 1.0 (2023/08/24)
+%% advdyndoc.sty: Advanced Dynamics Documentation Package
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 by Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{advdyndoc}[2023/08/24 v1.0 Advanced Dynamics Documentation Package]
+
+\RequirePackage{xparse}[2023/02/02]   % For entry command
+\RequirePackage[dvipsnames]{xcolor}[2022/06/12]   % For blue subsection*
+\RequirePackage{amsmath}[2022/04/08]  % For aligning equation
+\RequirePackage[T1]{fontenc} % Better font encoding
+\RequirePackage{tcolorbox}[2023/03/17] % For boxing sections
+\tcbuselibrary{documentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Entry Command
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\entry}{mmmmmmm}{% Output
+    \vspace{-0.5em}%
+    \subsection{\comsec{#1}}\nopagebreak%
+    \label{entry:#1}%
+    \begin{docCommand}[blank,halo=0in with black!10!white]{#1}{#2}%
+        \vspace{0.25em}%
+        #3%
+        \vspace{0.5em}\\%
+        {\setlength\tabcolsep{2pt} #4}%
+    \end{docCommand}%
+    \begin{tcolorbox}[title=Example,%
+        boxrule=2pt,%
+        colback=black!0!white,%
+        colframe=black!75!white,%
+        coltitle=black!0!white,%
+        fonttitle=\bfseries,%
+        subtitle style={%
+            boxrule=0pt,%
+            colframe=black!75!white,%
+            colback=black!15!white,%
+            colupper=black!100!white}%
+        ]%
+        #5%
+        \tcblower%
+        This is accomplished with the \LaTeX\ below:%
+        \begin{tcolorbox}[blank,halo=0in with black!10!white]%
+            #6%
+        \end{tcolorbox}%
+        \tcbsubtitle{Display/Inline Mode Output}%
+        \vspace{-1.5em}%
+        \begin{align*}%
+            #7 %
+        \end{align*}%
+        \vspace{-2em}%
+    \end{tcolorbox}%
+}
+
+\NewDocumentCommand{\entryd}{mmmmmmm}{% Display mode output
+    \vspace{-0.5em}%
+    \subsection{\comsec{#1}}\nopagebreak%
+    \label{entry:#1}%
+    \begin{docCommand}[blank,halo=0in with black!10!white]{#1}{#2}%
+        \vspace{0.25em}%
+        #3%
+        \vspace{0.5em}\\%
+        {\setlength\tabcolsep{2pt} #4}%
+    \end{docCommand}%
+    \begin{tcolorbox}[title=Example,%
+        boxrule=2pt,%
+        colback=black!0!white,%
+        colframe=black!75!white,%
+        coltitle=black!0!white,%
+        fonttitle=\bfseries,%
+        subtitle style={%
+            boxrule=0pt,%
+            colframe=black!75!white,%
+            colback=black!15!white,%
+            colupper=black!100!white}%
+        ]%
+        #5%
+        \tcblower%
+        This is accomplished with the \LaTeX\ below:%
+        \begin{tcolorbox}[blank,halo=0in with black!10!white]%
+            #6%
+        \end{tcolorbox}%
+        \tcbsubtitle{Display Mode Output}%
+        \vspace{-1.5em}%
+        \begin{align*}%
+            #7%
+        \end{align*}%
+        \vspace{-2em}%
+    \end{tcolorbox}%
+}
+
+\NewDocumentCommand{\entryl}{mmmmmmm}{% Display mode output
+    \vspace{-0.5em}%
+    \subsection{\comsec{#1}}\nopagebreak%
+    \label{entry:#1}%
+    \begin{docCommand}[blank,halo=0in with black!10!white]{#1}{#2}%
+        \vspace{0.25em}%
+        #3%
+        \vspace{0.5em}\\%
+        {\setlength\tabcolsep{2pt} #4}%
+    \end{docCommand}%
+    \begin{tcolorbox}[title=Example,%
+        boxrule=2pt,%
+        colback=black!0!white,%
+        colframe=black!75!white,%
+        coltitle=black!0!white,%
+        fonttitle=\bfseries,%
+        subtitle style={%
+            boxrule=0pt,%
+            colframe=black!75!white,%
+            colback=black!15!white,%
+            colupper=black!100!white}%
+        ]%
+        #5%
+        \tcblower%
+        This is accomplished with the \LaTeX\ below:%
+        \begin{tcolorbox}[blank,halo=0in with black!10!white]%
+            #6%
+        \end{tcolorbox}%
+        \tcbsubtitle{Display Mode Output}%
+        \vspace{-1.5em}%
+        \begin{align*}%
+            #7%
+        \end{align*}%
+        \vspace{-1.5em}%
+    \end{tcolorbox}%
+}
+
+\NewDocumentCommand{\entryi}{mmmmmmm}{% Inline mode output
+    \vspace{-0.5em}%
+    \subsection{\comsec{#1}}\nopagebreak%
+    \label{entry:#1}%
+    \begin{docCommand}[blank,halo=0in with black!10!white]{#1}{#2}%
+        \vspace{0.25em}%
+        #3%
+        \vspace{0.5em}\\%
+        {\setlength\tabcolsep{2pt} #4}%
+    \end{docCommand}%
+    \begin{tcolorbox}[title=Example,%
+        boxrule=2pt,%
+        colback=black!0!white,%
+        colframe=black!75!white,%
+        coltitle=black!0!white,%
+        fonttitle=\bfseries,%
+        subtitle style={%
+            boxrule=0pt,%
+            colframe=black!75!white,%
+            colback=black!15!white,%
+            colupper=black!100!white}%
+        ]%
+        #5%
+        \tcblower%
+        This is accomplished with the \LaTeX\ below:%
+        \begin{tcolorbox}[blank,halo=0in with black!10!white]%
+            #6%
+        \end{tcolorbox}%
+        \tcbsubtitle{Inline Mode Output}%
+        $#7$%
+    \end{tcolorbox}%
+}
+
+\NewDocumentCommand{\entrydi}{mmmmmmm}{% Both display mode and inline mode output
+    \vspace{-0.5em}%
+    \subsection{\comsec{#1}}\nopagebreak%
+    \label{entry:#1}%
+    \begin{docCommand}[blank,halo=0in with black!10!white]{#1}{#2}%
+        \vspace{0.25em}%
+		#3%
+        \vspace{0.5em}\\%
+        {\setlength\tabcolsep{2pt} #4}%
+    \end{docCommand}%
+    \begin{tcolorbox}[title=Example,%
+        boxrule=2pt,%
+        colback=black!0!white,%
+        colframe=black!75!white,%
+        coltitle=black!0!white,%
+        fonttitle=\bfseries,%
+        subtitle style={%
+            boxrule=0pt,%
+            colframe=black!75!white,%
+            colback=black!15!white,%
+            colupper=black!100!white}%
+        ]%
+        #5%
+        \tcblower%
+        This is accomplished with the \LaTeX\ below:%
+        \begin{tcolorbox}[blank,halo=0in with black!10!white]%
+            #6%
+        \end{tcolorbox}%
+        \tcbsubtitle{Display Mode Output}%
+        \vspace{-1.5em}%
+        \begin{align*}%
+            #7%
+        \end{align*}%
+        \vspace{-2em}%
+        \tcbsubtitle{Inline Mode Output}%
+        $#7$%
+    \end{tcolorbox}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Show Code in Monospace
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\code}[1]{% Used to display code in monospace font
+	\texttt{#1}%
+}
+
+\newcommand*{\comarg}[2]{% Used to display a command and its arguments in monospace
+    \cs{#1}#2%
+}
+
+\newcommand*{\comone}[2]{% Used to display a command and one argument in monospace with brackets included
+    \cs{#1}\brackets{\code{#2}}%
+}
+
+\newcommand*{\comsec}[1]{% Used to allow section titles to include code
+    \texorpdfstring{\cs{#1}}{\textbackslash #1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Show Generic Inputs (Metas)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\targi}{% Used to display one generic input
+	\marg{input}%
+}
+
+\newcommand*{\targii}{% Used to display two generic inputs
+	\marg{input1}\marg{input2}%
+}
+
+\newcommand*{\targiii}{% Used to display three generic inputs 
+	\marg{input1}\marg{input2}\marg{input3}%
+}
+
+\newcommand*{\targiv}{% Used to display four generic inputs
+	\marg{input1}\marg{input2}\marg{input3}\marg{input4}%
+}
+
+\newcommand*{\targv}{% Used to display five generic inputs
+	\marg{input1}\marg{input2}\marg{input3}\marg{input4}\marg{input5}%
+}
+
+\newcommand*{\targvi}{% Used to display six generic inputs
+	\marg{input1}\marg{input2}\marg{input3}\marg{input4}\marg{input5}\marg{input6}%
+}
+
+\newcommand*{\targvii}{% Used to display seven generic inputs
+	\marg{in1}\marg{in2}\marg{in3}\marg{in4}\marg{in5}\marg{in6}\marg{in7}%
+}
+
+\newcommand*{\targviii}{% Used to display eight generic inputs
+	\marg{in1}\marg{in2}\marg{in3}\marg{in4}\marg{in5}\marg{in6}\marg{in7}\marg{in8}%
+}
+
+\newcommand*{\targix}{% Used to display nine generic inputs
+	\marg{in1}\marg{in2}\marg{in3}\marg{in4}\marg{in5}\marg{in6}\marg{in7}\marg{in8}\marg{in9}%
+}
+
+\newcommand*{\targx}{% Used to display ten generic inputs
+	\marg{in1}\marg{in2}\marg{in3}\marg{in4}\marg{in5}\marg{in6}\marg{in7}\marg{in8}\marg{in9}\marg{in10}%
+}
+
+\newcommand*{\targxi}{% Used to display eleven generic inputs
+	\marg{in1}\marg{in2}\marg{in3}\marg{in4}\marg{in5}\marg{in6}\marg{in7}\marg{in8}\marg{in9}\marg{in10}\marg{in11}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generic Input Description Lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\inputgi}[1]{% Used to display list of 1 inputs
+	\begin{tabular}{ r c l }%
+		\meta{input} &= &#1%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgii}[2]{% Used to display list of 2 inputs
+	\begin{tabular}{ r c l }%
+		\meta{input1} &= &#1 \\%
+		\meta{input2} &= &#2%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgiii}[3]{% Used to display list of 3 inputs
+	\begin{tabular}{ r c l }%
+		\meta{input1} &= &#1 \\%
+		\meta{input2} &= &#2 \\%
+		\meta{input3} &= &#3%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgiv}[4]{% Used to display list of 4 inputs
+	\begin{tabular}{ r c l }%
+		\meta{input1} &= &#1 \\%
+		\meta{input2} &= &#2 \\%
+		\meta{input3} &= &#3 \\%
+		\meta{input4} &= &#4%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgv}[5]{% Used to display list of 5 inputs
+	\begin{tabular}{ r c l }%
+		\meta{input1} &= &#1 \\%
+		\meta{input2} &= &#2 \\%
+		\meta{input3} &= &#3 \\%
+		\meta{input4} &= &#4 \\%
+		\meta{input5} &= &#5%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgvi}[6]{% Used to display list of 6 inputs
+	\begin{tabular}{ r c l }%
+		\meta{input1} &= &#1 \\%
+		\meta{input2} &= &#2 \\%
+		\meta{input3} &= &#3 \\%
+		\meta{input4} &= &#4 \\%
+		\meta{input5} &= &#5 \\%
+		\meta{input6} &= &#6%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgvii}[7]{% Used to display list of 7 inputs
+	\begin{tabular}{ r c l }%
+		\meta{in1} &= &#1 \\%
+		\meta{in2} &= &#2 \\%
+		\meta{in3} &= &#3 \\%
+		\meta{in4} &= &#4 \\%
+		\meta{in5} &= &#5 \\%
+		\meta{in6} &= &#6 \\%
+		\meta{in7} &= &#7%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgviii}[8]{% Used to display list of 8 inputs
+	\begin{tabular}{ r c l }%
+		\meta{in1} &= &#1 \\%
+		\meta{in2} &= &#2 \\%
+		\meta{in3} &= &#3 \\%
+		\meta{in4} &= &#4 \\%
+		\meta{in5} &= &#5 \\%
+		\meta{in6} &= &#6 \\%
+		\meta{in7} &= &#7 \\%
+		\meta{in8} &= &#8%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgix}[9]{% Used to display list of 9 inputs
+	\begin{tabular}{ r c l }%
+		\meta{in1} &= &#1 \\%
+		\meta{in2} &= &#2 \\%
+		\meta{in3} &= &#3 \\%
+		\meta{in4} &= &#4 \\%
+		\meta{in5} &= &#5 \\%
+		\meta{in6} &= &#6 \\%
+		\meta{in7} &= &#7 \\%
+		\meta{in8} &= &#8 \\%
+		\meta{in9} &= &#9%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgx}[9]{% Used to display list of 10 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\ingxcont%
+}
+
+\newcommand*{\ingxcont}[1]{% Continuation of 10 inputs
+	\begin{tabular}{ r c l }%
+		\meta{in1} &= &tI \\%
+		\meta{in2} &= &tII \\%
+		\meta{in3} &= &tIII \\%
+		\meta{in4} &= &tIV \\%
+		\meta{in5} &= &tV \\%
+		\meta{in6} &= &tVI \\%
+		\meta{in7} &= &tVII \\%
+		\meta{in8} &= &tVIII \\%
+		\meta{in9} &= &tIX \\%
+		\meta{in10} &= &#1%
+	\end{tabular}%
+}
+
+\newcommand*{\inputgxi}[9]{% Used to display list of 11 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\ingxicont%
+}
+
+\newcommand*{\ingxicont}[2]{% Continuation of 11 inputs
+	\begin{tabular}{ r c l }%
+		\meta{in1} &= &tI \\%
+		\meta{in2} &= &tII \\%
+		\meta{in3} &= &tIII \\%
+		\meta{in4} &= &tIV \\%
+		\meta{in5} &= &tV \\%
+		\meta{in6} &= &tVI \\%
+		\meta{in7} &= &tVII \\%
+		\meta{in8} &= &tVIII \\%
+		\meta{in9} &= &tIX \\%
+		\meta{in10} &= &#1 \\%
+		\meta{in11} &= &#2%
+	\end{tabular}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Show Specified Inputs (Metas)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\targsi}[1]{% Used to display one specified input
+	\marg{#1}%
+}
+
+\newcommand*{\targsii}[2]{% Used to display two specified inputs
+	\marg{#1}\marg{#2}%
+}
+
+\newcommand*{\targsiii}[3]{% Used to display three specified inputs 
+	\marg{#1}\marg{#2}\marg{#3}%
+}
+
+\newcommand*{\targsiv}[4]{% Used to display four specified inputs
+	\marg{#1}\marg{#2}\marg{#3}\marg{#4}%
+}
+
+\newcommand*{\targsv}[5]{% Used to display five specified inputs
+	\marg{#1}\marg{#2}\marg{#3}\marg{#4}\marg{#5}%
+}
+
+\newcommand*{\targsvi}[6]{% Used to display six specified inputs
+	\marg{#1}\marg{#2}\marg{#3}\marg{#4}\marg{#5}\marg{#6}%
+}
+
+\newcommand*{\targsvii}[7]{% Used to display seven specified inputs
+	\marg{#1}\marg{#2}\marg{#3}\marg{#4}\marg{#5}\marg{#6}\marg{#7}%
+}
+
+\newcommand*{\targsviii}[8]{% Used to display eight specified inputs
+	\marg{#1}\marg{#2}\marg{#3}\marg{#4}\marg{#5}\marg{#6}\marg{#7}\marg{#8}%
+}
+
+\newcommand*{\targsix}[9]{% Used to display nine specified inputs
+	\marg{#1}\marg{#2}\marg{#3}\marg{#4}\marg{#5}\marg{#6}\marg{#7}\marg{#8}\marg{#9}%
+}
+
+\newcommand*{\targsx}[9]{% Used to display ten specified inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\targsxcont%
+}
+
+\newcommand*{\targsxcont}[1]{% Continuation for 9th and 10th inputs
+	\marg{\tI}\marg{\tII}\marg{\tIII}\marg{\tIV}\marg{\tV}\marg{\tVI}\marg{\tVII}\marg{\tVIII}\marg{\tIX}\marg{#1}%
+}
+
+\newcommand*{\targsxi}[9]{% Used to display eleven specified inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\targsxicont%
+}
+
+\newcommand*{\targsxicont}[2]{% Continuation for 9th, 10th, and 11th inputs
+	\marg{\tI}\marg{\tII}\marg{\tIII}\marg{\tIV}\marg{\tV}\marg{\tVI}\marg{\tVII}\marg{\tVIII}\marg{\tIX}\marg{#1}\marg{#2}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Show Specified Inputs (Monospace)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\targmi}[1]{% Used to display one specified input
+	\code{\brackets{#1}}%
+}
+
+\newcommand*{\targmii}[2]{% Used to display two specified inputs
+	\code{\brackets{#1}\brackets{#2}}%
+}
+
+\newcommand*{\targmiii}[3]{% Used to display three specified inputs 
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}}%
+}
+
+\newcommand*{\targmiv}[4]{% Used to display four specified inputs
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}\brackets{#4}}%
+}
+
+\newcommand*{\targmv}[5]{% Used to display five specified inputs
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}\brackets{#4}\brackets{#5}}%
+}
+
+\newcommand*{\targmvi}[6]{% Used to display six specified inputs
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}\brackets{#4}\brackets{#5}\brackets{#6}}%
+}
+
+\newcommand*{\targmvii}[7]{% Used to display seven specified inputs
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}\brackets{#4}\brackets{#5}\brackets{#6}\brackets{#7}}%
+}
+
+\newcommand*{\targmviii}[8]{% Used to display eight specified inputs
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}\brackets{#4}\brackets{#5}\brackets{#6}\brackets{#7}\brackets{#8}}%
+}
+
+\newcommand*{\targmix}[9]{% Used to display nine specified inputs
+	\code{\brackets{#1}\brackets{#2}\brackets{#3}\brackets{#4}\brackets{#5}\brackets{#6}\brackets{#7}\brackets{#8}\brackets{#9}}%
+}
+
+\newcommand*{\targmx}[9]{% Used to display ten specified inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\targmxcont%
+}
+
+\newcommand*{\targmxcont}[1]{% Continuation for 9th and 10th inputs
+	\code{\brackets{\tI}\brackets{\tII}\brackets{\tIII}\brackets{\tIV}\brackets{\tV}\brackets{\tVI}\brackets{\tVII}\brackets{\tVIII}\brackets{\tIX}\brackets{#1}}%
+}
+
+\newcommand*{\targmxi}[9]{% Used to display eleven specified inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\targmxicont%
+}
+
+\newcommand*{\targmxicont}[2]{% Continuation for 9th, 10th, and 11th inputs
+	\code{\brackets{\tI}\brackets{\tII}\brackets{\tIII}\brackets{\tIV}\brackets{\tV}\brackets{\tVI}\brackets{\tVII}\brackets{\tVIII}\brackets{\tIX}\brackets{#1}\brackets{#2}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Specified Input Description Lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\inputsi}[2]{% Used to display list of 1 inputs
+	\begin{tabular}{ r c l }%
+		\meta{#1} &= &#2%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsii}[4]{% Used to display list of 2 inputs
+	\begin{tabular}{ r c l }%
+		\meta{#1} &= &#2 \\%
+		\meta{#3} &= &#4%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsiii}[6]{% Used to display list of 3 inputs
+	\begin{tabular}{ r c l }%
+		\meta{#1} &= &#2 \\%
+		\meta{#3} &= &#4 \\%
+		\meta{#5} &= &#6%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsiv}[8]{% Used to display list of 4 inputs
+	\begin{tabular}{ r c l }%
+		\meta{#1} &= &#2 \\%
+		\meta{#3} &= &#4 \\%
+		\meta{#5} &= &#6 \\%
+		\meta{#7} &= &#8%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsv}[9]{% Used to display list of 5 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insvcont%
+}
+
+\newcommand*{\insvcont}[1]{% Used for description of last variable
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &#1%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsvi}[9]{% Used to display list of 6 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insvicont%
+}
+
+\newcommand*{\insvicont}[3]{% Used for descriptions of last 2 variables
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &#1 \\%
+		\meta{#2} &= &#3%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsvii}[9]{% Used to display list of 7 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insviicont%
+}
+
+\newcommand*{\insviicont}[5]{% Used for descriptions of last 3 variables
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &#1 \\%
+		\meta{#2} &= &#3 \\%
+		\meta{#4} &= &#5%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsviii}[9]{% Used to display list of 8 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insviiicont%
+}
+
+\newcommand*{\insviiicont}[7]{% Used for descriptions of last 4 variables
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &#1 \\%
+		\meta{#2} &= &#3 \\%
+		\meta{#4} &= &#5 \\%
+		\meta{#6} &= &#7%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsix}[9]{% Used to display list of 9 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insixcont%
+}
+
+\newcommand*{\insixcont}[9]{% Used for descriptions of last 5 variables
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &#1 \\%
+		\meta{#2} &= &#3 \\%
+		\meta{#4} &= &#5 \\%
+		\meta{#6} &= &#7 \\%
+		\meta{#8} &= &#9%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsx}[9]{% Used to display list of 10 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insxcont%
+}
+
+\newcommand*{\insxcont}[9]{% Continuation of 10 inputs
+	\def\tX{#1}%
+	\def\tXI{#2}%
+	\def\tXII{#3}%
+	\def\tXIII{#4}%
+	\def\tXIV{#5}%
+	\def\tXV{#6}%
+	\def\tXVI{#7}%
+	\def\tXVII{#8}%
+	\def\tXVIII{#9}%
+	\insxcontcont%
+}
+
+\newcommand*{\insxcontcont}[2]{%Last variable
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &\tX \\%
+		\meta{\tXI} &= &\tXII \\%
+		\meta{\tXIII} &= &\tXIV \\%
+		\meta{\tXV} &= &\tXVI \\%
+		\meta{\tXVII} &= &\tXVIII \\%
+		\meta{#1} &= &#2%
+	\end{tabular}%
+}
+
+\newcommand*{\inputsxi}[9]{% Used to display list of 11 inputs
+	\def\tI{#1}%
+	\def\tII{#2}%
+	\def\tIII{#3}%
+	\def\tIV{#4}%
+	\def\tV{#5}%
+	\def\tVI{#6}%
+	\def\tVII{#7}%
+	\def\tVIII{#8}%
+	\def\tIX{#9}%
+	\insxicont%
+}
+
+\newcommand*{\insxicont}[9]{% Continuation of 11 inputs
+	\def\tX{#1}%
+	\def\tXI{#2}%
+	\def\tXII{#3}%
+	\def\tXIII{#4}%
+	\def\tXIV{#5}%
+	\def\tXV{#6}%
+	\def\tXVI{#7}%
+	\def\tXVII{#8}%
+	\def\tXVIII{#9}%
+	\insxicontcont%
+}
+
+\newcommand*{\insxicontcont}[4]{%Last 2 variables
+	\begin{tabular}{ r c l }%
+		\meta{\tI} &= &\tII \\%
+		\meta{\tIII} &= &\tIV \\%
+		\meta{\tV} &= &\tVI \\%
+		\meta{\tVII} &= &\tVIII \\%
+		\meta{\tIX} &= &\tX \\%
+		\meta{\tXI} &= &\tXII \\%
+		\meta{\tXIII} &= &\tXIV \\%
+		\meta{\tXV} &= &\tXVI \\%
+		\meta{\tXVII} &= &\tXVIII \\%
+		\meta{#1} &= &#2 \\%
+		\meta{#3} &= &#4%
+	\end{tabular}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\blu}[1]{%
+    \textcolor{MidnightBlue}{#1}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Notes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0 may be updated to improve how the entries appear
+% \@bsphack removes white space before
+% \@esphack removes white space after
+% \mkern+Xmu and \mkern-Xmu can adjust the kerning in math mode by +/- X math units

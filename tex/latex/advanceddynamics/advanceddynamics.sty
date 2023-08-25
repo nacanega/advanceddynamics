@@ -1,0 +1,1399 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advanceddynamics.sty: Advanced Dynamics Notation Package
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{advanceddynamics}[2023/08/24 v1.0 Advanced Dynamics Notation Package]
+
+%\RequirePackage{xparse}[2023/02/02]   % For optional arguments
+\RequirePackage{graphicx}[2021/09/16] % Scale characters
+\RequirePackage{amsmath}[2022/04/08] % Math notation
+\RequirePackage{tensor}[2004/12/20] % Prescripts
+\RequirePackage{amssymb}[2013/01/14] % Symbols
+\RequirePackage{mathtools}[2022/06/29] % More math
+\RequirePackage{accents}[2006/05/12] % Custom \bar command \bart
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Frames of Reference
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Normal Frame (This is what will be used in other sections)
+
+\newcommand*{\fr}[1]{% Used to write as a frame
+	\ensuremath{\bart{\MakeUppercase{#1}}}%
+}
+
+\newcommand*{\frsc}[1]{% Used to write as a frame in small caps italics for sub and superscripts
+	\ensuremath{\sm{\fr{#1}}}%
+}
+
+\newcommand*{\ihat}[1]{% Used to write ihat attached to a point (automatic bar)
+	\ensuremath{\Vsub{\hat{\imath}}{\frsc{#1}}}%
+}
+
+\newcommand*{\jhat}[1]{% Used to write jhat attached to a point (automatic bar)
+	\ensuremath{\Vsub{\hat{\jmath}}{\frsc{#1}}}%
+}
+
+\newcommand*{\khat}[1]{% Used to write khat attached to a point (automatic bar)
+	\ensuremath{\Vsub{\hat{k}}{\frsc{#1}}}%
+}
+
+\newcommand*{\frDef}[1]{% Used to write a frame definition (automatic bar)
+	\ensuremath{\fr{#1} = \{\MakeUppercase{#1},\ihat{#1},\jhat{#1},\khat{#1}\}}%
+}
+
+\newcommand*{\frExp}[2]{% Used to show that a vector or matrix is expressed in a certain frame (automatic bar)
+	\ensuremath{\Bsubv{#2}{\frsc{#1}}}%
+}
+
+\newcommand*{\frVec}[4]{% Used to express a vector quantity in expanded form
+	\ensuremath{\left(#2\right)\!\ihat{#1} + \left(#3\right)\!\jhat{#1} + \left(#4\right)\!\khat{#1}}%
+}
+
+\newcommand*{\frTen}[9]{% Used to express a tensor quantity in expanded form
+	\def\tempI{#1}
+	\def\tempII{#2}
+	\def\tempIII{#3}
+	\def\tempIV{#4}
+	\def\tempV{#5}
+	\def\tempVI{#6}
+	\def\tempVII{#7}
+	\def\tempVIII{#8}
+	\def\tempIX{#9}
+	\frTencont%
+}
+
+\newcommand*{\frTencont}[1]{% Continuation
+	\ensuremath{%
+		\begin{aligned}
+			  & \left(\tempII\right) \! \ihat{\tempI} \ihat{\tempI} %
+			+   \left(\tempIII\right) \! \ihat{\tempI} \jhat{\tempI} %
+			+   \left(\tempIV\right) \! \ihat{\tempI} \khat{\tempI} \cdots \\%
+			+ & \left(\tempV\right) \! \jhat{\tempI} \ihat{\tempI} %
+			+   \left(\tempVI\right) \! \jhat{\tempI} \jhat{\tempI} %
+			+   \left(\tempVII\right) \! \jhat{\tempI} \khat{\tempI} \cdots \\%
+			+ & \left(\tempVIII\right) \! \khat{\tempI} \ihat{\tempI} %
+			+   \left(\tempIX\right) \! \khat{\tempI} \jhat{\tempI} %
+			+   \left( #1 \right) \! \khat{\tempI} \khat{\tempI} %
+		\end{aligned}%
+	}%
+}
+
+\newcommand*{\frSub}[3]{% Adds frame and subscript to specified term
+	\ensuremath{\Vdg{#2}{\frsc{#1}}{#3}}%
+}
+
+\newcommand*{\frx}[2]{% x component
+	\ensuremath{\Vsub{#2}{x\frsc{#1}}}%
+}
+
+\newcommand*{\fry}[2]{% y component
+	\ensuremath{\Vsub{#2}{y\frsc{#1}}}%
+}
+
+\newcommand*{\frz}[2]{% z component
+	\ensuremath{\Vsub{#2}{z\frsc{#1}}}%
+}
+
+% Frame N (will be able to easily replace)
+
+\newcommand*{\frn}[2]{% Used to write as a frame with a subscript
+	\ensuremath{\Vsub{\bart{\MakeUppercase{#1}}}{\mkern+1mu #2}}%
+}
+
+\newcommand*{\frnsc}[2]{% Used to write as a frame with a subscript in small caps
+	\ensuremath{\sm{\frn{#1}{#2}}}%
+}
+
+\newcommand*{\ihatn}[2]{% Used to write ihat attached to a frame (automatic bar)
+	\ensuremath{\Vsub{\hat{\imath}}{\frnsc{#1}{#2}}}%
+}
+
+\newcommand*{\jhatn}[2]{% Used to write jhat attached to a frame (automatic bar)
+	\ensuremath{\Vsub{\hat{\jmath}}{\frnsc{#1}{#2}}}%
+}
+
+\newcommand*{\khatn}[2]{% Used to write khat attached to a frame (automatic bar)
+	\ensuremath{\Vsub{\hat{k}}{\frnsc{#1}{#2}}}%
+}
+
+\newcommand*{\frnDef}[2]{% Used to write a frame definition (automatic bar)
+	\ensuremath{\frn{#1}{#2} = \{\Vsub{\MakeUppercase{#1}}{#2},\ihatn{#1}{#2},\jhatn{#1}{#2},\khatn{#1}{#2}\}}%
+}
+
+\newcommand*{\frnExp}[3]{% Used to show that a vector or matrix is expressed in a certain frame (automatic bar)
+	\ensuremath{\Bsubv{#3}{\frnsc{#1}{#2}}}%
+}
+
+\newcommand*{\frnVec}[5]{% Used to express a vector quantity in expanded form
+	\ensuremath{\left(#3\right)\!\ihatn{#1}{#2} + \left(#4\right)\!\jhatn{#1}{#2} + \left(#5\right)\!\khatn{#1}{#2}}%
+}
+
+\newcommand*{\frnTen}[9]{% Used to express a tensor quantity in expanded form
+	\def\tempI{#1}
+	\def\tempII{#2}
+	\def\tempIII{#3}
+	\def\tempIV{#4}
+	\def\tempV{#5}
+	\def\tempVI{#6}
+	\def\tempVII{#7}
+	\def\tempVIII{#8}
+	\def\tempIX{#9}
+	\frnTencont%
+}
+
+\newcommand*{\frnTencont}[2]{% Continuation
+	\ensuremath{%
+		\begin{aligned}
+			&\left( \tempIII \right) \! \ihatn{\tempI}{\tempII} \ihatn{\tempI}{\tempII} %
+			+ \left( \tempIV \right) \! \ihatn{\tempI}{\tempII} \jhatn{\tempI}{\tempII} %
+			+ \left( \tempV \right) \! \ihatn{\tempI}{\tempII} \khatn{\tempI}{\tempII} \cdots\\%
+			+ &\left( \tempVI \right) \! \jhatn{\tempI}{\tempII} \ihatn{\tempI}{\tempII} %
+			+ \left( \tempVII \right) \! \jhatn{\tempI}{\tempII} \jhatn{\tempI}{\tempII} %
+			+ \left( \tempVIII \right) \! \jhatn{\tempI}{\tempII} \khatn{\tempI}{\tempII} \cdots\\%
+			+ &\left( \tempIX \right) \! \khatn{\tempI}{\tempII} \ihatn{\tempI}{\tempII} %
+			+ \left( #1 \right) \! \khatn{\tempI}{\tempII} \jhatn{\tempI}{\tempII} %
+			+ \left( #2 \right) \! \khatn{\tempI}{\tempII} \khatn{\tempI}{\tempII} %
+		\end{aligned}%
+	}%
+}
+
+\newcommand*{\frnSub}[4]{% Adds frame and subscript to specified term
+	\ensuremath{\Vdg{#3}{\frnsc{#1}{#2}}{#4}}
+}
+
+\newcommand*{\frnx}[3]{% x component
+	\ensuremath{\Vsub{#3}{x\frnsc{#1}{#2}}}
+}
+
+\newcommand*{\frny}[3]{% y component
+	\ensuremath{\Vsub{#3}{y\frnsc{#1}{#2}}}
+}
+
+\newcommand*{\frnz}[3]{% z component
+	\ensuremath{\Vsub{#3}{z\frnsc{#1}{#2}}}
+}
+
+% Special Frame
+
+\newcommand*{\uveca}[1]{% Used to write unit vector 1 for a specified letter
+	\ensuremath{\Vsub{\hat{\MakeLowercase{#1}}}{\smn{1}}}
+}
+
+\newcommand*{\uvecb}[1]{% Used to write unit vector 2 for a specified letter
+	\ensuremath{\Vsub{\hat{\MakeLowercase{#1}}}{\smn{2}}}
+}
+
+\newcommand*{\uvecc}[1]{% Used to write unit vector 3 for a specified letter
+	\ensuremath{\Vsub{\hat{\MakeLowercase{#1}}}{\smn{3}}}
+}
+
+\newcommand*{\fruDef}[1]{% Frame definition
+	\ensuremath{\fr{#1} = \{\MakeUppercase{#1},\uveca{#1},\uvecb{#1},\uvecc{#1}\}}
+}
+
+\newcommand*{\fruVec}[4]{% Used to express a vector quantity in expanded form
+	\ensuremath{\left(#2\right)\!\uveca{#1} + \left(#3\right)\!\uvecb{#1} + \left(#4\right)\!\uvecc{#1}}
+}
+
+\newcommand*{\fruTen}[9]{% Used to express a tensor quantity in expanded form
+	\def\tempI{#1}
+	\def\tempII{#2}
+	\def\tempIII{#3}
+	\def\tempIV{#4}
+	\def\tempV{#5}
+	\def\tempVI{#6}
+	\def\tempVII{#7}
+	\def\tempVIII{#8}
+	\def\tempIX{#9}
+	\fruTencont%
+}
+
+\newcommand*{\fruTencont}[1]{% Continuation
+	\ensuremath{%
+		\begin{aligned}
+			&\left( \tempII \right) \! \uveca{\tempI} \uveca{\tempI} %
+			+ \left( \tempIII \right) \! \uveca{\tempI} \uvecb{\tempI} %
+			+ \left( \tempIV \right) \! \uveca{\tempI} \uvecc{\tempI} \cdots\\%
+			+ &\left( \tempV \right) \! \uvecb{\tempI} \uveca{\tempI} %
+			+ \left( \tempVI \right) \! \uvecb{\tempI} \uvecb{\tempI} %
+			+ \left( \tempVII \right) \! \uvecb{\tempI} \uvecc{\tempI} \cdots\\%
+			+ &\left( \tempVIII \right) \! \uvecc{\tempI} \uveca{\tempI} %
+			+ \left( \tempIX \right) \! \uvecc{\tempI} \uvecb{\tempI} %
+			+ \left( #1 \right) \! \uvecc{\tempI} \uvecc{\tempI}%
+		\end{aligned}%
+	}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General Terms 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Translational Terms
+
+\newcommand*{\traV}[2]{% Translational Velocity
+	\ensuremath{\Vdg{\vec{v}}{\frsc{#1}}{#2}}%
+}
+
+\newcommand*{\traA}[2]{% Translational Acceleration
+	\ensuremath{\Vdg{\vec{a}}{\frsc{#1}}{#2}}%
+}
+
+\newcommand*{\relR}[2]{% Relative Position
+	\ensuremath{\Vsub{\vec{r}}{#1\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\relV}[3]{% Relative Velocity
+	\ensuremath{\Vdg{\vec{v}}{\frsc{#1}}{#2\mkern-1mu/\!#3}}%
+}
+
+\newcommand*{\relA}[3]{% Relative Acceleration
+	\ensuremath{\Vdg{\vec{a}}{\frsc{#1}}{#2\mkern-1mu/\!#3}}%
+}
+
+\newcommand*{\Forc}[1]{% Force vector
+	\ensuremath{\Msub{\vec{F}}{#1}}%
+}
+
+% Rotational Terms
+
+\newcommand*{\angV}[2]{% Angular velocity
+	\ensuremath{\Vup{\vec{\omega}}{\frsc{#1}}{\frsc{#2}}}%
+} 
+
+\newcommand*{\angA}[2]{% Angular acceleration
+	\ensuremath{\Vup{\vec{\alpha}}{\frsc{#1}\mkern-2mu}{\frsc{#2}}}%
+}
+
+\newcommand*{\angMp}[4]{% Angular Momentum particle
+	\ensuremath{\Vlt{\vec{h}}{\frsc{#1}}{#2}{#4\mkern-1mu/\!#3}}%
+}
+
+\newcommand*{\angMs}[3]{% Angular Momentum system
+	\ensuremath{\Vlt{\vec{h}}{\frsc{#1}}{#2}{#3\mkern-1mu\comma\mathrm{sys}}}%
+}
+
+\newcommand*{\angM}[3]{% Angular Momentum subscript
+	\ensuremath{\Vlt{\vec{h}}{\frsc{#1}}{#2}{#3}}%
+}
+
+\newcommand*{\torq}[1]{% Torque
+	\ensuremath{\Vsub{\vec{\tau}}{#1}}%
+}
+
+% Matrix Terms
+
+\newcommand*{\rotM}[2]{% Rotation Matrix
+	\ensuremath{\Bup{C}{\frsc{#1}}{\frsc{#2}}}%
+}
+
+\newcommand*{\rotMd}[2]{% Rotation Matrix Derivative
+	\ensuremath{\Bup{\dot{C}}{\frsc{#1}}{\frsc{#2}}}%
+}
+
+\newcommand*{\Rx}[1]{% Rotation about x
+	\ensuremath{\left[\Vsub{\mathrm{R}}{\mkern+1mu x}\mkern-5mu\left(#1\right)\right]}%
+}
+
+\newcommand*{\Ry}[1]{% Rotation about y
+	\ensuremath{\left[\Vsub{\mathrm{R}}{\mkern+1mu y}\mkern-5mu\left(#1\right)\right]}%
+}
+
+\newcommand*{\Rz}[1]{% Rotation about z
+	\ensuremath{\left[\Vsub{\mathrm{R}}{\mkern+1mu z}\mkern-5mu\left(#1\right)\right]}%
+}
+
+\newcommand*{\omcrMat}[2]{% Omega cross matrix
+	\ensuremath{\Bsub{\angV{#1}{#2}\times}{\frsc{#2}}}%
+}
+
+\newcommand*{\omcrx}[2]{% Omega cross x term
+	\ensuremath{\Vut{\omega}{\frsc{#1}}{\frsc{#2}}{x\frsc{#2}}}%
+}
+
+\newcommand*{\omcry}[2]{% Omega cross y term
+	\ensuremath{\Vut{\omega}{\frsc{#1}}{\frsc{#2}}{y\frsc{#2}}}%
+}
+
+\newcommand*{\omcrz}[2]{% Omega cross z term
+	\ensuremath{\Vut{\omega}{\frsc{#1}}{\frsc{#2}}{z\frsc{#2}}}%
+}
+
+% Inertia Terms
+
+\newcommand*{\inerTen}[1]{% Inertia Tensor
+	\ensuremath{\Vsub{\tilde{I}}{#1}}%
+}
+
+\newcommand*{\inerMat}[2]{% Inertia Tensor
+	\ensuremath{\Bsub{\inerTen{#2}}{\frsc{#1}}}%
+}
+
+\newcommand*{\Ixx}[2]{% Ixx inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{xx\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Ixy}[2]{% Ixy inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{xy\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Ixz}[2]{% Ixz inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{xz\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Iyx}[2]{% Iyx inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{yx\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Iyy}[2]{% Iyy inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{yy\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Iyz}[2]{% Iyz inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{yz\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Izx}[2]{% Izx inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{zx\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Izy}[2]{% Izy inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{zy\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\Izz}[2]{% Izz inertia component
+	\ensuremath{\Vdg{I}{\frsc{#1}}{zz\mkern-1mu/\!#2}}%
+}
+
+\newcommand*{\xrel}[3]{% x relative distance for inertia calculation
+	\ensuremath{\Vdg{x}{\frsc{#1}}{#2\mkern-1mu/\!#3}}%
+}
+
+\newcommand*{\yrel}[3]{% y relative distance for inertia calculation
+	\ensuremath{\Vdg{y}{\frsc{#1}}{#2\mkern-1mu/\!#3}}%
+}
+
+\newcommand*{\zrel}[3]{% z relative distance for inertia calculation
+	\ensuremath{\Vdg{z}{\frsc{#1}}{#2\mkern-1mu/\!#3}}%
+}
+
+% Other terms
+
+\newcommand*{\vecF}[3]{% Vector in frame with a subscript
+	\ensuremath{\Vdg{\vec{#2}}{\frsc{#1}}{#3}}%
+}
+
+\newcommand*{\potEn}{% Potential energy term
+	\ensuremath{\Vpup{V}{\frsc{O}\mkern+2mu}}%
+}
+
+\newcommand*{\kinEn}{% Kinetic energy term
+	\ensuremath{\Vdg{T}{\frsc{O}\mkern+2mu}{\smca{O}}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Advanced Terms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Partial Terms
+
+\newcommand*{\Pvec}[3]{% Partial Angular Derivative
+	\ensuremath{\Vut{\vec{P}}{\frsc{#1}\!}{\frsc{#2}}{#3}}%
+}
+
+\newcommand*{\Pvecx}[3]{% Partial Angular Derivative x
+	\ensuremath{\Vut{\vec{P}}{\frsc{#1}\!}{\frsc{#2}}{#3\comma x}}%
+}
+
+\newcommand*{\Pvecy}[3]{% Partial Angular Derivative y
+	\ensuremath{\Vut{\vec{P}}{\frsc{#1}\!}{\frsc{#2}}{#3\comma y}}%
+}
+
+\newcommand*{\Pvecz}[3]{% Partial Angular Derivative z
+	\ensuremath{\Vut{\vec{P}}{\frsc{#1}\!}{\frsc{#2}}{#3\comma z}}%
+}
+
+% Total Terms
+
+\newcommand*{\Tvec}[3]{% Total Angular Derivative
+	\ensuremath{\Vut{\vec{T}}{\frsc{#1}\mkern+2mu}{\frsc{#2}}{#3}}%
+}
+
+\newcommand*{\Tvecx}[3]{% Total Angular Derivative x
+	\ensuremath{\Vut{\vec{T}}{\frsc{#1}\mkern+2mu}{\frsc{#2}}{#3\comma x}}%
+}
+
+\newcommand*{\Tvecy}[3]{% Total Angular Derivative y
+	\ensuremath{\Vut{\vec{T}}{\frsc{#1}\mkern+2mu}{\frsc{#2}}{#3\comma y}}%
+}
+
+\newcommand*{\Tvecz}[3]{% Total Angular Derivative z
+	\ensuremath{\Vut{\vec{T}}{\frsc{#1}\mkern+2mu}{\frsc{#2}}{#3\comma z}}%
+}
+
+% Equations of Motion Terms
+\newcommand*{\angVk}[3]{% Angular velocity with second n frame, first normal
+	\ensuremath{\Vup{\vec{\omega}}{\frsc{#1}}{\frnsc{#2}{#3}}}
+}
+
+\newcommand*{\angAk}[3]{% Angular acceleration with second n frame, first normal
+	\ensuremath{\Vup{\vec{\alpha}}{\frsc{#1}\mkern-1mu}{\frnsc{#2}{#3}}}
+}
+
+\newcommand*{\forc}[1]{% Force vector with a small f
+	\ensuremath{\Vsub{\vec{f}}{#1}}%
+}
+
+\newcommand*{\Lagr}{% Lagrangian
+	\ensuremath{\tensor*[^{\frsc{O}\mkern-4mu}]{\mathcal{L}}{_{\!\smca{O}}}}%
+}
+
+\newcommand*{\KFr}[1]{% Kane Fr
+	\ensuremath{\tensor*{F}{_{\mkern-5mu #1}}}%
+}
+
+\newcommand*{\KFrs}[1]{% Kane Fr*
+	\ensuremath{\tensor*{F}{_{\mkern-5mu #1}^{*}}}%
+}
+
+\newcommand*{\ptraVr}[3]{% rth Partial Linear Velocity
+	\ensuremath{\Vlt{\vec{v}}{\frsc{#1}}{\smca{o}}{#2\comma #3}}%
+}
+
+\newcommand*{\ptraVt}[2]{% t Partial Linear Velocity
+	\ensuremath{\Vlt{\vec{v}}{\frsc{#1}}{\smca{o}}{#2\comma t}}%
+}
+
+\newcommand*{\pangVr}[3]{% rth Partial Angular Velocity
+	\ensuremath{\Vut{\vec{\omega}}{\frsc{#1}}{\frsc{#2}}{\mkern+1mu #3}}%
+}
+
+\newcommand*{\pangVrk}[4]{% rth Partial Angular Velocity with n body frame
+	\ensuremath{\Vut{\vec{\omega}}{\frsc{#1}}{\frnsc{#2}{#3}}{\mkern+1mu #4}}
+}
+
+\newcommand*{\pangVt}[2]{% t Partial Angular Velocity
+	\ensuremath{\Vut{\vec{\omega}}{\frsc{#1}}{\frsc{#2}}{\mkern+1mu t}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Differentiation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Time Derivatives
+
+\newcommand*{\derI}[2]{% Derivative
+	\ensuremath{\Mpup{\tfrac{\mathrm{d}}{\mathrm{d}t}}{\frsc{#1}\mkern+2mu}\mkern-4mu\left( #2 \right)}%
+}
+
+\newcommand*{\derII}[2]{% Second Derivative
+	\ensuremath{\Mpup{\tfrac{\mathrm{d^2}}{\mathrm{d}t^2}}{\frsc{#1}}\mkern-4mu\left( #2 \right)}%
+}
+
+\newcommand*{\derN}[3]{% Nth Derivative
+	\ensuremath{\Mpup{\tfrac{\mathrm{d^{#3}}}{\mathrm{d}t^{#3}}}{\frsc{#1}}\mkern-4mu\left( #2 \right)}%
+}
+
+\newcommand*{\tranI}[3]{% 1st order transport theorem
+	\ensuremath{\derI{#1}{#3} = \derI{#2}{#3} + \angV{#1}{#2} \!\times\!#3}%
+}
+
+\newcommand*{\tranII}[3]{% 2nd order transport theorem
+	\ensuremath{\derII{#1}{#3} = \derII{#2}{#3} + \angA{#1}{#2} \!\times\!#3 + 2 \angV{#1}{#2} \!\times\! \derI{#2}{#3} + \angV{#1}{#2} \!\times\!\left(\angV{#1}{#2} \!\times\!#3 \right)}%
+}
+
+% Partial Derivatives
+
+\newcommand*{\pderI}[3]{% Partial Derivative
+	\ensuremath{\Mpup{\tfrac{\partial}{\partial{#2}}}{\frsc{#1}}\mkern-4mu\left( #3 \right)}%
+}
+
+\newcommand*{\pderII}[3]{% Second Partial Derivative % Note that mixed partial derivatives will need to be done manually
+	\ensuremath{\Mpup{\tfrac{\partial^2}{\partial{#2}^2}}{\frsc{#1}}\mkern-4mu\left( #3 \right)}%
+}
+
+\newcommand*{\pderN}[4]{% Nth Partial Derivative % Note that mixed partial derivatives will need to be done manually
+	\ensuremath{\Mpup{\tfrac{\partial^{#4}}{\partial{#2}^{#4}}}{\frsc{#1}}\mkern-4mu\left( #3 \right)}%
+}
+
+\newcommand*{\ptranI}[4]{% 1st order transport theorem for Partial derivatives
+	\ensuremath{\pderI{#1}{#3}{#4} = \pderI{#2}{#3}{#4} + \Pvec{#1}{#2}{#3} \!\times\!#4}%
+}
+
+% Total Derivative
+
+\newcommand*{\tderI}[3]{% Total Derivative
+	\ensuremath{\Mpup{\tfrac{\mathrm{d}}{\mathrm{d}{#2}}}{\frsc{#1}}\mkern-4mu\left( #3 \right)}%
+}
+
+\newcommand*{\tderII}[3]{% Second Total Derivative % Note that mixed total derivatives will need to be done manually
+	\ensuremath{\Mpup{\tfrac{\mathrm{d}^2}{\mathrm{d}{#2}^2}}{\frsc{#1}}\mkern-4mu\left( #3 \right)}%
+}
+
+\newcommand*{\tderN}[4]{% Nth Total Derivative % Note that mixed total derivatives will need to be done manually
+	\ensuremath{\Mpup{\tfrac{\mathrm{d}^{#4}}{\mathrm{d}{#2}^{#4}}}{\frsc{#1}}\mkern-4mu\left( #3 \right)}%
+}
+
+\newcommand*{\ttranI}[4]{% 1st order transport theorem for Total derivatives
+	\ensuremath{\tderI{#1}{#3}{#4} = \tderI{#2}{#3}{#4} + \Tvec{#1}{#2}{#3} \!\times\!#4}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Vectors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Column Vectors
+
+\newcommand*{\vecfrc}[4]{% Generic column vector in a frame
+	\ensuremath{%
+		\begin{bmatrix}
+			#2 \\ #3 \\ #4%
+		\end{bmatrix}_{\!\!\frsc{#1}}%
+	}%
+}
+
+\newcommand*{\vecfrnc}[5]{% Generic column vector in an n frame
+	\ensuremath{%
+		\begin{bmatrix}
+			#3 \\ #4 \\ #5%
+		\end{bmatrix}_{\!\!\frnsc{#1}{#2}}%
+	}%
+}
+
+\newcommand*{\vecAc}{% First elementary col vector
+	\ensuremath{%
+		\begin{bmatrix}
+			1 \\ 0 \\ 0%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\vecBc}{% Second elementary col vector
+	\ensuremath{%
+		\begin{bmatrix}
+			0 \\ 1 \\ 0%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\vecCc}{% Third elementary col vector
+	\ensuremath{%
+		\begin{bmatrix}
+			0 \\ 0 \\ 1%
+		\end{bmatrix}%
+	}%
+}
+
+% Transposed Column Vectors
+
+\newcommand*{\vecfrcT}[4]{% Generic column vector in a frame transposed
+	\ensuremath{%
+		\begin{bmatrix}
+			#2 & #3 & #4%
+		\end{bmatrix}^{\!\mathrm{T}}_{\!\frsc{#1}}%
+	}%
+}
+
+\newcommand*{\vecfrncT}[5]{% Generic column vector in an n frame transposed
+	\ensuremath{%
+		\begin{bmatrix}
+			#3 & #4 & #5%
+		\end{bmatrix}^{\!\mathrm{T}}_{\!\frnsc{#1}{#2}}%
+	}%
+}
+
+\newcommand*{\vecAcT}{% First elementary col vector transposed
+	\ensuremath{%
+		\begin{bmatrix}
+			1 & 0 & 0%
+		\end{bmatrix}^{\!\mathrm{T}}%
+	}%
+}
+
+\newcommand*{\vecBcT}{% Second elementary col vector transposed
+	\ensuremath{%
+		\begin{bmatrix}
+			0 & 1 & 0%
+		\end{bmatrix}^{\!\mathrm{T}}%
+	}%
+}
+
+\newcommand*{\vecCcT}{% Third elementary col vector transposed
+	\ensuremath{%
+		\begin{bmatrix}
+			0 & 0 & 1%
+		\end{bmatrix}^{\!\mathrm{T}}%
+	}%
+}
+
+% Row Vectors
+
+\newcommand*{\vecfrr}[4]{% Generic row vector in a frame
+	\ensuremath{%
+		\begin{bmatrix}
+			#2 & #3 & #4%
+		\end{bmatrix}_{\!\frsc{#1}}%
+	}%
+}
+
+\newcommand*{\vecfrnr}[5]{% Generic row vector in an n frame
+	\ensuremath{%
+		\begin{bmatrix}
+			#3 & #4 & #5%
+		\end{bmatrix}_{\!\!\frnsc{#1}{#2}}%
+	}%
+}
+
+\newcommand*{\vecAr}{% First elementary row vector
+	\ensuremath{%
+		\begin{bmatrix}
+			1 & 0 & 0%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\vecBr}{% Second elementary row vector 
+	\ensuremath{%
+		\begin{bmatrix}
+			0 & 1 & 0%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\vecCr}{% Third elementary row vector 
+	\ensuremath{%
+		\begin{bmatrix}
+			0 & 0 & 1 %
+		\end{bmatrix}%
+	}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matrices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Standard Rotation Matrices
+
+\newcommand*{\rotx}[1]{% Rotation about x axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			1 &    0 &   0 \\%
+			0 &  c#1 & s#1 \\%
+			0 & -s#1 & c#1%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\roty}[1]{% Rotation about y axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			c#1 & 0 & -s#1 \\%
+			  0 & 1 &    0 \\%
+			s#1 & 0 &  c#1%
+		\end{bmatrix*}%
+	}
+}
+
+\newcommand*{\rotz}[1]{% Rotation about z axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			 c#1 & s#1 & 0 \\%
+			-s#1 & c#1 & 0 \\%
+			   0 &   0 & 1%
+		\end{bmatrix*}%
+	}
+}
+
+
+\newcommand*{\rotxq}[1]{% Rotation about x axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			1 &      0 &     0 \\%
+			0 &  c_{#1} & s_{#1} \\%
+			0 & -s_{#1} & c_{#1}%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\rotyq}[1]{% Rotation about y axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			c_{#1} & 0 & -s_{#1} \\%
+			     0 & 1 &       0 \\%
+			s_{#1} & 0 &  c_{#1}%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\rotzq}[1]{% Rotation about z axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			 c_{#1} & s_{#1} & 0 \\%
+			-s_{#1} & c_{#1} & 0 \\%
+			      0 &      0 & 1%
+		\end{bmatrix*}%
+	}%
+}
+
+% Transposed Rotation Matrices
+
+\newcommand*{\rotxT}[1]{% Rotation about x axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			1 &   0 &    0 \\%
+			0 & c#1 & -s#1 \\%
+			0 & s#1 &  c#1%
+		\end{bmatrix*}%
+	}
+}
+
+\newcommand*{\rotyT}[1]{% Rotation about y axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			 c#1 & 0 & s#1 \\%
+			   0 & 1 &   0 \\%
+			-s#1 & 0 & c#1%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\rotzT}[1]{% Rotation about z axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			c#1 & -s#1 & 0 \\%
+			s#1 &  c#1 & 0 \\%
+			  0 &    0 & 1%
+		\end{bmatrix*}
+	}%
+}
+
+\newcommand*{\rotxqT}[1]{% Rotation about x axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			1 &      0 &       0 \\%
+			0 & c_{#1} & -s_{#1} \\%
+			0 & s_{#1} &  c_{#1}%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\rotyqT}[1]{% Rotation about y axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			 c_{#1} & 0 & s_{#1} \\%
+			      0 & 1 &      0 \\%
+			-s_{#1} & 0 & c_{#1}%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\rotzqT}[1]{% Rotation about z axis
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			c_{#1} & -s_{#1} & 0 \\%
+			s_{#1} &  c_{#1} & 0 \\%
+			     0 &       0 & 1%
+		\end{bmatrix*}%
+	}%
+}
+
+% Inertia Matrices
+
+\newcommand*{\inertiaMat}[2]{% Full inertia matrix
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			 \Ixx{#1}{#2} & -\Ixy{#1}{#2} & -\Ixz{#1}{#2} \\%
+			-\Iyx{#1}{#2} &  \Iyy{#1}{#2} & -\Iyz{#1}{#2} \\%
+			-\Izx{#1}{#2} & -\Izy{#1}{#2} &  \Izz{#1}{#2}%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\inertiaMatsh}{% Full inertia matrix with shorthand
+	\ensuremath{%
+		\begin{bmatrix*}[r]
+			 I_{xx} & -I_{xy} & -I_{xz} \\%
+			-I_{yx} &  I_{yy} & -I_{yz} \\%
+			-I_{zx} & -I_{zy} &  I_{zz}%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\inertiaDif}[2]{% Distances from CM for inertia matrix
+	\ensuremath{%
+		\begin{bmatrix*}[c]
+			(\yrel{#1}{\CM}{#2})^2 + (\zrel{#1}{\CM}{#2})^2 & 		  \xrel{#1}{\CM}{#2} \yrel{#1}{\CM}{#2} & 		  \xrel{#1}{\CM}{#2} \zrel{#1}{\CM}{#2} \\%
+			  		  \yrel{#1}{\CM}{#2} \xrel{#1}{\CM}{#2} & (\xrel{#1}{\CM}{#2})^2 + (\zrel{#1}{\CM}{#2})^2 & 		  \yrel{#1}{\CM}{#2} \zrel{#1}{\CM}{#2} \\%
+			  		  \zrel{#1}{\CM}{#2} \xrel{#1}{\CM}{#2} & 		  \zrel{#1}{\CM}{#2} \yrel{#1}{\CM}{#2} & (\xrel{#1}{\CM}{#2})^2 + (\yrel{#1}{\CM}{#2})^2%
+		\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\inertiaDifsh}{% Distances from CM for inertia matrix shorthand frame
+	\ensuremath{%
+		\begin{bmatrix*}[c]
+			y^2 + z^2 & 	   xy & 	   xz \\%
+			  	   yx & x^2 + z^2 & 	   yz \\%
+			  	   zx & 	   zy & x^2 + y^2%
+		\end{bmatrix*}%
+	}%
+}
+
+% Other Matrices
+
+\newcommand*{\sqMatiii}[9]{% Generic 3x3 matrix
+	\ensuremath{%
+		\begin{bmatrix}
+			#1 & #2 & #3 \\%
+			#4 & #5 & #6 \\%
+			#7 & #8 & #9%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\eyeMatiii}{% 3x3 Identity matrix
+	\ensuremath{%
+		\begin{bmatrix}
+			1 & 0 & 0 \\%
+			0 & 1 & 0 \\%
+			0 & 0 & 1%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\dcm}{% Generic coefficient matrix for rotation matrics
+	\ensuremath{%
+		\begin{bmatrix}
+			C_{11'} & C_{12'} & C_{13'} \\%
+			C_{21'} & C_{22'} & C_{23'} \\%
+			C_{31'} & C_{32'} & C_{33'}%
+		\end{bmatrix}%
+	}%
+}
+
+\newcommand*{\crossMat}[3]{% Defines a cross matrix given 3 components
+	\ensuremath{%
+	\begin{bmatrix*}[r]
+		  0 & -#3 &  #2 \\%
+		 #3 &   0 & -#1 \\%
+		-#2 &  #1 &   0%
+	\end{bmatrix*}%
+	}%
+}
+
+\newcommand*{\tensorMat}[2]{% Shows a Tensor conversion to matrix form
+	\ensuremath{%
+		\begin{bmatrix*}[c]
+			\ihat{#1}\cdot #2 \cdot\ihat{#1} & \ihat{#1}\cdot #2 \cdot\jhat{#1} & \ihat{#1}\cdot #2 \cdot\khat{#1} \\%
+			\jhat{#1}\cdot #2 \cdot\ihat{#1} & \jhat{#1}\cdot #2 \cdot\jhat{#1} & \jhat{#1}\cdot #2 \cdot\khat{#1} \\%
+			\khat{#1}\cdot #2 \cdot\ihat{#1} & \khat{#1}\cdot #2 \cdot\jhat{#1} & \khat{#1}\cdot #2 \cdot\khat{#1} %
+	  	\end{bmatrix*}%
+	}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Newton
+
+\newcommand*{\NewtonII}{% Generic NewtonII % Assumes NewtonIII
+	\ensuremath{\sum\Forc{\mathrm{sys}\comma\mathrm{ext}} = \sum_{i=1}^{k} m_{\smn{T}\comma i} \relA{O}{\CM\comma i}{\smca{O}}+ \sum_{j=1}^{n} m_{j} \relA{O}{m_{j}}{\smca{O}}}%
+}
+
+\newcommand*{\NewtonIIpart}{% Generic NewtonII for particles % Assumes NewtonIII
+	\ensuremath{\sum\Forc{\mathrm{sys}\comma\mathrm{ext}} = \sum_{i=1}^{n} m_{i} \relA{O}{m_{i}}{\smca{O}}}%
+}
+
+\newcommand*{\NewtonIIrigp}{% Generic NewtonII for system of particles as a rigid body % Assumes Newton III
+	\ensuremath{\sum\Forc{\mathrm{sys}\comma\mathrm{ext}} = m_{\smn{T}} \relA{O}{\CM}{\smca{O}}}%
+}
+
+\newcommand*{\NewtonIIgen}{% Generic Newton II % Makes no assumptions about internal forces
+	\ensuremath{\sum_{i=1}^{n}\Forc{\mkern+1mui} + \sum_{i=1}^{n}\sum_{j=1}^{n}\forc{ij} = m_{\smn{T}} \relA{O}{\CM}{\smca{O}}}%
+}
+
+% Inertia Terms Full
+
+\newcommand*{\inerTenDef}[1]{% Inertia tensor definition
+	\ensuremath{\inerTen{#1} \equiv \sum_{i=1}^{n}m_{i}\left[\left(\relR{m_{i}}{#1}\cdot\relR{m_{i}}{#1}\right)\!\tilde{1} - \relR{m_{i}}{#1}\relR{m_{i}}{#1}\right]}%
+}
+
+\newcommand*{\parAxisTen}[1]{% Parallel Axis Tensor Equation
+	\ensuremath{\inerTen{#1} = \inerTen{\CM} + m_{\smn{T}}\left[\left(\relR{\CM}{#1}\cdot\relR{\CM}{#1}\right)\!\tilde{1} - \relR{\CM}{#1}\relR{\CM}{#1}\right]}%
+}
+
+\newcommand*{\rRel}[3]{% Definition of r vector for inertia
+	\ensuremath{\relR{#2}{#3} \equiv \frVec{#1}{\xrel{#1}{#2}{#3}}{\yrel{#1}{#2}{#3}}{\zrel{#1}{#2}{#3}}}%
+}
+
+\newcommand*{\IxxSum}[2]{% Ixx Sum Definition
+	\ensuremath{\Ixx{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\left(\left(\yrel{#1}{m_{i}}{#2}\right)^{2}+\left(\zrel{#1}{m_{i}}{#2}\right)^{2}\right)}%
+}
+
+\newcommand*{\IxySum}[2]{% Ixy Sum Definition
+	\ensuremath{\Ixy{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\xrel{#1}{m_{i}}{#2}\yrel{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\IxzSum}[2]{% Ixz Sum Definition
+	\ensuremath{\Ixy{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\xrel{#1}{m_{i}}{#2}\zrel{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\IyxSum}[2]{% Iyx Sum Definition
+	\ensuremath{\Iyx{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\yrel{#1}{m_{i}}{#2}\xrel{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\IyySum}[2]{% Iyy Sum Definition
+	\ensuremath{\Iyy{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\left(\left(\xrel{#1}{m_{i}}{#2}\right)^{2}+\left(\zrel{#1}{m_{i}}{#2}\right)^{2}\right)}%
+}
+
+\newcommand*{\IyzSum}[2]{% Iyz Sum Definition
+	\ensuremath{\Iyz{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\yrel{#1}{m_{i}}{#2}\zrel{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\IzxSum}[2]{% Izx Sum Definition
+	\ensuremath{\Izx{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\zrel{#1}{m_{i}}{#2}\xrel{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\IzySum}[2]{% Izy Sum Definition
+	\ensuremath{\Izy{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\zrel{#1}{m_{i}}{#2}\yrel{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\IzzSum}[2]{% Izz Sum Definition
+	\ensuremath{\Izz{#1}{#2} \equiv \sum_{i=1}^{n} m_{i}\left(\left(\xrel{#1}{m_{i}}{#2}\right)^{2}+\left(\yrel{#1}{m_{i}}{#2}\right)^{2}\right)}%
+}
+
+\newcommand*{\parAxis}[2]{% The normal parallel axis theorem of a frame around a non CM point
+	\ensuremath{%
+	\begin{aligned}%
+		\inerMat{#1}{#2} &= \inertiaMat{#1}{#2} \\%
+		&+ m_{\smn{T}}\inertiaDif{#1}{#2}%
+	\end{aligned}%
+	}
+}
+
+% Inertia Terms Short
+
+\newcommand*{\rRelsh}[3]{% Definition of r vector for inertia
+	\ensuremath{\vecF{#1}{r}{#2\mkern-1mu/\!#3} = \frVec{#1}{x}{y}{z}}%
+}
+
+\newcommand*{\IxxSumsh}{% Ixx Sum Definition
+	\ensuremath{I_{xx} = \sum_{i=1}^{n} m_{i}\left(y_i^2+z_i^2\right)}%
+}
+
+\newcommand*{\IxySumsh}{% Ixy Sum Definition
+	\ensuremath{I_{xy} = \sum_{i=1}^{n} m_{i} x_i y_i}%
+}
+
+\newcommand*{\IxzSumsh}{% Ixz Sum Definition
+	\ensuremath{I_{xz} = \sum_{i=1}^{n} m_{i} x_i z_i}%
+}
+
+\newcommand*{\IyxSumsh}{% Iyx Sum Definition
+	\ensuremath{I_{yx} = \sum_{i=1}^{n} m_{i} y_i x_i}%
+}
+
+\newcommand*{\IyySumsh}{% Iyy Sum Definition
+	\ensuremath{I_{yy} = \sum_{i=1}^{n} m_{i}\left(x_i^2+z_i^2\right)}%
+}
+
+\newcommand*{\IyzSumsh}{% Iyz Sum Definition
+	\ensuremath{I_{yz} = \sum_{i=1}^{n} m_{i} y_i z_i}%
+}
+
+\newcommand*{\IzxSumsh}{% Izx Sum Definition
+	\ensuremath{I_{zx} = \sum_{i=1}^{n} m_{i} z_i x_i}%
+}
+
+\newcommand*{\IzySumsh}{% Izy Sum Definition
+	\ensuremath{I_{zy} = \sum_{i=1}^{n} m_{i} z_i y_i}%
+}
+
+\newcommand*{\IzzSumsh}{% Izz Sum Definition
+	\ensuremath{I_{zz} = \sum_{i=1}^{n} m_{i}\left(x_i^2+y_i^2\right)}%
+}
+
+\newcommand*{\IxxInt}{% Ixx Integral Definition Using Only Shorthand
+	\ensuremath{I_{xx} = \int_{\mathrm{Body}} \mkern-18mu (y^2 + z^2) \mathrm{d}m = \iiint_{V}(y^2 + z^2)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IxyInt}{% Ixy Integral Definition Using Only Shorthand
+	\ensuremath{I_{xy} = \int_{\mathrm{Body}} \mkern-18mu (xy)\,\mathrm{d}m = \iiint_{V} (xy)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IxzInt}{% Ixz Integral Definition Using Only Shorthand
+	\ensuremath{I_{xz} = \int_{\mathrm{Body}} \mkern-18mu (xz)\,\mathrm{d}m = \iiint_{V} (xz)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IyxInt}{% Iyx Integral Definition Using Only Shorthand
+	\ensuremath{I_{yx} = \int_{\mathrm{Body}} \mkern-18mu (yx)\,\mathrm{d}m = \iiint_{V} (yx)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IyyInt}{% Iyy Integral Definition Using Only Shorthand
+	\ensuremath{I_{yy} = \int_{\mathrm{Body}} \mkern-18mu (x^2 + z^2)\,\mathrm{d}m = \iiint_{V}(x^2 + z^2)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IyzInt}{% Iyz Integral Definition Using Only Shorthand
+	\ensuremath{I_{yz} = \int_{\mathrm{Body}} \mkern-18mu (yz)\,\mathrm{d}m = \iiint_{V} (yz)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IzxInt}{% Izx Integral Definition Using Only Shorthand
+	\ensuremath{I_{zx} = \int_{\mathrm{Body}} \mkern-18mu (zx)\,\mathrm{d}m = \iiint_{V} (zx)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IzyInt}{% Izy Integral Definition Using Only Shorthand
+	\ensuremath{I_{zy} = \int_{\mathrm{Body}} \mkern-18mu (zy)\,\mathrm{d}m = \iiint_{V} (zy)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\IzzInt}{% Izz Integral Definition Using Only Shorthand
+	\ensuremath{I_{zz} = \int_{\mathrm{Body}} \mkern-18mu (x^2 + y^2)\,\mathrm{d}m = \iiint_{V}(x^2 + y^2)\,\mathrm{\rho}(x,y,z)\,\mathrm{d}V}%
+}
+
+\newcommand*{\parAxissh}{% The parallel axis theorem shorthand
+	\ensuremath{\inerTen{\CM} = \inertiaMatsh + m_{\smn{T}}\inertiaDifsh}%
+}
+
+% Angular Velocity
+
+\newcommand*{\angVdef}[2]{% Definition of angular velocity
+	\ensuremath{\angV{#1}{#2} \equiv \ihat{#2}\left(\left(\derI{#1}{\jhat{#2}}\right)\!\cdot\khat{#2}\right) + \jhat{#2}\left(\left(\derI{#1}{\khat{#2}}\right)\!\cdot\ihat{#2}\right) + \khat{#2}\left(\left(\derI{#1}{\ihat{#2}}\right)\!\cdot\jhat{#2}\right)}%
+}
+
+\newcommand*{\angVxdef}[2]{% X component from cross matrix
+	\ensuremath{\omcrx{#1}{#2} = \vecCr \rotM{#2}{#1}\,\rotMd{#1}{#2} \vecBcT}%
+}
+
+\newcommand*{\angVydef}[2]{% Y component from cross matrix
+	\ensuremath{\omcry{#1}{#2} = \vecAr \rotM{#2}{#1}\,\rotMd{#1}{#2} \vecCcT}%
+}
+
+\newcommand*{\angVzdef}[2]{% Z component from cross matrix
+	\ensuremath{\omcrz{#1}{#2} = \vecBr \rotM{#2}{#1}\,\rotMd{#1}{#2} \vecAcT}%
+}
+
+\newcommand*{\Pvecdef}[3]{% Definition of P vector
+	\ensuremath{\Pvec{#1}{#2}{#3} \equiv \ihat{#2}\left(\left(\pderI{#1}{#3}{\jhat{#2}}\right)\!\cdot\khat{#2}\right) + \jhat{#2}\left(\left(\pderI{#1}{#3}{\khat{#2}}\right)\!\cdot\ihat{#2}\right) + \khat{#2}\left(\left(\pderI{#1}{#3}{\ihat{#2}}\right)\!\cdot\jhat{#2}\right)}%
+}
+
+\newcommand*{\Pvecxdef}[3]{% Definition of x component of P vector
+	\ensuremath{\Pvecx{#1}{#2}{#3} = \vecCr\rotM{#2}{#1}\tfrac{\partial}{\partial#3}\!\rotM{#1}{#2}\vecBcT}%
+}
+
+\newcommand*{\Pvecydef}[3]{% Definition of y component of P vector
+	\ensuremath{\Pvecy{#1}{#2}{#3} = \vecAr\rotM{#2}{#1}\tfrac{\partial}{\partial#3}\!\rotM{#1}{#2}\vecCcT}%
+}
+
+\newcommand*{\Pveczdef}[3]{% Definition of z component of P vector
+	\ensuremath{\Pvecz{#1}{#2}{#3} = \vecBr\rotM{#2}{#1}\tfrac{\partial}{\partial#3}\!\rotM{#1}{#2}\vecAcT}%
+}
+
+\newcommand*{\Tvecdef}[3]{% Definition of T vector
+	\ensuremath{\Tvec{#1}{#2}{#3} \equiv \ihat{#2}\left(\left(\tderI{#1}{#3}{\jhat{#2}}\right)\!\cdot\khat{#2}\right) + \jhat{#2}\left(\left(\tderI{#1}{#3}{\khat{#2}}\right)\!\cdot\ihat{#2}\right) + \khat{#2}\left(\left(\tderI{#1}{#3}{\ihat{#2}}\right)\!\cdot\jhat{#2}\right)}%
+}
+
+\newcommand*{\Tvecxdef}[3]{% Definition of x component of P vector
+	\ensuremath{\Tvecx{#1}{#2}{#3} = \vecCr\rotM{#2}{#1}\tfrac{\mathrm{d}}{\mathrm{d}#3}\!\rotM{#1}{#2}\vecBcT}%
+}
+
+\newcommand*{\Tvecydef}[3]{% Definition of y component of P vector
+	\ensuremath{\Tvecy{#1}{#2}{#3} = \vecAr\rotM{#2}{#1}\tfrac{\mathrm{d}}{\mathrm{d}#3}\!\rotM{#1}{#2}\vecCcT}%
+}
+
+\newcommand*{\Tveczdef}[3]{% Definition of z component of P vector
+	\ensuremath{\Tvecz{#1}{#2}{#3} = \vecBr\rotM{#2}{#1}\tfrac{\mathrm{d}}{\mathrm{d}#3}\!\rotM{#1}{#2}\vecAcT}%
+}
+
+% Angular Momentum
+
+\newcommand*{\angMomPart}[4]{% Angular momentum particle definition
+	\ensuremath{\angMp{#1}{#2}{#3}{#4} \equiv \relR{#4}{#3} \times #4\relV{#1}{#4}{#2}}%
+}
+
+\newcommand*{\angMomSys}[3]{% Angular momentum system definition
+	\ensuremath{\angMs{#1}{#2}{#3} \equiv \sum_{i=1}^{n} \relR{m_{i}}{#3} \times m_{i}\relV{#1}{m_{i}}{#2}}%
+}
+
+\newcommand*{\angMomDefI}{% Generic Angular momentum expression
+	\ensuremath{\angMs{A}{\smca{Q}}{\smca{P}} = \angMs{F}{\smca{B}}{\smca{B}} + \inerTen{\smca{B}}\cdot\angV{O}{F} + \relR{\CM}{\smca{B}}\times m_{\smn{T}}\relV{A}{\smca{B}}{\smca{Q}} + \relR{\smca{B}}{\smca{P}}\times m_{\smn{T}}\relV{A}{\CM}{\smca{Q}}}%
+}
+
+\newcommand*{\angMomDefII}{% Angular momentum of a rigid body
+	\ensuremath{\angM{O}{\smca{Q}}{\CM} = \angM{O}{\CM}{\CM} = \inerTen{\CM}\cdot\angV{O}{F}}%
+}
+
+\newcommand*{\angMomDefIII}{% Angular momentum about origin wrt a body frame
+	\ensuremath{\angMs{O}{\smca{O}}{\smca{O}} = \angMs{O}{\CM}{\CM} + \relR{\CM}{\smca{O}}\times m_{\smn{T}}\relV{O}{\CM}{\smca{O}}}%
+}
+
+\newcommand*{\angMomDefIV}{% Angular momentum about an arbitary point A
+	\ensuremath{\angMs{O}{\smca{O}}{\smca{A}} = \angMs{O}{\smca{O}}{\CM} + \relR{\CM}{\smca{A}}\times m_{\smn{T}}\relV{O}{\CM}{\smca{O}}}%
+}
+
+% Torque
+
+\newcommand*{\torqueDef}{% Definition for a system of particles about point p
+	\ensuremath{\torq{\smca{P}\comma\mathrm{net}} \equiv \sum_{i=1}^{n}\relR{m_{i}}{\smca{P}}\times\Forc{\mkern+1mui\comma\mathrm{net}}}%
+}
+
+\newcommand*{\torqueDefI}{% Most General Case O IRF
+	\ensuremath{\torq{\smca{P}\comma\mathrm{net}} = \derI{O}{\angMs{O}{\smca{Q}}{\smca{P}}} + m_{\smn{T}}\relV{O}{\CM}{\smca{P}}\times\relV{O}{\smca{Q}}{\smca{P}} + m_{\smn{T}}\relR{\CM}{\smca{P}}\times\relA{O}{\smca{Q}}{\smca{O}}}%
+}
+
+\newcommand*{\torqueDefII}{% Q = O, P = CM, O IRF
+	\ensuremath{\torq{\CM\comma\mathrm{net}} = \derI{O}{\angMs{O}{\smca{O}}{\CM}}}%
+}
+
+\newcommand*{\torqueDefIII}{% Q = P = CM, O IRF
+	\ensuremath{\torq{\CM\comma\mathrm{net}} = \derI{O}{\angMs{O}{\CM}{\CM}}}%
+}
+
+\newcommand*{\torqueDefIV}{% Q = P = O, O IRF
+	\ensuremath{\torq{\smca{O}} = \derI{O}{\angMs{O}{\smca{O}}{\smca{O}}}}%
+}
+
+\newcommand*{\torqueDefV}{% Q = O, P fixed point wrt O, O IRF
+	\ensuremath{\torq{\smca{P}\comma\mathrm{net}} = \derI{O}{\angMs{O}{\smca{O}}{\smca{P}}}}%
+}
+
+% Kinetic Energy
+
+\newcommand*{\kinEnDef}{% Kinetic Energy general definition
+	\ensuremath{\kinEn \equiv \sum_{i=1}^{n} \tfrac{1}{2}m_{i}\relV{O}{m_{i}}{\smca{O}}\cdot\relV{O}{m_{i}}{\smca{O}}}%
+}
+
+\newcommand*{\kinEnDefI}{% Most general definition
+	\ensuremath{%
+		\begin{aligned}
+			\kinEn &= \tfrac{1}{2}m_{\smn{T}}\relV{O}{\smca{A}}{\smca{O}}\cdot\relV{O}{\smca{A}}{\smca{O}} + m_{\smn{T}}\relV{O}{\smca{A}}{\smca{O}}\cdot\relV{O}{\CM}{\smca{A}} + \sum_{i=1}^{n} \tfrac{1}{2}m_{i}\relV{A}{m_{i}}{\smca{A}}\cdot\relV{A}{m_{i}}{\smca{A}} \\%
+				   &+ \sum_{i=1}^{n} \tfrac{1}{2}m_{i}\relV{A}{m_{i}}{\smca{A}}\cdot\left(\angV{O}{A}\times\relR{m_{i}}{\smca{A}}\right) + \tfrac{1}{2}\angV{O}{A}\cdot\inerTen{\smca{A}}\cdot\angV{O}{A}%
+		\end{aligned}%
+	}%
+}
+
+\newcommand*{\kinEnDefII}{% More general definition
+	\ensuremath{\kinEn = \tfrac{1}{2}m_{\smn{T}}\relV{O}{\smca{A}}{\smca{O}}\cdot\relV{O}{\smca{A}}{\smca{O}} + m_{\smn{T}}\relV{O}{\smca{A}}{\smca{O}}\cdot\relV{O}{\CM}{\smca{A}} + \tfrac{1}{2}\angV{O}{A}\cdot\inerTen{\smca{A}}\cdot\angV{O}{A}}%
+}
+
+\newcommand*{\kinEnDefIII}{% More specific definition
+	\ensuremath{\kinEn = \tfrac{1}{2}m_{\smn{T}}\relV{O}{\CM}{\smca{O}}\cdot\relV{O}{\CM}{\smca{O}} + \tfrac{1}{2}\angV{O}{A}\cdot\inerTen{\CM}\cdot\angV{O}{A}}%
+}
+
+\newcommand*{\kinEnDefIV}{% Most specific definition
+	\ensuremath{\kinEn = \tfrac{1}{2}\angV{O}{A}\cdot\inerTen{\smca{A}}\cdot\angV{O}{A}}%
+}
+
+% Alternative Kinetic energy
+
+\newcommand*{\TEq}{% Kinetic energy def
+	\ensuremath{\kinEn = T_{2} + T_{1} + T_{0}}%
+}
+
+\newcommand*{\TzeroEq}{% T0
+	\ensuremath{T_{0} = \gamma\!\left(q_{1},\ldots,q_{n},t\right)}%
+}
+
+\newcommand*{\ToneEq}{% T1
+	\ensuremath{T_{1} = \sum_{r=1}^{n}\beta_{r}\dot{q}_{r},\quad \beta_{r} = \beta_{r}\!\left(q_{1},\ldots,q_{n},t\right)}%
+}
+
+\newcommand*{\TtwoEq}{% T2
+	\ensuremath{T_{2} = \tfrac{1}{2}\sum_{r=1}^{n}\sum_{s=1}^{n}\alpha_{rs}\dot{q}_{r}\dot{q}_{s},\quad \alpha_{rs} = \alpha_{rs}\!\left(q_{1},\ldots,q_{n},t\right)}%
+}
+
+% Euler's Equations of Motion
+
+\newcommand*{\EulerEqx}{% Euler Equation of Motion x
+	\ensuremath{\tau_{x} = I_{xx}\dot{\omega}_{x} - (I_{yy} - I_{zz})\omega_{y}\omega_{z}}%
+}
+
+\newcommand*{\EulerEqy}{% Euler Equation of Motion y
+	\ensuremath{\tau_{y} = I_{yy}\dot{\omega}_{y} - (I_{zz} - I_{xx})\omega_{z}\omega_{x}}%
+}
+
+\newcommand*{\EulerEqz}{% Euler Equation of Motion z
+	\ensuremath{\tau_{z} = I_{zz}\dot{\omega}_{z} - (I_{xx} - I_{yy})\omega_{x}\omega_{y}}%
+}
+
+% Lagrange's Equations
+
+\newcommand*{\Lagrangian}{% Lagrangian Definition
+	\ensuremath{\Lagr \equiv \kinEn - \potEn}%
+}
+
+\newcommand*{\Lagrange}[1]{% Produce Lagrange's equation for a given n
+	\ensuremath{\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\Lagr}{\partial\dot{q}_{\mkern-1mu#1}} - \frac{\partial\Lagr}{\partial q_{\mkern-1mu#1}} = Q_{\mkern-2mu#1\comma\mathrm{nc}}}%
+}
+
+\newcommand*{\LagrangeTV}[1]{% Alternate form of Lagrange's equation for a given n
+	\ensuremath{\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial}{\partial\dot{q}_{\mkern-1mu#1}}\kinEn  - \frac{\partial}{\partial q_{\mkern-1mu#1}}\kinEn + \frac{\partial}{\partial q_{\mkern-1mu#1}}\potEn = Q_{\mkern-2mu#1\comma\mathrm{nc}}}%
+}
+
+% Kane's Equations
+\newcommand*{\KaneEq}{% Kane's Equation
+	\ensuremath{\KFr{r} + \KFrs{r} = 0}%
+}
+
+\newcommand*{\Kaneqdot}{% Q dot definition
+	\ensuremath{\dot{q}_{s} = \sum_{i=1}^{n}w_{sr}u_{r}+x_s,\quad s = 1,\ldots,n}%
+}
+
+\newcommand*{\Kaneomegar}{% rth partial angular velocity equation
+	\ensuremath{\pangVr{O}{B}{r} = \sum_{s=1}^{n}w_{sr}\Pvec{O}{B}{q_{s}}}%
+}
+
+\newcommand*{\Kaneomegat}{% t partial angular velocity equation
+	\ensuremath{\pangVt{O}{B} = \Pvec{O}{B}{t} + \sum_{s=1}^{n}x_{s}\Pvec{O}{B}{q_{s}}}%
+}
+
+\newcommand*{\Kaneomega}{% angular velocity equation
+	\ensuremath{\angV{O}{B} = \pangVt{O}{B} + \sum_{r=1}^{n} \pangVr{O}{B}{r}}%
+}
+
+\newcommand*{\Kanevcmr}{% rth partial velocity equation
+	\ensuremath{\ptraVr{O}{\CM}{r}= \sum_{s=1}^{n}w_{sr}\pderI{O}{q_{s}}{\relR{\CM}{\smca{O}}}}%
+}
+
+\newcommand*{\Kanevcmt}{% t partial velocity equation
+	\ensuremath{\ptraVt{O}{\CM} = \pderI{O}{t}{\relR{\CM}{\smca{O}}} + \sum_{s=1}^{n}x_{s}\pderI{O}{q_{s}}{\relR{\CM}{\smca{O}}}}%
+}
+
+\newcommand*{\Kanevcm}{% velocity equation
+	\ensuremath{\relV{O}{\CM}{\smca{O}} = \ptraVt{O}{\CM} + \sum_{r=1}^{n}\ptraVr{O}{\CM}{r}u_{r}}%
+}
+
+\newcommand*{\KaneFrPart}{% Fr term for particles
+	\ensuremath{\sum_{l=1}^{N_{\mkern-1mu\scalebox{0.65}{\smn{P}}}}\forc{l}\cdot\ptraVr{O}{m_{l}}{r}}%
+}
+
+\newcommand*{\KaneFrsPart}{% Frs term for particles
+	\ensuremath{-\sum_{l=1}^{N_{\mkern-1mu\scalebox{0.65}{\smn{P}}}}m_{l}\relA{O}{m_{l}}{\smca{O}}\cdot\ptraVr{O}{m_{l}}{r}}%
+}
+
+\newcommand*{\KaneFrRig}{% Fr term for rigid bodies
+	\ensuremath{\sum_{k=1}^{N_{\mkern-1mu\scalebox{0.65}{\smn{R}}}}\left(\Forc{k}\cdot\ptraVr{O}{\CM k}{r} + \torq{k\comma\CM k}\cdot\pangVrk{o}{b}{k}{r}\right)}%
+}
+
+\newcommand*{\KaneFrsRig}{% Frs term for rigid bodies
+	\ensuremath{-\sum_{k=1}^{N_{\mkern-1mu\scalebox{0.65}{\smn{R}}}}\left(m_{k}\relA{O}{\CM k}{\smca{O}}\cdot\ptraVr{O}{\CM k}{r} + \left(\inerTen{\CM k}\cdot\angAk{o}{b}{k} + \angVk{o}{b}{k}\times\inerTen{\CM k}\cdot\angVk{o}{b}{k}\right)\!\cdot\pangVrk{o}{b}{k}{r}\right)}%
+}
+
+\newcommand*{\KaneFr}{% Fr general definition
+	\ensuremath{\KFr{r} = \KaneFrRig + \KaneFrPart}%
+}
+
+\newcommand*{\KaneFrs}{% Frs general definintion
+	\ensuremath{%
+		\begin{aligned}
+			\KFrs{r} &= \KaneFrsRig \cdots\\%
+			&+ \left(\KaneFrsPart\right)%
+		\end{aligned}%
+	}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Miscellaneous
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\smca}[1]{% Used to make small caps for superscript and subscript frames and caps
+	\ensuremath{\scalebox{.5}{$\mathit{\MakeUppercase{#1}}$}}%
+}
+
+\newcommand*{\smn}[1]{% Used to make small numbers and upright text
+	\ensuremath{\scalebox{.5}{$\mathrm{#1}$}}%
+}
+
+\newcommand*{\sm}[1]{% Used to make small everything
+	\ensuremath{\scalebox{.5}{$#1$}}%
+}
+
+\newcommand*{\bart}[1]{% Thicker accent which looks good in scripts
+    \accentset{\rule{0.4em}{0.05em}}{#1}%
+}
+
+\newcommand*{\CM}{% Used for center of mass in scripts
+	\ensuremath{\mkern+1mu\smn{CM}\mkern+1mu}%
+}
+
+\newcommand*{\comma}{% Comma with kerning adjustment for subscripts
+    \ensuremath{\mkern-1mu,}
+}
+
+\newcommand*{\Vs}[5]{% Scripts for variables and italic text
+	\ensuremath{\tensor*[^{#2}_{#3}]{#1}{_{#4}^{#5}}}%
+}
+
+\newcommand*{\Vlt}[4]{% Lower triangular scripts for variables and italic text
+	\ensuremath{\tensor*[^{#2}_{#3}]{#1}{_{\mkern-2mu #4}}}%
+}
+
+\newcommand*{\Vut}[4]{% Upper triangular scripts for variables and italic text
+	\ensuremath{\tensor*[^{#2}]{#1}{^{#3}_{\mkern-2mu #4}}}%
+}
+
+\newcommand*{\Vup}[3]{% Superscripts for variables and italic text
+	\ensuremath{\tensor*[^{#2}]{#1}{^{#3}}}%
+}
+
+\newcommand*{\Vdg}[3]{% Diagonalscripts for variables and italic text
+	\ensuremath{\tensor*[^{#2}]{#1}{_{\mkern-2mu #3}}}%
+}
+
+\newcommand*{\Vsup}[2]{% Superscript for variables and italic text
+	\ensuremath{\tensor*{#1}{^{#2}}}%
+}
+
+\newcommand*{\Vsub}[2]{% Subscript for variables and italic text
+	\ensuremath{\tensor*{#1}{_{\mkern-2mu #2}}}%
+}
+
+\newcommand*{\Vpup}[2]{% Presuperscript for variables and italic text
+	\ensuremath{\tensor*[^{#2}]{#1}{}}%
+}
+
+\newcommand*{\Ms}[5]{% Scripts for matrices and upright text
+	\ensuremath{\tensor*[^{#2\!\!}_{#3\!\!}]{#1}{_{\!\! #4}^{\!\! #5}}}%
+}
+
+\newcommand*{\Mup}[3]{% Superscripts for matrices and upright text
+	\ensuremath{\tensor*[^{#2\!\!}]{#1}{^{\!\!#3}}}%
+}
+
+\newcommand*{\Msub}[2]{% Subscript for matrices and upright text
+	\ensuremath{\tensor*{#1}{_{\!\!#2}}}%
+}
+
+\newcommand*{\Mpup}[2]{% Presuperscript for matrices and upright text
+	\ensuremath{\tensor*[^{#2\!\!}]{#1}{}}%
+}
+
+\newcommand*{\But}[4]{% Upper triangular scripts for bracketed text
+	\ensuremath{\tensor*[^{#2\mkern-1mu}]{[#1]}{^{\mkern-2mu #3}_{\mkern-2mu #4}}}%
+}
+
+\newcommand*{\Bup}[3]{% Superscripts for bracketed text
+	\ensuremath{\tensor*[^{#2\mkern-1mu}]{[#1]}{^{\mkern-2mu #3}}}%
+}
+
+\newcommand*{\Bsub}[2]{% Subscript for bracketed text
+	\ensuremath{[#1]_{\mkern-2mu #2}}%
+}
+
+\newcommand*{\Bsubv}[2]{% Subscript for bracketed vector
+	\ensuremath{\tensor*{[#1\mkern+2mu]}{_{\mkern-2mu #2}}}%
+}
+
+% Note that this is version 1.0, so there might still be future updates that 
+% make the syntax more consistent, add more functionality, and make the commands
+% more generalizable

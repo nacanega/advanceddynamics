@@ -1,0 +1,673 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-02-frames.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Frames of Reference}
+\label{sec:frames}
+\index{reference frames|(}
+\index{frames|see {reference frames}}
+The commands in this section help the user to define reference frames and their corresponding sets of orthonormal unit vectors.\footnote{Note that my notation differs slightly from the original notation since unit vectors are always marked with a ``hat'' rather than a plain arrow.} Note that all commands in this section should be used inside of a math environment.
+
+\subsection*{\blu{Normal Reference Frames}}
+\label{sec:normframes}
+\index{reference frames!normal|(}
+
+\entry{% Command Name
+    fr
+}{% Arguments
+    \targsi{point}
+}{% Description
+    Frame. This command is used to add a bar above a character to allow it to be read as a frame attached to a specified point \meta{point}. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to define an inertial reference frame about the point $O$.
+}{% Example Text Arguments
+    \comarg{fr}{\targmi{O}}
+}{% Example Function Call
+    \fr{O}
+}
+
+\entry{% Command Name
+    frsc
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    Small-caps frame. This command is used to define frame \meta{frame} in a subscript or superscript. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{frame}{Frame; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to define x-component of the vector $\vec{r}$ expressed in the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \cs{r}\texttt{\string_}\brackets{\texttt{x}\comarg{frsc}{\targmi{O}}}
+}{% Example Function Call
+    r_{x\frsc{O}}
+}
+
+\newpage
+
+\index{unit vectors!normal frame|(}
+\index{vectors!unit|see {unit vectors}}
+\entry{% Command Name
+    ihat 
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    I-hat. This command is used to display the $\hat{\imath}$ unit vector for a specified frame \meta{frame}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{frame}{Frame; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to express $\hat{\imath}$ for the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{ihat}{\targmi{a}}
+}{% Example Function Call
+    \ihat{a}
+}
+
+\entry{% Command Name
+    jhat
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    J-hat. This command is used to display the $\hat{\jmath}$ unit vector for a specified frame \meta{frame}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to express $\hat{\jmath}$ for the $\fr{B}$ frame.
+}{% Example Text Arguments
+    \comarg{jhat}{\targmi{b}}
+}{% Example Function Call
+    \jhat{b}
+}
+
+\newpage
+
+\entry{% Command Name
+    khat
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    K-hat. This command is used to display the $\hat{k}$ unit vector for a specified frame \meta{frame}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to express $\hat{k}$ for the $\fr{C}$ frame.
+}{% Example Text Arguments
+    \comarg{khat}{\targmi{c}}
+}{% Example Function Call
+    \khat{c}
+}
+\index{unit vectors!normal frame|)}
+
+\entry{% Command Name
+    frDef
+}{% Arguments
+    \targsi{point}
+}{% Description
+    Define frame. This command is used define a frame as a point \meta{point} and three orthonormal unit vectors. Case insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to define the frame about the point $P$.
+}{% Example Text Arguments
+    \comarg{frDef}{\targmi{P}}
+}{% Example Function Call
+    \frDef{P}
+}
+
+\newpage
+
+\entry{% Command Name
+    frExp
+}{% Arguments
+    \targsii{frame}{value}
+}{% Description
+    Expressed in frame. This command is used to show that a matrix or vector quantity \meta{value} is expressed in a given frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        value}{Vector or matrix quantity}%
+}{% Example Description
+    Say we want to show that $\vec{v}$ is expressed in the $\fr{B}$ frame.
+}{% Example Text Arguments
+    \comarg{frExp}{\targmii{B}{\comone{vec}{v}}}
+}{% Example Function Call
+    \frExp{B}{\vec{v}}
+}
+
+\entry{% Command Name
+    frVec
+}{% Arguments
+    \targsiv{frame}{icomp}{jcomp}{kcomp}
+}{% Description
+    Vector frame components. This command is used to express a vector in terms of its components in each of the frame's unit vectors.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        icomp}{i-hat-component expression}{%
+        jcomp}{j-hat-component expression}{%
+        kcomp}{k-hat-component expression}%
+}{% Example Description
+    Say we want to express $\frExp{O}{\vec{r}} = \langle x,y,z\rangle$ in its $\fr{O}$ frame components.
+}{% Example Text Arguments
+    \comarg{frVec}{\targmiv{O}{x}{y}{z}}
+}{% Example Function Call
+    \frVec{O}{x}{y}{z}
+}
+
+\newpage
+
+\entryl{% Command Name
+    frTen
+}{% Arguments
+    \targsx{frame}{ii}{ij}{ik}{ji}{jj}{jk}{ki}{kj}{kk}
+}{% Description
+    Tensor frame components. This command is used to express a tensor in terms of its components in each of the frame's unit vector combinations. Must be inside a \code{align} or \code{align*} environment.
+}{% Argument Descriptions
+    \inputsx{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        ii}{i-hat-i-hat-component expression}{%
+        ij}{i-hat-j-hat-component expression}{%
+        ik}{i-hat-k-hat-component expression}{%
+        ji}{j-hat-i-hat-component expression}{%
+        jj}{j-hat-j-hat-component expression}{%
+        jk}{j-hat-k-hat-component expression}{%
+        ki}{k-hat-i-hat-component expression}{%
+        kj}{k-hat-j-hat-component expression}{%
+        kk}{k-hat-k-hat-component expression}%
+}{% Example Description
+    Say we want to express $\frExp{O}{\tilde{I}}$ in its $\fr{O}$ frame components (say a-i).
+}{% Example Text Arguments
+    \comarg{frTen}{\targmx{O}{a}{b}{c}{d}{e}{f}{g}{h}{i}}
+}{% Example Function Call
+    \frTen{O}{a}{b}{c}{d}{e}{f}{g}{h}{i}
+}
+
+\newpage
+
+\entry{% Command Name
+    frSub
+}{% Arguments
+    \targsiii{frame}{value}{subsc}
+}{% Description
+    Subscript and frame. This command is used to add a pre-superscript frame \meta{frame} and specified subscript \meta{subsc} to a value \meta{value}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        value}{Value to apply frame and subscript to}{%
+        subsc}{Subscript value}%
+}{% Example Description
+    Say we want to define the velocity $\vec{v}$ of a satellite expressed in the $\fr{O}$ inertial reference frame.
+}{% Example Text Arguments
+    \comarg{frSub}{\targmiii{O}{\comone{vec}{v}}{satellite}}
+}{% Example Function Call
+    \frSub{O}{\vec{v}}{satellite}
+}
+
+\entry{% Command Name
+    frx
+}{% Arguments
+    \targsii{frame}{value}
+}{% Description
+    Frame x-component. This command defines the x-component of value \meta{value} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        value}{The value that we want the x-component of}%
+}{% Example Description
+    Say we want to define the x-component of the vector $\vec{a}$ expressed in the $\fr{D}$ frame.
+}{% Example Text Arguments
+    \comarg{frx}{\targmii{D}{\comone{vec}{a}}}
+}{% Example Function Call
+    \frx{D}{\vec{a}}
+}
+
+\newpage
+
+\entry{% Command Name
+    fry
+}{% Arguments
+    \targsii{frame}{value}
+}{% Description
+    Frame y-component. This command defines the y-component of value \meta{value} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        value}{The value that we want the y-component of}%
+}{% Example Description
+    Say we want to define the y-component of the vector $\vec{a}$ expressed in the $\fr{D}$ frame.
+}{% Example Text Arguments
+    \comarg{fry}{\targmii{D}{\comone{vec}{a}}}
+}{% Example Function Call
+    \fry{D}{\vec{a}}
+}
+
+\entry{% Command Name
+    frz
+}{% Arguments
+    \targsii{frame}{value}
+}{% Description
+    Frame z-component. This command defines the z-component of value \meta{value} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        value}{The value that we want the z-component of}%
+}{% Example Description
+    Say we want to define the z-component of the vector $\vec{a}$ expressed in the $\fr{D}$ frame.
+}{% Example Text Arguments
+    \comarg{frz}{\targmii{D}{\comone{vec}{a}}}
+}{% Example Function Call
+    \frz{D}{\vec{a}}
+}
+\index{reference frames!normal|)}
+
+\newpage
+
+\subsection*{\blu{Numbered Normal Reference Frames}}
+\label{sec:numframes}
+\index{reference frames!numbered|(}
+This type of frame is similar to a normal frame, except the unit vectors and point also have an associated number.
+
+\entry{% Command Name
+    frn
+}{% Arguments
+    \targsii{point}{num}
+}{% Description
+    Numbered frame. This command is used to add a bar above a character and a numeric subscript \meta{num} to allow it to be read as a frame attached to a specified point \meta{point}. Case-insensitive.
+}{% Argument Descriptions
+    \inputsii{%
+        point}{Point; letter (a-z, A-Z)}{%
+        num}{Number of point}%
+}{% Example Description
+    Say we want to define an inertial reference frame about the point $A_1$.
+}{% Example Text Arguments
+    \comarg{fr}{\targmii{A}{1}}
+}{% Example Function Call
+    \frn{A}{1}
+}
+
+\entry{% Command Name
+    frnsc
+}{% Arguments
+    \targsii{point}{num}
+}{% Description
+    Small-caps numbered frame. This command is used to define a numbered frame in a subscript or superscript. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{%
+        point}{Point; letter (a-z, A-Z)}{%
+        num}{Number of point}%
+}{% Example Description
+    Say we want to define x-component of the vector $\vec{r}$ expressed in the $\frn{A}{1}$ frame.
+}{% Example Text Arguments
+    \cs{r}\texttt{\string_}\brackets{\texttt{x}\comarg{frnsc}{\targmii{A}{1}}}
+}{% Example Function Call
+    r_{x\frnsc{A}{1}}
+}
+
+\newpage
+
+\index{unit vectors!numbered frame|(}
+\entry{% Command Name
+    ihatn
+}{% Arguments
+    \targsii{frame}{num}
+}{% Description
+    I-hatn. This command is used to display the $\hat{\imath}$ unit vector for a specified frame \meta{frame} with number \meta{num}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}%
+}{% Example Description
+    Say we want to express $\hat{\imath}$ for the $\frn{A}{1}$ frame.
+}{% Example Text Arguments
+    \comarg{ihatn}{\targmii{a}{1}}
+}{% Example Function Call
+    \ihatn{a}{1}
+}
+
+\entry{% Command Name
+    jhatn
+}{% Arguments
+    \targsii{frame}{num}
+}{% Description
+    J-hatn. This command is used to display the $\hat{\jmath}$ unit vector for a specified frame \meta{frame} with number \meta{num}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsii{%
+        point}{Point; letter (a-z, A-Z)}{%
+        num}{Number of point}%
+}{% Example Description
+    Say we want to express $\hat{\jmath}$ for the $\frn{B}{2}$ frame.
+}{% Example Text Arguments
+    \comarg{jhatn}{\targmii{b}{2}}
+}{% Example Function Call
+    \jhatn{b}{2}
+}
+
+\newpage
+
+\entry{% Command Name
+    khatn
+}{% Arguments
+    \targsii{frame}{num}
+}{% Description
+    K-hatn. This command is used to display the $\hat{k}$ unit vector for a specified frame \meta{frame} with number \meta{num}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsii{%
+        point}{Point; letter (a-z, A-Z)}{%
+        num}{Number of point}%
+}{% Example Description
+    Say we want to express $\hat{k}$ for the $\frn{C}{3}$ frame.
+}{% Example Text Arguments
+    \comarg{khatn}{\targmii{c}{3}}
+}{% Example Function Call
+    \khatn{c}{3}
+}
+\index{unit vectors!numbered frame|)}
+
+\entry{% Command Name
+    frnDef
+}{% Arguments
+    \targsii{point}{num}
+}{% Description
+    Define numbered frame. This command is used define a frame as a numbered point and three orthonormal unit vectors. Case insensitive.
+}{% Argument Descriptions
+    \inputsii{%
+        point}{Point; letter (a-z, A-Z)}{%
+        num}{Number of point}%
+}{% Example Description
+    Say we want to define the frame about the point $P_6$.
+}{% Example Text Arguments
+    \comarg{frnDef}{\targmii{P}{6}}
+}{% Example Function Call
+    \frnDef{P}{6}
+}
+
+\newpage
+
+\entry{% Command Name
+    frnExp
+}{% Arguments
+    \targsiii{frame}{num}{value}
+}{% Description
+    Expressed in numbered frame. This command is used to show that a matrix or vector quantity is expressed in a given numbered frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        value}{Vector or matrix quantity}%
+}{% Example Description
+    Say we want to show that $\vec{v}$ is expressed in the $\frn{B}{2}$ frame.
+}{% Example Text Arguments
+    \comarg{frnExp}{\targmiii{B}{2}{\comone{vec}{v}}}
+}{% Example Function Call
+    \frnExp{B}{2}{\vec{v}}
+}
+
+\entry{% Command Name
+    frnVec
+}{% Arguments
+    \targsv{frame}{num}{icomp}{jcomp}{kcomp}
+}{% Description
+    Vector numbered frame components. This command is used to express a vector in terms of its components in each of the numbered frame's unit vectors.
+}{% Argument Descriptions
+    \inputsv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        icomp}{i-hat-component expression}{%
+        jcomp}{j-hat-component expression}{%
+        kcomp}{k-hat-component expression}%
+}{% Example Description
+    Say we want to express $\frnExp{A}{1}{\vec{r}} = \langle x,y,z\rangle$ in its $\fr{A}{1}$ frame components.
+}{% Example Text Arguments
+    \comarg{frnVec}{\targmv{A}{1}{x}{y}{z}}
+}{% Example Function Call
+    \frnVec{A}{1}{x}{y}{z}
+}
+
+\newpage
+
+\entryl{% Command Name
+    frnTen
+}{% Arguments
+    \targsxi{frame}{num}{ii}{ij}{ik}{ji}{jj}{jk}{ki}{kj}{kk}
+}{% Description
+    Tensor numbered frame components. This command is used to express a tensor in terms of its components in each of the numbered frame's unit vector combinations. Must be inside a \code{align} or \code{align*} environment.
+}{% Argument Descriptions
+    \inputsxi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        ii}{i-hat-i-hat-component expression}{%
+        ij}{i-hat-j-hat-component expression}{%
+        ik}{i-hat-k-hat-component expression}{%
+        ji}{j-hat-i-hat-component expression}{%
+        jj}{j-hat-j-hat-component expression}{%
+        jk}{j-hat-k-hat-component expression}{%
+        ki}{k-hat-i-hat-component expression}{%
+        kj}{k-hat-j-hat-component expression}{%
+        kk}{k-hat-k-hat-component expression}%
+}{% Example Description
+    Say we want to express $\frnExp{A}{1}{\tilde{I}}$ in its $\frn{A}{1}$ frame components (say a-i).
+}{% Example Text Arguments
+    \comarg{frnTen}{\targmxi{A}{1}{a}{b}{c}{d}{e}{f}{g}{h}{i}}
+}{% Example Function Call
+    \frnTen{A}{1}{a}{b}{c}{d}{e}{f}{g}{h}{i}
+}
+
+\newpage
+
+\entry{% Command Name
+    frnSub
+}{% Arguments
+    \targsiv{frame}{num}{value}{subsc}
+}{% Description
+    Subscript and numbered frame. This command is used to add a pre-superscript frame and specified subscript to a value.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        value}{Value to apply frame and subscript to}{%
+        subsc}{Subscript value}%
+}{% Example Description
+    Say we want to define the velocity of a satellite expressed in the $\frn{A}{1}$ inertial reference frame.
+}{% Example Text Arguments
+    \comarg{frnSub}{\targmiv{A}{1}{\comone{vec}{v}}{satellite}}
+}{% Example Function Call
+    \frnSub{A}{1}{\vec{v}}{satellite}
+}
+
+\entry{% Command Name
+    frnx
+}{% Arguments
+    \targsiii{frame}{num}{value}
+}{% Description
+    Numbered frame x-component. This command defines the x-component of value \meta{value} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        value}{The value that we want the x-component of}%
+}{% Example Description
+    Say we want to define the x-component of the vector $\vec{a}$ expressed in the $\frn{D}{4}$ frame.
+}{% Example Text Arguments
+    \comarg{frnx}{\targmiii{D}{4}{\comone{vec}{a}}}
+}{% Example Function Call
+    \frnx{D}{4}{\vec{a}}
+}
+
+\newpage
+
+\entry{% Command Name
+    frny
+}{% Arguments
+    \targsiii{frame}{num}{value}
+}{% Description
+    Numbered frame y-component. This command defines the y-component of value \meta{value} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        value}{The value that we want the y-component of}%
+}{% Example Description
+    Say we want to define the y-component of the vector $\vec{a}$ expressed in the $\frn{D}{4}$ frame.
+}{% Example Text Arguments
+    \comarg{frny}{\targmiii{D}{4}{\comone{vec}{a}}}
+}{% Example Function Call
+    \frny{D}{4}{\vec{a}}
+}
+
+\entry{% Command Name
+    frnz
+}{% Arguments
+    \targsiii{frame}{num}{value}
+}{% Description
+    Numbered frame z-component. This command defines the z-component of value \meta{value} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Number of point}{%
+        value}{The value that we want the z-component of}%
+}{% Example Description
+    Say we want to define the z-component of the vector $\vec{a}$ expressed in the $\frn{D}{4}$ frame.
+}{% Example Text Arguments
+    \comarg{frnz}{\targmiii{D}{4}{\comone{vec}{a}}}
+}{% Example Function Call
+    \frnz{D}{4}{\vec{a}}
+}
+\index{reference frames!numbered|)}
+
+\newpage
+
+\subsection*{\blu{Special Reference Frames}}
+\label{sec:specframes}
+\index{reference frames!special|(}
+This type of frame is similar to a normal frame, except the unit vectors are numbered lowercase versions of the specified point.
+
+\index{unit vectors!special frame|(}
+\entry{% Command Name
+    uveca
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    Unit vector 1. This command is used to display the first unit vector for a specified frame \meta{frame}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{frame}{Frame; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to express the first unit vector for the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{uveca}{\targmi{a}}
+}{% Example Function Call
+    \uveca{a}
+}
+
+\entry{% Command Name
+    uvecb
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    Unit vector 2. This command is used to display the second unit vector for a specified frame \meta{frame}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to express the second unit vector for the $\fr{B}$ frame.
+}{% Example Text Arguments
+    \comarg{uvecb}{\targmi{b}}
+}{% Example Function Call
+    \uvecb{b}
+}
+
+\newpage
+
+\entry{% Command Name
+    uvecc
+}{% Arguments
+    \targsi{frame}
+}{% Description
+    Unit vector 3. This command is used to display the third unit vector for a specified frame \meta{frame}. The bar is automatically added. Case-insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to express the third unit vector for the $\fr{C}$ frame.
+}{% Example Text Arguments
+    \comarg{uvecc}{\targmi{c}}
+}{% Example Function Call
+    \uvecc{c}
+}
+\index{unit vectors!special frame|)}
+
+\entry{% Command Name
+    fruDef
+}{% Arguments
+    \targsi{point}
+}{% Description
+    Define special frame. This command is used define a special frame as a point and three orthonormal unit vectors. Case insensitive.
+}{% Argument Descriptions
+    \inputsi{point}{Point; letter (a-z, A-Z)}
+}{% Example Description
+    Say we want to define the special frame about the point $P$.
+}{% Example Text Arguments
+    \comarg{fruDef}{\targmi{P}}
+}{% Example Function Call
+    \fruDef{P}
+}
+
+\newpage
+
+\entry{% Command Name
+    fruVec
+}{% Arguments
+    \targsiv{frame}{comp1}{comp2}{comp3}
+}{% Description
+    Vector special frame components. This command is used to express a vector in terms of its components in each of the special frame's unit vectors.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        comp1}{1-component expression}{%
+        comp2}{2-component expression}{%
+        comp3}{3-component expression}%
+}{% Example Description
+    Say we want to express $\frExp{F}{\vec{r}} = \langle x,y,z\rangle$ in its $\fr{F}$ frame components.
+}{% Example Text Arguments
+    \comarg{fruVec}{\targmiv{F}{x}{y}{z}}
+}{% Example Function Call
+    \fruVec{F}{x}{y}{z}
+}
+
+\newpage
+
+\entryl{% Command Name
+    fruTen
+}{% Arguments
+    \targsx{frame}{c11}{c12}{c13}{c21}{c22}{c23}{c31}{c32}{c33}
+}{% Description
+    Tensor special frame components. This command is used to express a tensor in terms of its components in each of the special frame's unit vector combinations. Must be inside a \code{align} or \code{align*} environment.
+}{% Argument Descriptions
+    \inputsx{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        c11}{1-1-component expression}{%
+        c12}{1-2-component expression}{%
+        c13}{1-3-component expression}{%
+        c21}{2-1-component expression}{%
+        c22}{2-2-component expression}{%
+        c23}{2-3-component expression}{%
+        c31}{3-1-component expression}{%
+        c32}{3-2-component expression}{%
+        c33}{3-3-component expression}%
+}{% Example Description
+    Say we want to express $\frExp{F}{\tilde{I}}$ in its $\fr{F}$ frame components (say a-i).
+}{% Example Text Arguments
+    \comarg{fruTen}{\targmx{F}{a}{b}{c}{d}{e}{f}{g}{h}{i}}
+}{% Example Function Call
+    \fruTen{F}{a}{b}{c}{d}{e}{f}{g}{h}{i}
+}
+\index{reference frames!special|)}
+\index{reference frames|)}

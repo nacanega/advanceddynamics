@@ -1,0 +1,448 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-07-matrices.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Matrices}
+\label{sec:matrices}
+\index{matrix|see {rotation matrix}}
+\index{matrix!definitions|(}
+This section includes the commands needed to typeset most matrix quantities. Note that all commands in this section should be used inside of a math environent and a display math environment should be used for the best appearance.
+
+Note that if you wish to attach a frame subscipt to any of the matrices without one, you should also include \cs{!} or \cs{!}\cs{!} before the frame definition to remove the space between the closing bracket of the vector and the frame. This will be addressed in a future version.
+
+\subsection*{\blu{Standard Rotation Matrices}}
+\label{sec:rotmats}
+\index{rotation matrix|(}
+
+\index{rotation matrix!x}
+\index{rotation matrix!x}
+\entryl{% Command Name
+    rotx
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Rotation matrix about x. This command writes all the terms of a rotation matrix about the x-axis using a specified angle, \meta{angle}.
+}{% Argument Descriptions
+    \inputsi{angle}{Rotation angle; symbol}
+}{% Example Description
+    Say we want to define the rotation matrix about the x-axis using the angle $\phi$.
+}{% Example Text Arguments
+    \comarg{rotx}{\targmi{\cs{phi}}}
+}{% Example Function Call
+    \rotx{\phi}
+}
+
+\newpage
+
+\index{rotation matrix!y}
+\index{rotation matrix!y}
+\entryl{% Command Name
+    roty
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Rotation matrix about y. This command writes all the terms of a rotation matrix about the y-axis using a specified angle, \meta{angle}.
+}{% Argument Descriptions
+    \inputsi{angle}{Rotation angle; symbol}
+}{% Example Description
+    Say we want to define the rotation matrix about the y-axis using the angle $\theta$.
+}{% Example Text Arguments
+    \comarg{roty}{\targmi{\cs{theta}}}
+}{% Example Function Call
+    \roty{\theta}
+}
+
+\index{rotation matrix!z}
+\index{rotation matrix!z}
+\entryl{% Command Name
+    rotz
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Rotation matrix about z. This command writes all the terms of a rotation matrix about the z-axis using a specified angle, \meta{angle}.
+}{% Argument Descriptions
+    \inputsi{angle}{Rotation angle; symbol}
+}{% Example Description
+    Say we want to define the rotation matrix about the z-axis using the angle $\psi$.
+}{% Example Text Arguments
+    \comarg{rotz}{\targmi{\cs{psi}}}
+}{% Example Function Call
+    \rotz{\psi}
+}
+
+\newpage
+
+\index{rotation matrix!x, q-shorthand}
+\index{rotation matrix!x, q-shorthand}
+\entryl{% Command Name
+    rotxq
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Rotation matrix about x using q shorthand. This command writes all the terms of a rotation matrix about the x-axis using a specified $q_n$, $n$ = \meta{num} and shorthand notation.
+}{% Argument Descriptions
+    \inputsi{num}{Variable number; positive integer}
+}{% Example Description
+    Say we want to define the rotation matrix about the x-axis using the variable $q_1$.
+}{% Example Text Arguments
+    \comarg{rotxq}{\targmi{\cs{1}}}
+}{% Example Function Call
+    \rotxq{1}
+}
+
+\index{rotation matrix!y, q-shorthand}
+\index{rotation matrix!y, q-shorthand}
+\entryl{% Command Name
+    rotyq
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Rotation matrix about y using q shorthand. This command writes all the terms of a rotation matrix about the y-axis using a specified $q_n$, $n$ = \meta{num} and shorthand notation.
+}{% Argument Descriptions
+    \inputsi{num}{Variable number; positive integer}
+}{% Example Description
+    Say we want to define the rotation matrix about the y-axis using the variable $q_2$.
+}{% Example Text Arguments
+    \comarg{rotyq}{\targmi{\cs{2}}}
+}{% Example Function Call
+    \rotyq{2}
+}
+
+\newpage
+
+\index{rotation matrix!z, q-shorthand}
+\index{rotation matrix!z, q-shorthand}
+\entryl{% Command Name
+    rotzq
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Rotation matrix about z using q shorthand. This command writes all the terms of a rotation matrix about the z-axis using a specified $q_n$, $n$ = \meta{num} and shorthand notation.
+}{% Argument Descriptions
+    \inputsi{num}{Variable number; positive integer}
+}{% Example Description
+    Say we want to define the rotation matrix about the z-axis using the variable $q_3$.
+}{% Example Text Arguments
+    \comarg{rotzq}{\targmi{\cs{3}}}
+}{% Example Function Call
+    \rotzq{3}
+}
+\index{rotation matrix|)}
+
+\subsection*{\blu{Transposed/Inverse Rotation Matrices}}
+\label{sec:rotmatsT}
+\index{rotation matrix!inverse|(}
+\index{rotation matrix!transposed|(}
+
+\index{rotation matrix!inverse!x}
+\index{rotation matrix!transpose!x}
+\entryl{% Command Name
+    rotxT
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Transposed rotation matrix about x. This command writes all the terms of a transposed/inverse rotation matrix about the x-axis using a specified angle, \meta{angle}.
+}{% Argument Descriptions
+    \inputsi{angle}{Rotation angle; symbol}
+}{% Example Description
+    Say we want to define the transposed/inverse rotation matrix about the x-axis using the angle $\phi$.
+}{% Example Text Arguments
+    \comarg{rotxT}{\targmi{\cs{phi}}}
+}{% Example Function Call
+    \rotxT{\phi}
+}
+
+\newpage
+
+\index{rotation matrix!inverse!y}
+\index{rotation matrix!transpose!y}
+\entryl{% Command Name
+    rotyT
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Transposed rotation matrix about y. This command writes all the terms of a transposed/inverse rotation matrix about the y-axis using a specified angle, \meta{angle}.
+}{% Argument Descriptions
+    \inputsi{angle}{Rotation angle; symbol}
+}{% Example Description
+    Say we want to define the transposed/inverse rotation matrix about the y-axis using the angle $\theta$.
+}{% Example Text Arguments
+    \comarg{rotyT}{\targmi{\cs{theta}}}
+}{% Example Function Call
+    \rotyT{\theta}
+}
+
+\index{rotation matrix!inverse!z}
+\index{rotation matrix!transpose!z}
+\entryl{% Command Name
+    rotzT
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Transposed rotation matrix about z. This command writes all the terms of a transposed/inverse rotation matrix about the z-axis using a specified angle, \meta{angle}.
+}{% Argument Descriptions
+    \inputsi{angle}{Rotation angle; symbol}
+}{% Example Description
+    Say we want to define the transposed/inverse rotation matrix about the z-axis using the angle $\psi$.
+}{% Example Text Arguments
+    \comarg{rotzT}{\targmi{\cs{psi}}}
+}{% Example Function Call
+    \rotzT{\psi}
+}
+
+\newpage
+
+\index{rotation matrix!inverse!x, q-shorthand}
+\index{rotation matrix!transpose!x, q-shorthand}
+\entryl{% Command Name
+    rotxqT
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Transposed rotation matrix about x using q shorthand. This command writes all the terms of a transposed/inverse rotation matrix about the x-axis using a specified $q_n$, $n$ = \meta{num} and shorthand notation.
+}{% Argument Descriptions
+    \inputsi{num}{Variable number; positive integer}
+}{% Example Description
+    Say we want to define the transposed/inverse rotation matrix about the x-axis using the variable $q_1$.
+}{% Example Text Arguments
+    \comarg{rotxqT}{\targmi{\cs{1}}}
+}{% Example Function Call
+    \rotxqT{1}
+}
+
+\index{rotation matrix!inverse!y, q-shorthand}
+\index{rotation matrix!transpose!y, q-shorthand}
+\entryl{% Command Name
+    rotyqT
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Transposed rotation matrix about y using q shorthand. This command writes all the terms of a transposed/inverse rotation matrix about the y-axis using a specified $q_n$, $n$ = \meta{num} and shorthand notation.
+}{% Argument Descriptions
+    \inputsi{num}{Variable number; positive integer}
+}{% Example Description
+    Say we want to define the transposed/inverse rotation matrix about the y-axis using the variable $q_2$.
+}{% Example Text Arguments
+    \comarg{rotyqT}{\targmi{\cs{2}}}
+}{% Example Function Call
+    \rotyqT{2}
+}
+
+\newpage
+
+\index{rotation matrix!inverse!z, q-shorthand}
+\index{rotation matrix!transpose!z, q-shorthand}
+\entryl{% Command Name
+    rotzqT
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Transposed rotation matrix about z using q shorthand. This command writes all the terms of a transposed/inverse rotation matrix about the z-axis using a specified $q_n$, $n$ = \meta{num} and shorthand notation.
+}{% Argument Descriptions
+    \inputsi{num}{Variable number; positive integer}
+}{% Example Description
+    Say we want to define the transposed/inverse rotation matrix about the z-axis using the variable $q_3$.
+}{% Example Text Arguments
+    \comarg{rotzqT}{\targmi{\cs{3}}}
+}{% Example Function Call
+    \rotzqT{3}
+}
+\index{rotation matrix!inverse|)}
+\index{rotation matrix!transposed|)}
+
+\subsection*{\blu{Inertia Matrices}}
+\label{sec:inermats}
+
+\index{inertia!matrix}
+\index{matrix!inertia}
+\entryl{% Command Name
+    inertiaMat
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    Inertia matrix. This command is used to define the terms of an inertia tensor of a body about point \meta{point} in matrix form with body frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}%
+}{% Example Description
+    Say we want to define the inertia matrix of body with body frame $\fr{B}$ about its center of mass.
+}{% Example Text Arguments
+    \comarg{inertiaMat}{\targmii{b}{\cs{CM}}}
+}{% Example Function Call
+    \inertiaMat{b}{\CM}
+}
+
+\newpage
+
+\index{matrix!inertia!shorthand}
+\index{inertia!matrix!shorthand}
+\entryl{% Command Name
+    inertiaMatsh
+}{% Arguments
+    { }
+}{% Description
+    Shorthand inertia matrix. This command is used to define the terms of an inertia tensor in shorthand.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the shorthand inertia matrix.
+}{% Example Text Arguments
+    \cs{inertiaMatsh}
+}{% Example Function Call
+    \inertiaMatsh
+}
+
+\index{matrix!inertia difference}
+\index{inertia!difference matrix}
+\entryl{% Command Name
+    inertiaDif
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    Inertia difference matrix. This command is used to define the terms of an inertia difference tensor of a body about point \meta{point} relative to its center of mass in matrix form with body frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}%
+}{% Example Description
+    Say we want to define the inertia difference matrix of body with body frame $\fr{B}$ about a point $A$.
+}{% Example Text Arguments
+    \comarg{inertiaDif}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \inertiaDif{b}{\smca{a}}
+}
+
+\newpage
+
+\index{inertia!difference matrix!shorthand}
+\index{matrix!inertia difference!shorthand}
+\entryl{% Command Name
+    inertiaDifsh
+}{% Arguments
+    { }
+}{% Description
+    Shorthand inertia difference matrix. This command is used to define the terms of an inertia difference tensor relative to its center of mass in shorthand.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the shorthand inertia difference matrix.
+}{% Example Text Arguments
+    \cs{inertiaDifsh}
+}{% Example Function Call
+    \inertiaDifsh
+}
+
+\subsection*{\blu{Other Matrices}}
+\label{sec:othermats}
+\index{matrix!other|(}
+
+\index{matrix!tensor}
+\index{tensor!matrix}
+\entryl{% Command Name
+    tensorMat
+}{% Arguments
+    \targsii{frame}{tensor}
+}{% Description
+    Tensor matrix. This command is used to define the terms of a matrix representation of the tensor \meta{tensor} relative to the frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        tensor}{Tensor; expression}
+}{% Example Description
+    Say we want to define a matrix representation of an inertia tensor about a body's center of mass expressed in its body frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{tensorMat}{\targmii{b}{\comone{inerTen}{\cs{CM}}}}
+}{% Example Function Call
+    \tensorMat{b}{\inerTen{\CM}}
+}
+
+\newpage
+
+\index{matrix!square}
+\index{square!matrix}
+\entryl{% Command Name
+    sqMatiii
+}{% Arguments
+    \targsix{A11}{A12}{A13}{A21}{A22}{A23}{A31}{A32}{A33}
+}{% Description
+    3x3 Matrix. This command is used to define a 3x3 square matrix with specified terms.
+}{% Argument Descriptions
+    \inputsi{%
+        Amn}{(m,n) term; expression}%
+}{% Example Description
+    Say we want to define a 3x3 matrix with the values 1 to 9 ascending from left to right, top to bottom.
+}{% Example Text Arguments
+    \comarg{sqMatiii}{\targmix{1}{2}{3}{4}{5}{6}{7}{8}{9}}
+}{% Example Function Call
+    \sqMatiii{1}{2}{3}{4}{5}{6}{7}{8}{9}
+}
+
+\index{matrix!identity}
+\index{identity!matrix}
+\entryl{% Command Name
+    eyeMatiii
+}{% Arguments
+    { }
+}{% Description
+    3x3 identity matrix.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the 3x3 identity matrix.
+}{% Example Text Arguments
+    \cs{eyeMatiii}
+}{% Example Function Call
+    \eyeMatiii
+}
+
+\newpage
+
+\index{matrix!direction cosine}
+\entryl{% Command Name
+    dcm
+}{% Arguments
+    { }
+}{% Description
+    Direction cosine matrix. This command defines the terms of a direction cosine matrix.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the direction cosine matrix.
+}{% Example Text Arguments
+    \cs{dcm}
+}{% Example Function Call
+    \dcm
+}
+
+\index{matrix!cross!definition}
+\entryl{% Command Name
+    crossMat
+}{% Arguments
+    \targsiii{arg}{xcomp}{ycomp}{zcomp}
+}{% Description
+    Cross matrix. This command is used to define a cross matrix which when multiplied by a vector is equivalent to taking a cross product. Defined given the x, y, and z components of the first vector in the cross product.
+}{% Argument Descriptions
+    \inputsiii{%
+        xcomp}{x-component; expression}{%
+        ycomp}{y-component; expression}{%
+        zcomp}{z-component; expression}%
+}{% Example Description
+    Say we want to define a cross matrix for a vector $\vec{r} = [x\ y\ z]$.
+}{% Example Text Arguments
+    \comarg{crossMat}{\targmiii{x}{y}{z}}
+}{% Example Function Call
+    \crossMat{x}{y}{z}
+}
+\index{matrix!other|)}
+\index{matrix!definitions|)}

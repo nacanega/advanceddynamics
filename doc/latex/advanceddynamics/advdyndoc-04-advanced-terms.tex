@@ -1,0 +1,405 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-04-advanced-terms.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Advanced Terms}
+\label{sec:advterms}
+\index{terms!advanced|(}
+This section includes the commands needed to typeset most of the terms from \textit{MAE 789}. Note that all commands in this section should be used inside of a math environment.
+
+\subsection*{\blu{Partial Terms}}
+\label{sec:partterms}
+\index{terms!partial|(}
+
+\entry{% Command Name
+    Pvec
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector. This command is used to express the P-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the P-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvec}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvec{a}{b}{\theta}
+}
+
+\newpage
+
+\entry{% Command Name
+    Pvecx
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector x-component. This command is used to express the x-component of the P-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the x-component of the P-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvecx}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvecx{a}{b}{\theta}
+}
+
+\entry{% Command Name
+    Pvecy
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector y-component. This command is used to express the y-component of the P-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the y-component of the P-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvecy}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvecy{a}{b}{\theta}
+}
+
+\newpage
+
+\entry{% Command Name
+    Pvecz
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector z-component. This command is used to express the z-component of the P-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the z-component of the P-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvecz}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvecz{a}{b}{\theta}
+}
+\index{terms!partial|)}
+
+\subsection*{\blu{Total Terms}}
+\label{sec:totalterms}
+\index{terms!total|(}
+
+\entry{% Command Name
+    Tvec
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector. This command is used to express the T-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the T-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Tvec}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Tvec{a}{b}{\theta}
+}
+
+\newpage
+
+\entry{% Command Name
+    Tvecx
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector x-component. This command is used to express the x-component of the T-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the x-component of the T-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Tvecx}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Tvecx{a}{b}{\theta}
+}
+
+\entry{% Command Name
+    Tvecy
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector y-component. This command is used to express the y-component of the T-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the y-component of the T-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Tvecy}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Tvecy{a}{b}{\theta}
+}
+
+\newpage
+
+\entry{% Command Name
+    Tvecz
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector z-component. This command is used to express the z-component of the T-vector of \meta{frame2} relative to \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the z-component of the T-vector of the $\fr{B}$ frame relative to the $\fr{A}$ with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Tvecz}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Tvecz{a}{b}{\theta}
+}
+\index{terms!total|)}
+
+\subsection*{\blu{Equations of Motion Terms}}
+\label{sec:eomterms}
+\index{terms!equations of motion|(}
+The terms in this section are used most commonly when deriving equations of motion of systems using more advanced methods such as Lagrange's equations and Kane's equations. 
+
+\entry{% Command Name
+    angVk
+}{% Arguments
+    \targsiii{frame1}{frame2}{k}
+}{% Description
+    Angular velocity k. This command is used to express the angular velocity of \meta{frame2}-\meta{k} relative to \meta{frame1}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}{%
+        k}{Number; positive integer}%
+}{% Example Description
+    Say we want to define the angular velocity of the $\frn{A}{5}$ frame relative to the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{angVk}{\targmiii{O}{A}{5}}
+}{% Example Function Call
+    \angVk{O}{A}{5}
+}
+
+\newpage
+
+\entry{% Command Name
+    angAk
+}{% Arguments
+    \targsiii{frame1}{frame2}{k}
+}{% Description
+    Angular acceleration k. This command is used to express the angular acceleration of \meta{frame2}-\meta{k} relative to \meta{frame1}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}{%
+        k}{Number; positive integer}%
+}{% Example Description
+    Say we want to define the angular velocity of the $\frn{B}{6}$ frame relative to the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{angAk}{\targmiii{o}{b}{6}}
+}{% Example Function Call
+    \angAk{a}{b}{6}
+}
+
+\index{force!internal}
+\entry{% Command Name
+    forc
+}{% Arguments
+    \targsi{sub}
+}{% Description
+    Lowercase force. This command is used to express the forces (usually internal).
+}{% Argument Descriptions
+    \inputsi{sub}{Subscript; expression}
+}{% Example Description
+    Say we want to define the force acting on the ith body.
+}{% Example Text Arguments
+    \comarg{forc}{\targmi{i}}
+}{% Example Function Call
+    \forc{i}
+}
+
+\newpage
+
+\entry{% Command Name
+    ptraVr
+}{% Arguments
+    \targsiii{frame}{point}{r}
+}{% Description
+    r-th partial velocity. This command is used to express rth partial velocity of \meta{point} in \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}{%
+        r}{Number; positive integer}%
+}{% Example Description
+    Say we want to define the 4th partial velocity of $m_i$ in $\fr{O}$.
+}{% Example Text Arguments
+    \comarg{ptraVr}{\targmiii{o}{m\string_i}{4}}
+}{% Example Function Call
+    \ptraVr{a}{m_i}{4}
+}
+
+\entry{% Command Name
+    ptraVt
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    time partial velocity. This command is used to express the time partial velocity of \meta{point} in \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}%
+}{% Example Description
+    Say we want to define the time partial velocity of $m_i$ in $\fr{O}$.
+}{% Example Text Arguments
+    \comarg{ptraVt}{\targmii{o}{m\string_i}}
+}{% Example Function Call
+    \ptraVt{a}{m_i}
+}
+
+\newpage
+
+\entry{% Command Name
+    pangVr
+}{% Arguments
+    \targsiii{frame1}{frame2}{r}
+}{% Description
+    r-th partial angular velocity. This command is used to express rth partial angular velocity of \meta{frame2} in \meta{frame1}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        r}{Number; positive integer}%
+}{% Example Description
+    Say we want to define the 4th partial angular velocity of $\fr{B}$ in $\fr{A}$.
+}{% Example Text Arguments
+    \comarg{pangVr}{\targmiii{a}{b}{4}}
+}{% Example Function Call
+    \pangVr{a}{b}{4}
+}
+
+\entry{% Command Name
+    pangVrk
+}{% Arguments
+    \targsiv{frame1}{frame2}{k}{r}
+}{% Description
+    r-th partial angular velocity k. This command is used to express rth partial angular velocity of \meta{frame2}-\meta{k} in \meta{frame1}.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}{%
+        k}{Number; positive integer}{%
+        r}{Number; positive integer}%
+}{% Example Description
+    Say we want to define the 4th partial angular velocity of $\frn{B}{2}$ in $\fr{A}$.
+}{% Example Text Arguments
+    \comarg{pangVr}{\targmiv{a}{b}{2}{4}}
+}{% Example Function Call
+    \pangVrk{a}{b}{2}{4}
+}
+
+\newpage
+
+\entry{% Command Name
+    pangVt
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    time partial angular velocity. This command is used to express the time partial angular velocity of \meta{frame2} in \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{Frame; letter (a-z, A-Z)}{%
+        frame2}{Frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the time partial angular velocity of $\fr{b}$ in $\fr{a}$.
+}{% Example Text Arguments
+    \comarg{pangVt}{\targmii{o}{b}}
+}{% Example Function Call
+    \pangVt{a}{b}
+}
+
+\index{Lagrange's equations!Lagrangian}
+\entry{% Command Name
+    Lagr
+}{% Arguments
+    { }
+}{% Description
+    Lagrangian. Show the symbol for the Lagrangian.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the symbol for the Lagrangian.
+}{% Example Text Arguments
+    \cs{Lagr}
+}{% Example Function Call
+    \Lagr
+}
+
+\newpage
+
+\index{Kane's equations!Fr}
+\entry{% Command Name
+    KFr
+}{% Arguments
+    \targsi{r}
+}{% Description
+    $\KFr{r}$. This command is used to express $\KFr{r}$ from Kane's equations of motion.
+}{% Argument Descriptions
+    \inputsi{r}{Number; positive integer}
+}{% Example Description
+    Say we want to define $\KFr{1}$.
+}{% Example Text Arguments
+    \comarg{KFr}{\targmi{1}}
+}{% Example Function Call
+    \KFr{1}
+}
+
+\index{Kane's equations!Fr-star}
+\entry{% Command Name
+    KFrs
+}{% Arguments
+    \targsi{r}
+}{% Description
+    $\KFrs{r}$. This command is used to express $\KFrs{r}$ from Kane's equations of motion.
+}{% Argument Descriptions
+    \inputsi{r}{r; positive integer}
+}{% Example Description
+    Say we want to define $\KFrs{1}$.
+}{% Example Text Arguments
+    \comarg{KFrs}{\targmi{1}}
+}{% Example Function Call
+    \KFrs{1}
+}
+\index{terms!equations of motion|)}
+\index{terms!advanced|)}

@@ -1,0 +1,301 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-05-differentiation.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Differentiation}
+\label{sec:diff}
+\index{derivative|(}
+This section includes the commands needed to typeset most derivatives and their calculation. Note that all commands in this section should be used inside of a math environment.
+
+\subsection*{\blu{Time Derivatives}}
+\label{sec:timediff}
+\index{derivative!time|(}
+
+\entry{% Command Name
+    derI
+}{% Arguments
+    \targsii{frame}{expr}
+}{% Description
+    1st time derivative. This command is used to take the first time derivative of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to define the first time derivative of position, $\vec{r}$, in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{derI}{\targmii{a}{\comone{vec}{r}\cs{,}}}
+}{% Example Function Call
+    \derI{a}{\vec{r}\,}
+}
+
+\entry{% Command Name
+    derII
+}{% Arguments
+    \targsii{frame}{expr}
+}{% Description
+    2nd time derivative. This command is used to take the second time derivative of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to define the second time derivative of position, $\vec{r}$, in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{derII}{\targmii{a}{\comone{vec}{r}\cs{,}}}
+}{% Example Function Call
+    \derII{a}{\vec{r}\,}
+}
+
+\newpage
+
+\entry{% Command Name
+    derN
+}{% Arguments
+    \targsiii{frame}{expr}{n}
+}{% Description
+    nth time derivative. This command is used to take the nth time derivative of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        expr}{Expression; expression}{%
+        n}{Number, positive integer}%
+}{% Example Description
+    Say we want to define the 100th time derivative of position, $\vec{r}$, in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{derN}{\targmiii{a}{\comone{vec}{r}\cs{,}}{100}}
+}{% Example Function Call
+    \derN{a}{\vec{r}\,}{100}
+}
+
+\index{theorem|see {transport theorem}}
+\index{transport theorem!first-order!time}
+\entry{% Command Name
+    tranI
+}{% Arguments
+    \targsiii{dframe}{eframe}{expr}
+}{% Description
+    First-order transport theorem. This command is used to show how to take the first \meta{dframe}-frame time derivative of \meta{expr} which is expressed in the \meta{eframe}-frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        dframe}{Derivative frame; letter (a-z, A-Z)}{%
+        eframe}{Expressed frame; letter (a-z, A-Z)}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to find the first $\fr{b}$ frame time derivative of the vector $\vec{q}$, which is expressed in the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{tranI}{\targmiii{b}{a}{\comone{vec}{q}\cs{,}}}
+}{% Example Function Call
+    \tranI{b}{a}{\vec{q}\,}
+}
+
+\newpage
+
+\index{transport theorem!second-order!time}
+\entry{% Command Name
+    tranII
+}{% Arguments
+    \targsiii{dframe}{eframe}{expr}
+}{% Description
+    Second-order transport theorem. This command is used to show how to take the second \meta{dframe}-frame time derivative of \meta{expr} which is expressed in the \meta{eframe}-frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        dframe}{Derivative frame; letter (a-z, A-Z)}{%
+        eframe}{Expressed frame; letter (a-z, A-Z)}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to find the second $\fr{b}$ frame time derivative of the vector $\vec{q}$, which is expressed in the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{tranII}{\targmiii{b}{a}{\comone{vec}{q}\cs{,}}}
+}{% Example Function Call
+    \tranII{b}{a}{\vec{q}\,}
+}
+\index{derivative!time|)}
+
+\newpage
+
+\subsection*{\blu{Partial Derivatives}}
+\label{sec:partdiff}
+\index{derivative!partial|(}
+
+\entry{% Command Name
+    pderI
+}{% Arguments
+    \targsiii{frame}{var}{expr}
+}{% Description
+    1st partial derivative. This command is used to take the first partial derivative with respect to \meta{var} of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to define the first partial derivative of velocity, $\vec{v}$, with respect to $\theta$ in the $\fr{B}$ frame.
+}{% Example Text Arguments
+    \comarg{pderI}{\targmiii{b}{\cs{theta}}{\comone{vec}{v}\cs{,}}}
+}{% Example Function Call
+    \pderI{b}{\theta}{\vec{v}\,}
+}
+
+\entry{% Command Name
+    pderII
+}{% Arguments
+    \targsiii{frame}{var}{expr}
+}{% Description
+    2nd partial derivative. This command is used to take the second partial derivative with respect to \meta{var} of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to define the second partial derivative of velocity, $\vec{v}$, with respect to $\theta$ in the $\fr{B}$ frame.
+}{% Example Text Arguments
+    \comarg{pderII}{\targmiii{b}{\cs{theta}}{\comone{vec}{v}\cs{,}}}
+}{% Example Function Call
+    \pderII{b}{\theta}{\vec{v}\,}
+}
+
+\newpage
+
+\entry{% Command Name
+    pderN
+}{% Arguments
+    \targsiv{frame}{var}{expr}{n}
+}{% Description
+    nth partial derivative. This command is used to take the nth partial derivative with respect to \meta{var} of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}{%
+        n}{Number, positive integer}%
+}{% Example Description
+    Say we want to define the 30th partial derivative of velocity, $\vec{v}$, with respect to $\theta$ in the $\fr{B}$ frame.
+}{% Example Text Arguments
+    \comarg{pderN}{\targmiv{b}{\cs{theta}}{\comone{vec}{v}\cs{,}}{30}}
+}{% Example Function Call
+    \pderN{b}{\theta}{\vec{v}\,}{30}
+}
+
+\index{transport theorem!first-order!partial}
+\entry{% Command Name
+    ptranI
+}{% Arguments
+    \targsiv{dframe}{eframe}{var}{expr}
+}{% Description
+    First-order partial derivative transport theorem. This command is used to show how to take the first partial \meta{dframe}-frame derivative with respect to \meta{var} of \meta{expr} which is expressed in the \meta{eframe}-frame.
+}{% Argument Descriptions
+    \inputsiv{%
+        dframe}{Derivative frame; letter (a-z, A-Z)}{%
+        eframe}{Expressed frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to find the first partial $\fr{b}$ frame derivative with respect to $\phi$ of the vector $\vec{q}$, which is expressed in the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{ptranI}{\targmiv{b}{a}{\cs{phi}}{\comone{vec}{q}\cs{,}}}
+}{% Example Function Call
+    \ptranI{b}{a}{\phi}{\vec{q}\,}
+}
+\index{derivative!partial|)}
+
+\newpage
+
+\subsection*{\blu{Total Derivatives}}
+\label{sec:totdiff}
+\index{derivative!total|(}
+
+\entry{% Command Name
+    tderI
+}{% Arguments
+    \targsiii{frame}{var}{expr}
+}{% Description
+    1st total derivative. This command is used to take the first total derivative with respect to \meta{var} of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to define the first total derivative of velocity, $\vec{v}$, with respect to $\psi$ in the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{tderI}{\targmiii{o}{\cs{psi}}{\comone{vec}{v}\cs{,}}}
+}{% Example Function Call
+    \tderI{o}{\psi}{\vec{v}\,}
+}
+
+\entry{% Command Name
+    tderII
+}{% Arguments
+    \targsiii{frame}{var}{expr}
+}{% Description
+    2nd total derivative. This command is used to take the second total derivative with respect to \meta{var} of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to define the second total derivative of velocity, $\vec{v}$, with respect to $\psi$ in the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{tderII}{\targmiii{o}{\cs{psi}}{\comone{vec}{v}\cs{,}}}
+}{% Example Function Call
+    \tderII{o}{\psi}{\vec{v}\,}
+}
+
+\newpage
+
+\entry{% Command Name
+    tderN
+}{% Arguments
+    \targsiv{frame}{var}{expr}{n}
+}{% Description
+    nth total derivative. This command is used to take the nth total derivative with respect to \meta{var} of \meta{expr} in the \meta{frame} frame.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}{%
+        n}{Number, positive integer}%
+}{% Example Description
+    Say we want to define the 30th total derivative of velocity, $\vec{v}$, with respect to $\psi$ in the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{tderN}{\targmiv{o}{\cs{psi}}{\comone{vec}{v}\cs{,}}{30}}
+}{% Example Function Call
+    \tderN{o}{\psi}{\vec{v}\,}{30}
+}
+
+\index{transport theorem!first-order!total}
+\entry{% Command Name
+    ttranI
+}{% Arguments
+    \targsiv{dframe}{eframe}{var}{expr}
+}{% Description
+    First-order total derivative transport theorem. This command is used to show how to take the first total \meta{dframe}-frame derivative with respect to \meta{var} of \meta{expr} which is expressed in the \meta{eframe}-frame.
+}{% Argument Descriptions
+    \inputsiv{%
+        dframe}{Derivative frame; letter (a-z, A-Z)}{%
+        eframe}{Expressed frame; letter (a-z, A-Z)}{%
+        var}{Variable; symbol}{%
+        expr}{Expression; expression}%
+}{% Example Description
+    Say we want to find the first total $\fr{o}$ frame derivative with respect to $\phi$ of the vector $\vec{q}$, which is expressed in the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{ttranI}{\targmiv{o}{a}{\cs{phi}}{\comone{vec}{q}\cs{,}}}
+}{% Example Function Call
+    \ttranI{o}{a}{\phi}{\vec{q}\,}
+}
+\index{derivative!total|)}
+\index{derivative|)}
+\index{differentiation|see {derivative}}

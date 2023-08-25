@@ -1,0 +1,767 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-03-general-terms.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{General Terms}
+\label{sec:genterms}
+\index{terms!general|(}
+This section includes the commands needed to typeset most of the terms from \textit{MAE 511}. Note that all commands in this section should be used inside of a math environment. Note that when inputting strings, you will have to enclose in \cs{mathit} if longer than one character and in \cs{smca} when dealing with capital letters.
+
+\subsection*{\blu{Translational Terms}}
+\label{sec:transterms}
+\index{terms!translational|(}
+
+\entry{% Command Name
+    traV%
+}{% Arguments
+    \targsii{frame}{point}%
+}{% Description
+    Translational velocity. This command is used to express the translational velocity of a point \meta{point} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Letter (a-z, A-Z)}{%
+        point}{Name of point; expression}%
+}{% Example Description
+    Say we want to define the velocity of particle B in its body frame $\fr{B}$.%
+}{% Example Text Arguments
+    \comarg{traV}{\targmii{b}{\comone{smca}{b}}}%
+}{% Example Function Call
+    \traV{b}{\smca{b}}%
+}
+
+\newpage
+
+\entry{% Command Name
+    traA
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    Translational acceleration. This command is used to express the translational acceleration of a point \meta{point} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame}{Letter (a-z, A-Z)}{%
+        point}{Name of point; expression}
+}{% Example Description
+    Say we want to define the acceleration of particle $B$ in an inertial reference frame $\fr{O}$.%
+}{% Example Text Arguments
+    \comarg{traA}{\targmii{o}{\comone{smca}{b}}}%
+}{% Example Function Call
+    \traA{o}{\smca{b}}%
+}
+
+\entry{% Command Name
+    relR
+}{% Arguments
+    \targsii{point}{refpt}
+}{% Description
+    Relative displacement. This command is used to express the position of \meta{point} relative to \meta{refpt}.
+}{% Argument Descriptions
+    \inputsii{%
+        point}{Name of point; expression}{%
+        refpt}{Name of reference point; expression}
+}{% Example Description
+    Say we want to define the displacement of a particle $A$ relative to the point $O$.
+}{% Example Text Arguments
+    \comarg{relR}{\targmii{\comone{smca}{A}}{\comone{smca}{O}}}
+}{% Example Function Call
+    \relR{\smca{A}}{\smca{O}}
+}
+
+\newpage
+
+\entry{% Command Name
+    relV
+}{% Arguments
+    \targsiii{frame}{point}{refpt}
+}{% Description
+    Relative velocity. This command is used to express the velocity of \meta{point} relative to \meta{refpt} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame}{Frame that velocity is expressed in}{%
+        point}{Name of point; expression}{%
+        refpt}{Name of reference point; expression}
+}{% Example Description
+    Say we want to define the velocity of a particle $B$ relative to the particle $A$ in the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{relV}{\targmiii{o}{\comone{smca}{B}}{\comone{smca}{A}}}
+}{% Example Function Call
+    \relV{o}{\smca{B}}{\smca{A}}
+}
+
+\entry{% Command Name
+    relA
+}{% Arguments
+    \targsiii{frame}{point}{refpt}
+}{% Description
+    Relative acceleration. This command is used to express the acceleration of \meta{point} relative to \meta{refpt} in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame}{Frame that velocity is expressed in}{%
+        point}{Name of point; expression}{%
+        refpt}{Name of reference point; expression}%
+}{% Example Description
+    Say we want to define the acceleration of a particle $B$ relative to the particle $A$ in the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{relA}{\targmiii{o}{\comone{smca}{B}}{\comone{smca}{A}}}
+}{% Example Function Call
+    \relA{o}{\smca{B}}{\smca{A}}
+}
+
+\newpage
+
+\index{force!external}
+\entry{% Command Name
+    Forc
+}{% Arguments
+    \targsi{sub}
+}{% Description
+    Force. This command is used to express a force with a specified subscript \meta{sub}.
+}{% Argument Descriptions
+    \inputsi{sub}{Subscript; expression}
+}{% Example Description
+    Say we want to define a gravitational force with g-shorthand and a frictional force with friction written out.
+}{% Example Text Arguments
+    \comarg{Forc}{\targmi{g}} \comone{text}{ and } \comarg{Forc}{\targmi{\comone{mathit}{friction}}}
+}{% Example Function Call
+    \Forc{g} \text{ and } \Forc{\mathit{friction}}
+}
+\index{terms!translational|)}
+
+\subsection*{\blu{Rotational Terms}}
+\label{sec:rotterms}
+\index{terms!rotational|(}
+
+\entry{% Command Name
+    angV
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Angular velocity. This command is used to express the angular velocity of \meta{frame2} relative to \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the angular velocity of the $\fr{A}$ frame relative to the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{angV}{\targmii{O}{A}}
+}{% Example Function Call
+    \angV{O}{A}
+}
+
+\newpage
+
+\entry{% Command Name
+    angA
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Angular acceleration. This command is used to express the angular acceleration of \meta{frame2} relative to \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the angular acceleration of the $\fr{A}$ frame relative to the $\fr{O}$ frame.
+}{% Example Text Arguments
+    \comarg{angA}{\targmii{O}{A}}
+}{% Example Function Call
+    \angA{O}{A}
+}
+
+\entry{% Command Name
+    angMp
+}{% Arguments
+    \targsiv{frame}{point1}{point2}{mass}
+}{% Description
+    Particle angular momentum. This command is used to express the angular momentum of a particle with mass \meta{mass} with respect to \meta{point2} with respect to \meta{point1}, relative to the frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Letter (a-z, A-Z)}{%
+        point1}{Name of point1; expression}{%
+        point2}{Name of point2; expression}{%
+        mass}{Name of mass; expression}%
+}{% Example Description
+    Say we want to define the angular momentum of a particle of mass $m$ with respect to $B$ with respect to $A$ expressed in the $\fr{o}$ frame.
+}{% Example Text Arguments
+    \comarg{angMp}{\targmiv{o}{\comone{smca}{A}}{\comone{smca}{B}}{m}}
+}{% Example Function Call \comone{smca}{}
+    \angMp{o}{\smca{A}}{\smca{B}}{m}
+}
+
+\newpage
+
+\entry{% Command Name
+    angMs
+}{% Arguments
+    \targsiii{frame}{point1}{point2}
+}{% Description
+    System angular momentum. This command is used to express the angular momentum of a system with respect to \meta{point2} with respect to \meta{point1}, relative to the frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Letter (a-z, A-Z)}{%
+        point1}{Name of point1; expression}{%
+        point2}{Name of point2; expression}%
+}{% Example Description
+    Say we want to define the angular momentum of a system with respect to $P$ with respect to $Q$ expressed in the $\fr{F}$ frame.
+}{% Example Text Arguments
+    \comarg{angMs}{\targmiii{f}{\comone{smca}{Q}}{\comone{smca}{P}}}
+}{% Example Function Call
+    \angMs{f}{\smca{Q}}{\smca{P}}
+}
+
+\entry{% Command Name
+    angM
+    }{% Arguments
+    \targsiii{frame}{point1}{spec}
+}{% Description
+    General angular momentum. This command is used to express the angular momentum of a specified particle, body, or system with respect to a specified point with respect to \meta{point1}, relative to the frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Letter (a-z, A-Z)}{%
+        point1}{Name of point1; expression}{%
+        spec}{Specified particle, body, or system and specified point; expression}%
+}{% Example Description
+    Say we want to define the angular momentum of a rigid body with respect to its center of mass with respect to $Q$ expressed in the $\fr{F}$ frame.
+}{% Example Text Arguments
+    \comarg{angM}{\targmiii{f}{\comone{smca}{Q}}{\cs{CM}}}
+}{% Example Function Call
+    \angM{f}{\smca{Q}}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    torq
+}{% Arguments
+    \targsi{sub}
+}{% Description
+    Torque. This command is used to express a torque with a specified subscript \meta{sub}. Note that \cs{mathit} may be needed if the subscript is a word.
+}{% Argument Descriptions
+    \inputsi{sub}{Subscript; expression}
+}{% Example Description
+    Say we want to define a torque due to gravity with the g-shorthand and a torque due to a $\mathit{motor}$.
+}{% Example Text Arguments
+    \comarg{torq}{\targmi{g}} \comone{text}{ and } \comarg{torq}{\targmi{\comone{mathit}{motor}}}
+}{% Example Function Call
+    \torq{g} \text{ and } \torq{\mathit{motor}}
+}
+\index{terms!rotational|)}
+
+\subsection*{\blu{Matrix Terms}}
+\label{sec:matterms}
+\index{terms!matrix|(}
+
+\index{rotation matrix!symbols|(}
+\entry{% Command Name
+    rotM
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Rotation matrix. This command is used to express the rotation matrix to convert from \meta{frame2} to \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the rotation matrix to convert from the $\fr{O}$ frame to the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{rotM}{\targmii{A}{O}}
+}{% Example Function Call
+    \rotM{A}{O}
+}
+
+\newpage
+
+\entry{% Command Name
+    rotMd
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Rotation matrix derivative. This command is used to express the derivative of the rotation matrix that converts from \meta{frame2} to \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the derivative of the rotation matrix that converts from the $\fr{O}$ frame to the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{rotMd}{\targmii{A}{O}}
+}{% Example Function Call
+    \rotMd{A}{O}
+}
+
+\entry{% Command Name
+    Rx
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    X rotation matrix. This command is used to express the rotation matrix about the x-axis (positive CCW).
+}{% Argument Descriptions
+    \inputsi{angle}{Angle name; expression}
+}{% Example Description
+    Say we want to define the x rotation matrix using the angle $\phi$.
+}{% Example Text Arguments
+    \comarg{Rx}{\targmi{\cs{phi}}}
+}{% Example Function Call
+    \Rx{\phi}
+}
+
+\newpage
+
+\entry{% Command Name
+    Ry
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Y rotation matrix. This command is used to express the rotation matrix about the y-axis (positive CCW).
+}{% Argument Descriptions
+    \inputsi{angle}{Angle name; expression}
+}{% Example Description
+    Say we want to define the y rotation matrix using the angle $\theta$.
+}{% Example Text Arguments
+    \comarg{Ry}{\targmi{\cs{theta}}}
+}{% Example Function Call
+    \Ry{\theta}
+}
+
+\entry{% Command Name
+    Rz
+}{% Arguments
+    \targsi{angle}
+}{% Description
+    Z rotation matrix. This command is used to express the rotation matrix about the z-axis (positive CCW).
+}{% Argument Descriptions
+    \inputsi{angle}{Angle name; expression}
+}{% Example Description
+    Say we want to define the z rotation matrix using the angle $\psi$.
+}{% Example Text Arguments
+    \comarg{Rz}{\targmi{\cs{psi}}}
+}{% Example Function Call
+    \Rz{\psi}
+}
+\index{rotation matrix!symbols|)}
+
+\newpage
+
+\index{matrix!cross|(}
+\entry{% Command Name
+    omcrMat
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Omega cross matrix. This command is used to express the omega cross matrix, a matrix which when multiplied by a column vector is equivalent to taking the cross product of the angular velocity of \meta{frame2} with respect to \meta{frame1} and that vector.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the omega cross matrix based on the relative angular velocity of the $\fr{B}$ frame with respect to the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{omcrMat}{\targmii{A}{B}}
+}{% Example Function Call
+    \omcrMat{A}{B}
+}
+
+\entry{% Command Name
+    omcrx
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Omega cross x-term. This command is the x-term of the omega cross matrix, a matrix which when multiplied by a column vector is equivalent to taking the cross product of the angular velocity of \meta{frame2} with respect to \meta{frame1} and that vector.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the x-term of the omega cross matrix based on the relative angular velocity of the $\fr{B}$ frame with respect to the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{omcrx}{\targmii{A}{B}}
+}{% Example Function Call
+    \omcrx{A}{B}
+}
+
+\newpage
+
+\entry{% Command Name
+    omcry
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Omega cross y-term. This command is the y-term of the omega cross matrix, a matrix which when multiplied by a column vector is equivalent to taking the cross product of the angular velocity of \meta{frame2} with respect to \meta{frame1} and that vector.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the y-term of the omega cross matrix based on the relative angular velocity of the $\fr{B}$ frame with respect to the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{omcry}{\targmii{A}{B}}
+}{% Example Function Call
+    \omcry{A}{B}
+}
+
+\entry{% Command Name
+    omcrz
+    }{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Omega cross z-term. This command is the z-term of the omega cross matrix, a matrix which when multiplied by a column vector is equivalent to taking the cross product of the angular velocity of \meta{frame2} with respect to \meta{frame1} and that vector.
+}{% Argument Descriptions
+    \inputsii{%
+        frame1}{First frame; letter (a-z, A-Z)}{%
+        frame2}{Second frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the z-term of the omega cross matrix based on the relative angular velocity of the $\fr{B}$ frame with respect to the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{omcrz}{\targmii{A}{B}}
+}{% Example Function Call
+    \omcrz{A}{B}
+}
+\index{matrix!cross|)}
+
+\index{terms!matrix|)}
+\newpage
+
+\subsection*{\blu{Inertia Terms}}
+\label{sec:inerterms}
+\index{terms!inertia|(}
+
+\entry{% Command Name
+    inerTen
+}{% Arguments
+    \targsi{sub}
+}{% Description
+    Inertia tensor. This command is used to express a generic inertia tensor with a specified subscript \meta{sub}.
+}{% Argument Descriptions
+    \inputsi{sub}{Subscript; expression}
+}{% Example Description
+    Say we want to define the inertia tensor about the center of mass.
+}{% Example Text Arguments
+    \comarg{inerTen}{\targmi{\cs{CM}}}
+}{% Example Function Call
+    \inerTen{\CM}
+}
+
+\entry{% Command Name
+    inerMat
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor expressed as a matrix. This command is used to express a generic inertia tensor with a specified subscript \meta{sub} as a matrix in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor about the center of mass and express it as a matrix in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{inerMat}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \inerMat{a}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    Ixx
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor xx-component. This command is used to express the xx-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's xx-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Ixx}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Ixx{a}{\CM}
+}
+
+\entry{% Command Name
+    Ixy
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor xy-component. This command is used to express the xy-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's xy-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Ixy}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Ixy{a}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    Ixz
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor xz-component. This command is used to express the xz-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's xz-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Ixz}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Ixz{a}{\CM}
+}
+
+\entry{% Command Name
+    Iyx
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor yx-component. This command is used to express the yx-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's yx-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Iyx}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Iyx{a}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    Iyy
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor yy-component. This command is used to express the yy-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's yy-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Iyy}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Iyy{a}{\CM}
+}
+
+\entry{% Command Name
+    Iyz
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor yz-component. This command is used to express the yz-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's yz-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Iyz}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Iyz{a}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    Izx
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor zx-component. This command is used to express the zx-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's zx-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Izx}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Izx{a}{\CM}
+}
+
+\entry{% Command Name
+    Izy
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor zy-component. This command is used to express the zy-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's zy-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Izy}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Izy{a}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    Izz
+}{% Arguments
+    \targsii{frame}{sub}
+}{% Description
+    Inertia tensor zz-component. This command is used to express the zz-component of the inertia tensor about a specified point in a specified frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor's zz-component about the center of mass in the $\fr{A}$ frame.
+}{% Example Text Arguments
+    \comarg{Izz}{\targmii{a}{\cs{CM}}}
+}{% Example Function Call
+    \Izz{a}{\CM}
+}
+
+\entry{% Command Name
+    xrel
+}{% Arguments
+    \targsiii{frame}{point}{refpt}
+}{% Description
+    Relative x-displacement. This command is used to express the displacement in x from \meta{point} to \meta{refpt}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}{%
+        refpt}{Reference point; expression}%
+}{% Example Description
+    Say we want to define the displacement in x of a particle $m_i$ relative to the center of mass in the $\fr{A}$ body frame.
+}{% Example Text Arguments
+    \comarg{xrel}{\targmiii{a}{m\string_\brackets{i}}{\cs{CM}}}
+}{% Example Function Call
+    \xrel{a}{m_{i}}{\CM}
+}
+
+\newpage
+
+\entry{% Command Name
+    yrel
+}{% Arguments
+    \targsiii{frame}{point}{refpt}
+}{% Description
+    Relative y-displacement. This command is used to express the displacement in y from \meta{point} to \meta{refpt}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}{%
+        refpt}{Reference point; expression}%
+}{% Example Description
+    Say we want to define the displacement in y of a particle $m_i$ relative to the center of mass in the $\fr{A}$ body frame.
+}{% Example Text Arguments
+    \comarg{yrel}{\targmiii{a}{m\string_\brackets{i}}{\cs{CM}}}
+}{% Example Function Call
+    \yrel{a}{m_{i}}{\CM}
+}
+
+\entry{% Command Name
+    zrel
+}{% Arguments
+    \targsiii{frame}{point}{refpt}
+}{% Description
+    Relative z-displacement. This command is used to express the displacement in z from \meta{point} to \meta{refpt}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        point}{Point; expression}{%
+        refpt}{Reference point; expression}%
+}{% Example Description
+    Say we want to define the displacement in z of a particle $m_i$ relative to the center of mass in the $\fr{A}$ body frame.
+}{% Example Text Arguments
+    \comarg{zrel}{\targmiii{a}{m\string_\brackets{i}}{\cs{CM}}}
+}{% Example Function Call
+    \zrel{a}{m_{i}}{\CM}
+}
+
+\index{terms!inertia|)}
+\newpage
+
+\subsection*{\blu{Other Terms}}
+\label{sec:otherterms}
+\index{terms!other|(}
+
+\entry{% Command Name
+    vecF
+}{% Arguments
+    \targsiii{frame}{vector}{sub}
+}{% Description
+    Vector in frame with subscript. This command is used to express a specified vector \meta{vector} in a frame \meta{frame} with a chosen subscript \meta{sub}.
+}{% Argument Descriptions
+    \inputsi{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        vector}{Vector; expression}{%
+        sub}{Subscript; expression}%
+}{% Example Description
+    Say we want to define a vector $\vec{s}$, which describes the position of a $\mathit{bus}$ in the $\fr{E}$ frame.
+}{% Example Text Arguments
+    \comarg{vecF}{\targmiii{e}{s}{\comone{mathit}{bus}}}
+}{% Example Function Call
+    \vecF{e}{s}{\mathit{bus}}
+}
+
+\index{energy!potential}
+\entry{% Command Name
+    potEn
+}{% Arguments
+    { }
+}{% Description
+    Potential energy. This command is used to express the potential energy.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the potential energy of a particle of mass m due to gravity near the Earth's surface while treating $\fr{O}$ as an inertial reference frame attached to the Earth's surface.
+}{% Example Text Arguments
+    \cs{potEn}\texttt{ \cs{approx} mgh}
+}{% Example Function Call
+    \potEn \approx mgh
+}
+
+\newpage
+
+\index{energy!kinetic}
+\entrydi{% Command Name
+    kinEn
+}{% Arguments
+    { }
+}{% Description
+    Kinetic energy. This command is used to express the kinetic energy.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the kinetic energy of a particle of mass m translating at speed $v$ while treating $\fr{O}$ as an inertial reference frame attached to the Earth's surface.
+}{% Example Text Arguments
+    \cs{kinEn}\texttt{ = \comarg{frac}{\targmii{1}{2}}mv\string^2}
+}{% Example Function Call
+    \kinEn = \frac{1}{2}mv^2
+}
+\index{terms!other|)}
+\index{terms!general|)}

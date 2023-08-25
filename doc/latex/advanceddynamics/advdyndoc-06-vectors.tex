@@ -1,0 +1,318 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-06-vectors.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Vectors}
+\label{sec:vecs}
+\index{vectors|(}
+This section includes the commands needed to typeset most vector quantities. Note that all commands in this section should be used inside of a math environment. Vectors should be in a display math environment. 
+
+Note that if you wish to attach a frame subscipt to any of the elementary vectors, you should also include \cs{!} or \cs{!}\cs{!} before the frame definition to remove the space between the closing bracket of the vector and the frame. This will be addressed in a future version.
+
+\subsection*{\blu{Column Vectors}}
+\label{sec:colvecs}
+\index{vectors!column|(}
+\entryl{% Command Name
+    vecfrc
+}{% Arguments
+    \targsiv{frame}{comp1}{comp2}{comp3}
+}{% Description
+    Column vector in frame. This command produces a column vector in \meta{frame} with x-component \meta{comp1}, y-component \meta{comp2}, and z-component \meta{comp3}.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        comp1}{x-component; expression}{%
+        comp2}{y-component; expression}{%
+        comp3}{z-component; expression}
+}{% Example Description
+    Say we want to define a column vector in the $\fr{F}$ frame with components $a$, $b$, and $c$ in the $\ihat{f}$, $\jhat{f}$, and $\khat{f}$ directions, respectively.
+}{% Example Text Arguments
+    \comarg{vecfrc}{\targmiv{f}{a}{b}{c}}
+}{% Example Function Call
+    \vecfrc{f}{a}{b}{c}
+}
+
+\newpage
+
+\entryl{% Command Name
+    vecfrnc
+}{% Arguments
+    \targsv{frame}{num}{comp1}{comp2}{comp3}
+}{% Description
+    Column vector in numbered frame. This command produces a column vector in \meta{frame} assigned number \meta{num}, with x-component \meta{comp1}, y-component \meta{comp2}, and z-component \meta{comp3}.
+}{% Argument Descriptions
+    \inputsv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Frame; letter (a-z, A-Z)}{%
+        comp1}{x-component; expression}{%
+        comp2}{y-component; expression}{%
+        comp3}{z-component; expression}
+}{% Example Description
+    Say we want to define a column vector in the $\frn{F}{2}$ frame with components $a$, $b$, and $c$ in the $\ihat{f}$, $\jhat{f}$, and $\khat{f}$ directions, respectively.
+}{% Example Text Arguments
+    \comarg{vecfrnc}{\targmv{f}{2}{a}{b}{c}}
+}{% Example Function Call
+    \vecfrnc{f}{2}{a}{b}{c}
+}
+
+\entryl{% Command Name
+    vecAc
+}{% Arguments
+    { }
+}{% Description
+    First elementary column vector. This command is used to express the elementary column vector along the x-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the elementary column unit vector for the x-component.
+}{% Example Text Arguments
+    \comarg{vecAc}
+}{% Example Function Call
+    \vecAc
+}
+
+\newpage
+
+\entryl{% Command Name
+    vecBc
+}{% Arguments
+    { }
+}{% Description
+    Second elementary column vector. This command is used to express the elementary column vector along the y-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the elementary column unit vector for the y-component.
+}{% Example Text Arguments
+    \comarg{vecBc}
+}{% Example Function Call
+    \vecBc
+}
+
+\entryl{% Command Name
+    vecCc
+}{% Arguments
+    { }
+}{% Description
+    Third elementary column vector. This command is used to express the elementary column vector along the z-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the elementary column unit vector for the z-component.
+}{% Example Text Arguments
+    \comarg{vecCc}
+}{% Example Function Call
+    \vecCc
+}
+\index{vectors!column|)}
+
+\newpage
+
+\subsection*{\blu{Transposed Column Vectors}}
+\label{sec:colvecsT}
+\index{vectors!transposed column|(}
+
+\entryd{% Command Name
+    vecfrcT
+}{% Arguments
+    \targsiv{frame}{comp1}{comp2}{comp3}
+}{% Description
+    Column vector in frame. This command produces a transposed column vector in \meta{frame} with x-component \meta{comp1}, y-component \meta{comp2}, and z-component \meta{comp3}.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        comp1}{x-component; expression}{%
+        comp2}{y-component; expression}{%
+        comp3}{z-component; expression}
+}{% Example Description
+    Say we want to define a transposed column vector in the $\fr{F}$ frame with components $a$, $b$, and $c$ in the $\ihat{f}$, $\jhat{f}$, and $\khat{f}$ directions, respectively.
+}{% Example Text Arguments
+    \comarg{vecfrcT}{\targmiv{f}{a}{b}{c}}
+}{% Example Function Call
+    \vecfrcT{f}{a}{b}{c}
+}
+
+\newpage
+
+\entryd{% Command Name
+    vecfrncT
+}{% Arguments
+    \targsv{frame}{num}{comp1}{comp2}{comp3}
+}{% Description
+    Column vector in numbered frame. This command produces a transposed column vector in \meta{frame} assigned number \meta{num}, with x-component \meta{comp1}, y-component \meta{comp2}, and z-component \meta{comp3}.
+}{% Argument Descriptions
+    \inputsv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Frame; letter (a-z, A-Z)}{%
+        comp1}{x-component; expression}{%
+        comp2}{y-component; expression}{%
+        comp3}{z-component; expression}
+}{% Example Description
+    Say we want to define a transposed column vector in the $\frn{F}{2}$ frame with components $a$, $b$, and $c$ in the $\ihat{f}$, $\jhat{f}$, and $\khat{f}$ directions, respectively.
+}{% Example Text Arguments
+    \comarg{vecfrncT}{\targmv{f}{2}{a}{b}{c}}
+}{% Example Function Call
+    \vecfrncT{f}{2}{a}{b}{c}
+}
+
+\entryd{% Command Name
+    vecAcT
+}{% Arguments
+    { }
+}{% Description
+    First transposed elementary column vector. This command is used to express the transposed elementary column vector along the x-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the transposed elementary unit vector for the x-component.
+}{% Example Text Arguments
+    \comarg{vecAcT}
+}{% Example Function Call
+    \vecAcT
+}
+
+\newpage
+
+\entryd{% Command Name
+    vecBcT
+}{% Arguments
+    { }
+}{% Description
+    Second transposed elementary column vector. This command is used to express the transposed elementary column vector along the y-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the transposed elementary unit vector for the y-component.
+}{% Example Text Arguments
+    \comarg{vecBcT}
+}{% Example Function Call
+    \vecBcT
+}
+
+\entryd{% Command Name
+    vecCcT
+}{% Arguments
+    { }
+}{% Description
+    Third transposed elementary column vector. This command is used to express the transposed elementary column vector along the z-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the transposed elementary unit vector for the z-component.
+}{% Example Text Arguments
+    \comarg{vecCcT}
+}{% Example Function Call
+    \vecCcT
+}
+\index{vectors!transposed column|)}
+
+\newpage
+
+\subsection*{\blu{Row Vectors}}
+\label{sec:rowvecs}
+\index{vectors!row|(}
+
+\entryd{% Command Name
+    vecfrr
+}{% Arguments
+    \targsiv{frame}{comp1}{comp2}{comp3}
+}{% Description
+    Row vector in frame. This command produces a row vector in \meta{frame} with x-component \meta{comp1}, y-component \meta{comp2}, and z-component \meta{comp3}.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        comp1}{x-component; expression}{%
+        comp2}{y-component; expression}{%
+        comp3}{z-component; expression}
+}{% Example Description
+    Say we want to define a row vector in the $\fr{F}$ frame with components $a$, $b$, and $c$ in the $\ihat{f}$, $\jhat{f}$, and $\khat{f}$ directions, respectively.
+}{% Example Text Arguments
+    \comarg{vecfrr}{\targmiv{f}{a}{b}{c}}
+}{% Example Function Call
+    \vecfrr{f}{a}{b}{c}
+}
+
+\newpage
+
+\entryd{% Command Name
+    vecfrnr
+}{% Arguments
+    \targsv{frame}{num}{comp1}{comp2}{comp3}
+}{% Description
+    Row vector in numbered frame. This command produces a row vector in \meta{frame} assigned number \meta{num}, with x-component \meta{comp1}, y-component \meta{comp2}, and z-component \meta{comp3}.
+}{% Argument Descriptions
+    \inputsv{%
+        frame}{Frame; letter (a-z, A-Z)}{%
+        num}{Frame; letter (a-z, A-Z)}{%
+        comp1}{x-component; expression}{%
+        comp2}{y-component; expression}{%
+        comp3}{z-component; expression}
+}{% Example Description
+    Say we want to define a row vector in the $\frn{F}{2}$ frame with components $a$, $b$, and $c$ in the $\ihat{f}$, $\jhat{f}$, and $\khat{f}$ directions, respectively.
+}{% Example Text Arguments
+    \comarg{vecfrnr}{\targmv{f}{2}{a}{b}{c}}
+}{% Example Function Call
+    \vecfrnr{f}{2}{a}{b}{c}
+}
+
+\entryd{% Command Name
+    vecAr
+}{% Arguments
+    { }
+}{% Description
+    First elementary row vector. This command is used to express the elementary row vector along the x-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the elementary row unit vector for the x-component.
+}{% Example Text Arguments
+    \comarg{vecAr}
+}{% Example Function Call
+    \vecAr
+}
+
+\newpage
+
+\entryd{% Command Name
+    vecBr
+}{% Arguments
+    { }
+}{% Description
+    Second elementary row vector. This command is used to express the elementary row vector along the y-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the elementary row unit vector for the y-component.
+}{% Example Text Arguments
+    \comarg{vecBr}
+}{% Example Function Call
+    \vecBr
+}
+
+\entryd{% Command Name
+    vecCr
+}{% Arguments
+    { }
+}{% Description
+    Third elementary row vector. This command is used to express the elementary row vector along the z-direction of a frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the elementary row unit vector for the z-component.
+}{% Example Text Arguments
+    \comarg{vecCr}
+}{% Example Function Call
+    \vecCr
+}
+\index{vectors!row|)}
+\index{vectors|)}

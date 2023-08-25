@@ -1,0 +1,62 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-01-introduction.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Introduction}
+\label{sec:intro}
+This document serves as the documentation for the advanced dynamics notation \LaTeX\ package \code{advanceddynamics} which provides a set of macros and commands to easily create text in the notation of the NCSU graduate courses \textit{MAE 511 - Advanced Dynamics I} and \textit{MAE 789 - Advanced Dynamics II} taught by Dr. Mazzoleni.
+
+This document will outline all of the available commands and provide some examples of the typesetting.
+
+\subsection{Required Packages}
+\label{sec:requirements}
+\index{package!required}
+There are 6 required packages to use \code{advanceddynamics}. They are:
+\begin{enumerate}[noitemsep]
+	\item \code{accents} for custom bar \cite{pack:accents}
+	\item \code{amsmath} for math notation \cite{pack:amsmath}
+	\item \code{amssymb} for math symbols \cite{pack:amssymb}
+	\item \code{graphicx} for scaling subscripts and superscripts \cite{pack:graphicx}
+	\item \code{mathtools} for additional math functionality \cite{pack:mathtools}
+	\item \code{tensor} for prescripts \cite{pack:tensor}
+\end{enumerate}
+
+These packages will be automatically imported when using \code{advanceddynamics}. However, importing these packages first is a good way to ensure that they load correctly, especially since this is my first \LaTeX\ package. Note that \code{mathtools} already includes the \code{amsmath} package, so you can omit its import if desired.
+
+This can be done with the following lines before your document's \comone{begin}{document}:
+\begin{indentList}
+	\item \comone{usepackage}{accents}
+	\item \comone{usepackage}{amsmath}
+    \item \comone{usepackage}{amsym}
+	\item \comone{usepackage}{graphicx}
+	\item \comone{usepackage}{mathtools}
+	\item \comone{usepackage}{tensor}
+\end{indentList}
+
+\subsection{Obtaining the Package}
+\label{sec:download}
+\index{download}
+The \code{advanceddynamics} package and documentation are available for download at:
+\begin{indentList}
+	\item \url{https://github.com/nacanega/advanceddynamics}
+\end{indentList}
+
+\subsection{Using the Package}
+\index{package!usage}
+\label{sec:usage}
+You can use \code{advanceddynamics} by including the following line before your document's \comone{begin}{document}:
+\begin{indentList}
+	\item \comone{usepackage}{advanceddynamics}
+\end{indentList}
+
+Note that you will need to ensure that the file \code{advanceddynamics.sty} is either located in the same location as your ``.tex'' files or placed with your other \LaTeX\ distribution's local packages. More detailed information can be found in Section \ref{sec:install}.

@@ -1,0 +1,106 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-10-add-info.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Additional Information}
+\label{sec:addinfo}
+This section contains additional information about the package including installation instructions, packages used for documentation and a brief description of what they are used for, and planned features for future versions.
+
+\subsection{Installation Instructions}
+\label{sec:install}
+\index{installation}
+There are currently two main ways to use this package:
+\begin{enumerate}
+    \item The first is to download the \code{advanceddynamics.sty} file from GitHub and simply place it in the same folder as your document. 
+    \item The second is to copy the package to your local distribution so that you can use it from any document. We will examine the first method here.
+\end{enumerate}
+
+First download your preferred release from GitHub and then extract it.
+
+Next, locate the install location for local packages. Default locations for the most common distributions are listed below:
+\begin{itemize}
+    \item MacTeX (Mac Only)
+        \begin{itemize}
+            \item \code{\$HOME}\cs{Library}\cs{texmf}\footnote{Note that the \code{Library} directory is hidden by default on Mac} \index{installation!MacTeX}
+        \end{itemize}
+    \item MiKTeX (Windows/Linux/Mac) \index{installation!MiKTeX}
+        \begin{itemize}
+            \item User Specified: \url{https://miktex.org/kb/texmf-roots#:~:text=Your%20own%20TEXMF%20root%20directories}
+        \end{itemize}
+    \item TeXLive (Windows/Linux/Mac) \index{installation!TeXLive}
+        \begin{itemize}
+            \item Linux/Mac: \cs{usr}\cs{local}\cs{texlive}\cs{texmf-local}
+            \item Windows: \code{C:}\cs{Users}\cs{<user>}\cs{texlive}\cs{texmf-local}
+        \end{itemize}
+\end{itemize}
+
+Once you have located the folder, copy the \code{tex} and \code{doc} folders from the extracted package into this folder. The package should now be accessible to your preferred \LaTeX\ distribution and IDE for all documents.
+
+In the future, I hope that this package will be included with the distributions and then this setup will be unnecessary.
+
+\subsection{Additional Packages}
+\label{sec:addpacks}
+\index{package!additional}
+In addition to the five packages used for typesetting equations in the main package, several additional packages were used to create this documentation. Note that for convenience, all of the packages used (including the ones mentioned in the Introduction, Section \ref{sec:intro}) and a brief description of what they are used for are listed on the following page:
+
+\newpage
+
+\begin{enumerate}
+    \item \code{advanceddynamics.sty}: Provides package macros and commands
+    \begin{itemize}[noitemsep,label={}]
+        \item \code{accents} for defining custom bar accent \cs{bart} \cite{pack:accents}
+        \item \code{amsmath} for math notation \cite{pack:amsmath}
+        \item \code{amssymb} for math symbols \cite{pack:amssymb}
+        \item \code{graphicx} for scaling subscripts and superscripts \cite{pack:graphicx}
+        \item \code{mathtools} for additional math functionality \cite{pack:mathtools}
+        \item \code{tensor} for prescripts \cite{pack:tensor}
+    \end{itemize}
+    \item \code{advdyndoc.sty}: Provides documentation macros and commands
+    \begin{itemize}[noitemsep,label={}]
+        \item \code{amsmath} for math \code{align*} environment \cite{pack:amsmath}
+        \item \code{fontenc} for ASCII/monospace characters [Standard \LaTeXe\ package]
+        \item \code{tcolorbox} for titled example boxes and documentation commands \cite{pack:tcolorbox}
+        \item \code{xcolor} for custom text colors \cite{pack:xcolor}
+        \item \code{xparse} for \cs{NewDocumentCommand} command \cite{pack:xparse}
+    \end{itemize}
+    \item \code{advanceddynamicsmanual.tex}: Creates documentation PDF
+    \begin{itemize}[noitemsep,label={}]
+        \item \code{advanceddynamics} for typesetting examples [See above]
+        \item \code{advdyndoc} for documentation and formatting [See above]
+        \item \code{biblatex} for generating the references section \cite{pack:biblatex}
+        \item \code{datetime2} for getting and formatting the current date \cite{pack:datetime2}
+        \item \code{enumitem} for formatting lists like these \cite{pack:enumitem}
+        \item \code{fancyhdr} for setting the document header \cite{pack:fancyhdr}
+        \item \code{geometry} for setting page layout \cite{pack:geometry}
+        \item \code{hyperref} for linking to sections/labels and urls \cite{pack:hyperref}
+        \item \code{imakeidx} for generating the index section \cite{pack:imakeidx}
+        \item \code{lastpage} for getting the last page number \cite{pack:lastpage}
+        \item \code{parskip} for removing paragraph indents \cite{pack:parskip}
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Todos}
+\label{sec:todos}
+This section details a list of planned future features to the package. Current plans include:
+
+\begin{enumerate}
+    \item Use \code{xparse} to migrate commands from \cs{newcommand*} to \cs{DeclareDocumentCommand} and \cs{DeclareExpandableDocumentCommand}
+    \begin{itemize}
+        \item Keep backwards compatibility, only modify/add commands
+        \item Unify frame and numbered frame notation by adding an optional input argument
+        \item Update commands that commonly have added subscripts/superscripts with an optional input argument
+    \end{itemize}
+    \item Update package to support importing macros/commmands by section
+    \item Format package to work with normal \LaTeX\ installation methods
+    \item Allow for automatic splitting of long equations rather than predefined splits without breaking other math packages (difficult)
+\end{enumerate}

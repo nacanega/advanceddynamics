@@ -1,0 +1,458 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-09-misc.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Miscellaneous Commands}
+\label{sec:misc}
+\index{miscellaneous|(}
+This section contains miscellaneous commands that do not fit into the other categories. Currently, there are only used to format characters as italicized small caps and arrange them as (pre-)super/subscripts. They are necessary to improve the appearance of capital letter superscripts and subscripts and their kerning.\footnote{In future versions, other helper commands to aid in formatting may be added here. Ideally, however, commands will look at the input arguments and adjust the kerning automatically to reduce reliance on a lot of these helper commands. This requires advanced \LaTeX\ scripting which is currently beyond my level. Eventually, the switch will be made though, making the package produce results that look better for users at the expense of some additional overhead and complexity.}
+
+\index{center of mass!subscipt}
+\index{mass!center of!subscipt}
+\entry{% Command Name
+    CM
+}{% Arguments
+    { }
+}{% Description
+    Center of mass. Creates small caps of $\mathrm{CM}$ for scripts.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the position vector $\vec{r}$ relative to the center of mass.
+}{% Example Text Arguments
+    \comone{vec}{r}\string_\brackets{\cs{CM}}
+}{% Example Function Call
+    \vec{r}_{\CM}
+}
+
+\entry{% Command Name
+    comma
+}{% Arguments
+    { }
+}{% Description
+    Comma. Creates a comma with adjusted kerning for scripts with small caps.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show an example using the subscript $k,mathrm{CM},i$.
+}{% Example Text Arguments
+    \code{v\string_\brackets{k,\cs{CM},i} \comone{text}{ vs } v\string_\brackets{k\cs{comma}\cs{CM}\cs{comma} i}}
+}{% Example Function Call
+    v_{k,\CM,i} \text{ vs } v_{k\comma\CM\comma i}
+}
+
+\newpage
+
+\index{scripts!scaled!small caps}
+\entry{% Command Name
+    smca
+}{% Arguments
+    \targsi{string}
+}{% Description
+    Small-caps. This command is used to convert text to small caps. This is necessary when subscripts or superscripts are capital letters. All previous commands that involve points or frames use this automatically but arbitrary subscripts and superscripts need this to specified explicitly. Note that for subscripts, you may need to adjust the spacing with \cs{!} or another command that adjusts kerning such as \cs{mkern}.
+}{% Argument Descriptions
+    \inputsi{string}{String of characters}
+}{% Example Description
+    Compare a superscript $A$ and subscript $B$ on $v$ with and without small caps.
+}{% Example Text Arguments
+    \texttt{v\string^\brackets{A}\string_\brackets{\comone{smca}{b}} \cs{text}\targmi{ vs } v\string^\brackets{\comone{smca}{a}}\string_\brackets{\cs{!}\comone{smca}{b}}}%
+}{% Example Function Call
+    v^{A}_{\smca{b}} \text{ vs } v^{\smca{a}}_{\!\smca{b}}
+}
+
+\index{scripts!scaled!upright}
+\entry{% Command Name
+    smn
+}{% Arguments
+    \targsi{expr}
+}{% Description
+    Small number. This command is used to reduce math text to 50\% of its original size after making it upright. 
+}{% Argument Descriptions
+    \inputsi{expr}{Expression; math expression or text}
+}{% Example Description
+    Compare a subscript of Aircraft1 on $v$ creating manually, using \cs{smca}, and using \cs{smn}.
+}{% Example Text Arguments
+    \texttt{v\string_\brackets{\comone{mathit}{Aircraft1}}} \\%
+    \texttt{\cs{text}\targmi{ vs }} \\%
+    \texttt{v\string_\brackets{\comone{smca}{Aircraft1}}} \\%
+    \texttt{\cs{text}\targmi{ vs }} \\%
+   	\texttt{v\string_\brackets{\comone{smn}{Aircraft1}}}%
+}{% Example Function Call
+    v_{\mathit{Aircraft1}} \text{ vs } v_{\smca{Aircraft1}} \text{ vs } v_{\smn{Aircraft1}}
+}
+
+\newpage
+
+\index{scripts!scaled}
+\entry{% Command Name
+    sm
+}{% Arguments
+    \targsi{expr}
+}{% Description
+    Small. This command is used to reduce any expression to 50\% of its original size. 
+}{% Argument Descriptions
+    \inputsi{expr}{Expression; math expression or text}
+}{% Example Description
+    Compare a subscript of Aircraft1 on $v$ with, \cs{sm}, \cs{smn}, and \cs{smca}.
+}{% Example Text Arguments
+    \texttt{v\string_\brackets{\comone{sm}{Aircraft1}}} \\%
+    \texttt{\cs{text}\targmi{ vs }} \\%
+    \texttt{v\string_\brackets{\comone{smn}{Aircraft1}}} \\%
+    \texttt{\cs{text}\targmi{ vs }} \\%
+   	\texttt{v\string_\brackets{\comone{smca}{Aircraft1}}}%
+}{% Example Function Call
+    v_{\sm{Aircraft1}} \text{ vs } v_{\smn{Aircraft1}} \text{ vs } v_{\smca{Aircraft1}}
+}
+
+\entry{% Command Name
+    bart
+}{% Arguments
+    \targsi{sym}
+}{% Description
+    Adds a slightly wider and thicker bar to the specified \meta{sym}. 
+}{% Argument Descriptions
+    \inputsi{sym}{Symbol; letter or symbol}
+}{% Example Description
+    Compare \cs{bart} to \cs{bar} for the letter $F$
+}{% Example Text Arguments
+    \code{\comone{bart}{O} \comone{text}{ vs } \comone{bar}{O}}
+}{% Example Function Call
+    \bart{O} \text{ vs } \bar{O}
+}
+
+\newpage
+
+\index{scripts!variable|(}
+\entry{% Command Name
+    Vs
+}{% Arguments
+    \targsv{var}{sc1}{sc2}{sc3}{sc4}
+}{% Description
+    Variable square scripts. Adds scripts to all corners of the input \meta{var}. Note that unlike the following \cs{V*} commands, this one does not adjust the kerning of any argument and is equivalent to \cs{tensor*}\code{[\string^\brackets{sc1}\string_\brackets{sc2}]}\targmii{var}{\string_\brackets{sc3}\string^\brackets{sc4}}.
+}{% Argument Descriptions
+    \inputsv{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Lower-left script; expression}{%
+        sc3}{Lower-right script; expression}{%
+        sc4}{Upper-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vs}{\targmv{a}{b}{c}{d}{e}}
+}{% Example Function Call
+    \Vs{a}{b}{c}{d}{e}
+}
+
+\entry{% Command Name
+    Vlt
+}{% Arguments
+    \targsiv{var}{sc1}{sc2}{sc3}
+}{% Description
+    Variable lower triangular scripts. Adds scripts to the lower triangular corners of the input \meta{var}.
+}{% Argument Descriptions
+    \inputsiv{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Lower-left script; expression}{%
+        sc3}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vlt}{\targmiv{a}{b}{c}{d}}
+}{% Example Function Call
+    \Vlt{a}{b}{c}{d}
+}
+
+\newpage
+
+\entry{% Command Name
+    Vut
+}{% Arguments
+    \targsiv{var}{sc1}{sc2}{sc3}
+}{% Description
+    Variable upper triangular scripts. Adds scripts to the upper triangular corners of the input \meta{var}.
+}{% Argument Descriptions
+    \inputsiv{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Upper-right script; expression}{%
+        sc3}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vut}{\targmiv{a}{b}{c}{d}}
+}{% Example Function Call
+    \Vut{a}{b}{c}{d}
+}
+
+\entry{% Command Name
+    Vup
+}{% Arguments
+    \targsiii{var}{sc1}{sc2}
+}{% Description
+    Variable upper scripts. Adds scripts to all upper corners of the input \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Upper-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vup}{\targmiii{a}{b}{c}}
+}{% Example Function Call
+    \Vup{a}{b}{c}
+}
+
+\newpage
+
+\entry{% Command Name
+    Vdg
+}{% Arguments
+    \targsiii{var}{sc1}{sc2}
+}{% Description
+    Variable diagonal scripts. Adds scripts to all main diagonal corners of the input \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vdg}{\targmiii{a}{b}{c}}
+}{% Example Function Call
+    \Vdg{a}{b}{c}
+}
+
+\entry{% Command Name
+    Vsup
+}{% Arguments
+    \targsii{var}{sc1}
+}{% Description
+    Variable superscript. Adds superscript to the input \meta{var}.
+}{% Argument Descriptions
+    \inputsii{%
+        var}{Variable; expression}{%
+        sc1}{Upper-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vsup}{\targmii{a}{b}}
+}{% Example Function Call
+    \Vsup{a}{b}
+}
+
+\newpage
+
+\entry{% Command Name
+    Vsub
+}{% Arguments
+    \targsii{var}{sc1}
+}{% Description
+    Variable subscript. Adds subscript to the input \meta{var}.
+}{% Argument Descriptions
+    \inputsii{%
+        var}{Variable; expression}{%
+        sc1}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vsub}{\targmii{a}{b}}
+}{% Example Function Call
+    \Vsub{a}{b}
+}
+
+\entry{% Command Name
+    Vpup
+    }{% Arguments
+    \targsii{var}{sc1}
+}{% Description
+    Variable presuperscript. Adds presuperscript to the input \meta{var}.
+}{% Argument Descriptions
+    \inputsii{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Vpup}{\targmii{a}{b}}
+}{% Example Function Call
+    \Vpup{a}{b}
+}
+\index{scripts!variable|)}
+
+\newpage
+
+\index{scripts!matrix|(}
+\entryl{% Command Name
+    Ms
+}{% Arguments
+    \targsv{mat}{sc1}{sc2}{sc3}{sc4}
+}{% Description
+    Matrix square scripts. Adds scripts to all corners of the input matrix or other upright expression \meta{mat}.
+}{% Argument Descriptions
+    \inputsv{%
+        mat}{Matrix (or upright expression), expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Lower-left script; expression}{%
+        sc3}{Lower-right script; expression}{%
+        sc4}{Upper-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments on the 3x3 identity matrix.
+}{% Example Text Arguments
+    \comarg{Ms}{\targmv{\cs{eyeMatiii}}{a}{b}{c}{d}}
+}{% Example Function Call
+    \Ms{\eyeMatiii}{a}{b}{c}{d}
+}
+
+\entryl{% Command Name
+    Mup
+}{% Arguments
+    \targsiii{mat}{sc1}{sc2}
+}{% Description
+    Matrix upper scripts. Adds scripts to upper corners of the input matrix  or other upright expression \meta{mat}.
+}{% Argument Descriptions
+    \inputsiii{%
+        mat}{Matrix (or upright expression), expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Upper-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments on the 3x3 identity matrix.
+}{% Example Text Arguments
+    \comarg{Mup}{\targmiii{\cs{eyeMatiii}}{a}{b}}
+}{% Example Function Call
+    \Mup{\eyeMatiii}{a}{b}
+}
+
+\newpage
+
+\entryl{% Command Name
+    Msub
+}{% Arguments
+    \targsii{mat}{sc1}
+}{% Description
+    Matrix subscript. Adds subscript to the input matrix or other upright expression \meta{mat}.
+}{% Argument Descriptions
+    \inputsii{%
+        mat}{Matrix (or upright expression), expression}{%
+        sc1}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments on the 3x3 identity matrix.
+}{% Example Text Arguments
+    \comarg{Msub}{\targmii{\cs{eyeMatiii}}{a}}
+}{% Example Function Call
+    \Msub{\eyeMatiii}{a}
+}
+
+\entryl{% Command Name
+    Mpup
+}{% Arguments
+    \targsii{mat}{sc1}
+}{% Description
+    Matrix presuperscript. Adds presuperscript to the input matrix or other upright expression \meta{mat}.
+}{% Argument Descriptions
+    \inputsii{%
+        mat}{Matrix (or upright expression), expression}{%
+        sc1}{Upper-left script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments on the 3x3 identity matrix.
+}{% Example Text Arguments
+    \comarg{Mpup}{\targmii{\cs{eyeMatiii}}{a}}
+}{% Example Function Call
+    \Mpup{\eyeMatiii}{a}
+}
+\index{scripts!matrix|)}
+
+\newpage
+
+\index{scripts!bracketed|(}
+\entry{% Command Name
+    But
+}{% Arguments
+    \targsiv{var}{sc1}{sc2}{sc3}
+}{% Description
+    Bracket then upper triangular scripts. Adds scripts to the upper triangular corners of the added brackets around input \meta{var} .
+}{% Argument Descriptions
+    \inputsiv{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Upper-right script; expression}{%
+        sc3}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{But}{\targmiv{a}{b}{c}{d}}
+}{% Example Function Call
+    \But{a}{b}{c}{d}
+}
+
+\entry{% Command Name
+    Bup
+}{% Arguments
+    \targsiii{var}{sc1}{sc2}
+}{% Description
+    Bracket then upper scripts. Adds scripts to all upper corners of the added brackets around input \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+        var}{Variable; expression}{%
+        sc1}{Upper-left script; expression}{%
+        sc2}{Upper-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Bup}{\targmiii{a}{b}{c}}
+}{% Example Function Call
+    \Bup{a}{b}{c}
+}
+
+\newpage
+
+\entry{% Command Name
+    Bsub
+}{% Arguments
+    \targsii{var}{sc1}
+}{% Description
+    Bracket than subscript. Adds subscript to the added brackets around input \meta{var}.
+}{% Argument Descriptions
+    \inputsii{%
+        var}{Variable; expression}{%
+        sc1}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments.
+}{% Example Text Arguments
+    \comarg{Bsub}{\targmii{a}{b}}
+}{% Example Function Call
+    \Bsub{a}{b}
+}
+
+\entry{% Command Name
+    Bsubv
+}{% Arguments
+    \targsii{var}{sc1}
+}{% Description
+    Bracket then subscript for vectors. Adds subscript to the added brackets around input \meta{var}. Note that this is needed to adjust the second bracket so that it is further from the vector arrow. Equivalent to \comone{Bsubt}{var\cs{mkern+2mu}}. Additionally, some symbols may appear fine without this additional kerning, which is why it was added in a separate command rather than by default in the previous command.
+}{% Argument Descriptions
+    \inputsii{%
+        var}{Variable; expression}{%
+        sc1}{Lower-right script; expression}
+}{% Example Description
+    Show what ascending letters look like as arguments and compare to \cs{Bsub}
+}{% Example Text Arguments
+    \code{\comarg{Bsubv}{\targmii{\comone{vec}{a}}{b}} \comone{text}{ vs } \comarg{Bsub}{\targmii{\comone{vec}{a}}{b}}}
+}{% Example Function Call
+    \Bsubv{\vec{a}}{b} \text{ vs } \Bsub{\vec{a}}{b}
+}
+\index{scripts!bracketed|)}
+\index{miscellaneous|)}

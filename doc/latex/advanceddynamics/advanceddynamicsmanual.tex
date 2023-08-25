@@ -1,0 +1,135 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advanceddynamicsmanual.tex - Documentation File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\documentclass[12pt]{article} % Sets document font and type
+\setlength{\headheight}{15pt}
+
+\usepackage{geometry} % Set page layout
+\geometry{letterpaper, portrait, margin=1in} % Sets the margins and page
+
+\usepackage{lastpage} % Last page number
+
+\usepackage{fancyhdr} % Header Manager
+\fancypagestyle{plain}{
+	\fancyhead[L]{Canegallo}
+	\fancyhead[C]{Advanced Dynamics Notation}
+	\fancyhead[R]{\thepage\ of \pageref{LastPage}}
+	\fancyfoot[C]{}
+}
+
+\usepackage{datetime2} % Get date and time programmatically
+\usepackage{parskip} % Skip lines between paragraphs
+\usepackage{enumitem} % Indent multiple lines
+
+\setcounter{tocdepth}{2} % Table of Contents levels
+
+\usepackage{imakeidx} % For index
+\makeindex[intoc]
+
+\usepackage[%
+    backend=biber,
+    style=numeric,
+    sorting=nty,
+    defernumbers=true
+]{biblatex} % Reference Manager
+\addbibresource{advdyndoc.bib} % Adds reference list
+
+\usepackage{advanceddynamics} % Notation definition
+\usepackage{advdyndoc} % Documentation package
+
+\newlist{indentList}{itemize}{4}
+\setlist[indentList,1]{
+	label = {},
+	noitemsep,
+	leftmargin=0.5in,
+}
+\setlist[indentList]{
+	label = {},
+	noitemsep,
+}
+
+%\listfiles
+%\includeonly{%
+%	advdyndoc-00-title,%
+%	advdyndoc-01-introduction,%
+%	advdyndoc-02-frames,%
+%	advdyndoc-03-general-terms,%
+%	advdyndoc-04-advanced-terms,%
+%	advdyndoc-05-differentiation,%
+%	advdyndoc-06-vectors,%
+%	advdyndoc-07-matrices,%
+%	advdyndoc-08-equations,%
+%	advdyndoc-09-misc,%
+%	advdyndoc-10-add-info%
+%}
+
+\begin{document}
+    \pagestyle{plain}
+    % Title Page
+    \include{advdyndoc-00-title}
+
+    % Table of Contents
+	\tableofcontents
+    \newpage
+
+    % Introduction
+    \include{advdyndoc-01-introduction}
+
+    % Frames of Reference
+    \include{advdyndoc-02-frames}	
+	
+    % General Terms
+    \include{advdyndoc-03-general-terms}
+
+    % Advanced Terms
+    \include{advdyndoc-04-advanced-terms}
+
+    % Differentiation
+    \include{advdyndoc-05-differentiation}
+
+    % Vectors
+    \include{advdyndoc-06-vectors}
+
+    % Matrices
+    \include{advdyndoc-07-matrices}
+
+    % Equations
+    \include{advdyndoc-08-equations}
+
+    % Miscellaneous
+    \include{advdyndoc-09-misc}
+
+    % Additional Information
+    \include{advdyndoc-10-add-info}
+
+    % Bibliography
+    \nocite{*}
+    \newpage
+    \setlength\bibitemsep{6pt}
+    \printbibliography[
+		heading=bibintoc,
+		keyword={Package},
+		title={References for Package}
+    ]
+    \printbibliography[
+		heading=bibintoc,
+		keyword={Documentation},
+		title={Additional References for Documentation}
+    ]
+	\let\thefootnote\relax\footnote{Note that packages that serve only as dependencies for imported packages are omitted.}
+	
+	% Index
+	\newpage
+	\printindex
+\end{document}

@@ -1,0 +1,1682 @@
+%% The LaTeX package advanceddynamics - version 1.0 (2023/08/24)
+%% advdyndoc-08-equations.tex - Documentation Input File
+%%
+%% -----------------------------------------------------------------------------
+%% Copyright (c) 2023 Nolan Canegallo
+%% -----------------------------------------------------------------------------
+%%
+%% This file may be distributed and/or modified
+%%
+%%     1.  under the LaTeX Project Public License Version 1.3c and/or
+%%     2.  under the GNU Public License Version 3.
+%%
+%% See the LICENSE.txt for more details.
+%%
+\section{Equations}
+\label{sec:eqs}
+\index{equations|(}
+This section includes the commands needed to typeset most of the fundamental equations from advanced dynamics. Note that all commands in this section should be used inside of a math environment and a display math environment should be used for the best appearance.
+
+Additionally, it should be mentioned that the descriptions of the functions may not be enough to understand all of these definitions. This is partly intentional since it is based on a notation from a course and fully comprehending the equations would require one taking the course themself. However, the descriptions may be updated to be more detailed in the future.
+
+\subsection*{\blu{Newton's Second Law}}
+\label{sec:newtonII}
+
+\index{equations!Newton's second law|(}
+\entryl{% Command Name
+    NewtonII
+}{% Arguments
+    { }
+}{% Description
+    Newton II. Shows Newton's Second Law for a system of $k$ rigid bodies and $n$ particles. Assumes Newton III.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the generic form of Newton's Second Law when Newton III applies.
+}{% Example Text Arguments
+    \cs{NewtonII}
+}{% Example Function Call
+    \NewtonII
+}
+
+\newpage
+
+\entryl{% Command Name
+    NewtonIIpart
+}{% Arguments
+    { }
+}{% Description
+    Newton II for particles. Shows Newton's Second Law for a system of $n$ particles. Assumes Newton III.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the particle form of Newton's Second Law.
+}{% Example Text Arguments
+    \cs{NewtonIIpart}
+}{% Example Function Call
+    \NewtonIIpart
+}
+
+\entryl{% Command Name
+    NewtonIIrigp
+}{% Arguments
+    { }
+}{% Description
+    Newton II for rigid body. Shows Newton's Second Law for a system of particles as a rigid body. Assumes Newton III.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the rigid body form of Newton's Second Law.
+}{% Example Text Arguments
+    \cs{NewtonIIrigp}
+}{% Example Function Call
+    \NewtonIIrigp
+}
+
+\newpage
+
+\entryl{% Command Name
+    NewtonIIgen
+}{% Arguments
+    { }
+}{% Description
+    Generalized Newton II. Shows Newton's Second Law for a generic system of $n$ particles.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the generic form of Newton's Second Law.
+}{% Example Text Arguments
+    \cs{NewtonIIgen}
+}{% Example Function Call
+    \NewtonIIgen
+}
+\index{equations!Newton's second law|)}
+
+\subsection*{\blu{Full Inertia Equations}}
+\label{sec:inereqs}
+\index{equations!inertia|(}
+
+\entryl{% Command Name
+    inerTenDef
+}{% Arguments
+    \targsi{point}
+}{% Description
+    Inertia tensor definition. Defines the inertia tensor about a specified point, \meta{point}.
+}{% Argument Descriptions
+    \inputsi{point}{Point; expression}
+}{% Example Description
+    Say we want to define the inertia tensor about point $A$.
+}{% Example Text Arguments
+    \comarg{inerTenDef}{\targmi{\comone{smca}{A}}}
+}{% Example Function Call
+    \inerTenDef{\smca{A}}
+}
+
+\newpage
+
+\index{theorem!parallel axis!tensor}
+\entryd{% Command Name
+    parAxisTen
+}{% Arguments
+    \targsi{point}
+}{% Description
+    Parallel axis theorem tensor definition. Expression of the parallel axis theorem in tensor form about a specified point $A$.
+}{% Argument Descriptions
+    \inputsi{point}{Point; expression}
+}{% Example Description
+    Say we want to define the inertia tensor about point $A$ using the parallel axis theorem.
+}{% Example Text Arguments
+    \comarg{parAxisTen}{\targmi{\comone{smca}{A}}}
+}{% Example Function Call
+    \parAxisTen{\smca{A}}
+}
+
+\entryd{% Command Name
+    rRel
+}{% Arguments
+    \targsiii{frame}{sys}{point}
+}{% Description
+    Relative displacement. This is the relative displacement vector for the inertia tensor of the system \meta{sys} relative to the point \meta{point} with respect to the frame \meta{frame}. 
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	sys}{System name; expression}{%
+    	point}{Reference point; expression}%
+}{% Example Description
+    Say we want to define the relative displacement of a mass element $m_i$ relative to the point $B$ in the body frame $\fr{B}$
+}{% Example Text Arguments
+    \comarg{rRel}{\targmiii{b}{m\string_i}{\comone{smca}{B}}}
+}{% Example Function Call
+    \rRel{b}{m_i}{\smca{B}}
+}
+
+\newpage
+
+\entryl{% Command Name
+    IxxSum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{xx}$ term sum definition. Defines the $I_{xx}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{xx}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IxxSum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IxxSum{b}{\smca{a}}
+}
+
+\entryl{% Command Name
+    IxySum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{xy}$ term sum definition. Defines the $I_{xy}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{xy}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IxySum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IxySum{b}{\smca{a}}
+}
+
+\newpage
+
+\entryl{% Command Name
+    IxzSum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{xz}$ term sum definition. Defines the $I_{xz}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{xz}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IxzSum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IxzSum{b}{\smca{a}}
+}
+
+\entryl{% Command Name
+    IyxSum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{yx}$ term sum definition. Defines the $I_{yx}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{yx}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IyxSum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IyxSum{b}{\smca{a}}
+}
+
+\newpage
+
+\entryl{% Command Name
+    IyySum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{yy}$ term sum definition. Defines the $I_{yy}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{yy}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IyySum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IyySum{b}{\smca{a}}
+}
+
+\entryl{% Command Name
+    IyzSum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{yz}$ term sum definition. Defines the $I_{yz}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{yz}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IyzSum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IyzSum{b}{\smca{a}}
+}
+
+\newpage
+
+\entryl{% Command Name
+    IzxSum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{zx}$ term sum definition. Defines the $I_{zx}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{zx}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IzxSum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IzxSum{b}{\smca{a}}
+}
+
+\entryl{% Command Name
+    IzySum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{zy}$ term sum definition. Defines the $I_{zy}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{zy}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IzySum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IzySum{b}{\smca{a}}
+}
+
+\newpage
+
+\entryl{% Command Name
+    IzzSum
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    $I_{zz}$ term sum definition. Defines the $I_{zz}$ term of the inertia tensor about a point \meta{point} in frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the $I_{zz}$ term of the inertia tensor about point $A$ in frame $\fr{B}$.
+}{% Example Text Arguments
+    \comarg{IzzSum}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \IzzSum{b}{\smca{a}}
+}
+
+\index{theorem!parallel axis!matrix}
+\entryl{% Command Name
+    parAxis
+}{% Arguments
+    \targsii{frame}{point}
+}{% Description
+    Parallel axis theorem in matrix form. Defines the terms of the inertia tensor about a point \meta{point} in frame \meta{frame} using the parallel axis theorem.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	point}{Point; expression}%
+}{% Example Description
+    Say we want to define the inertia tensor in matrix form about point $A$ in frame $\fr{B}$ using the parallel axis theorem.
+}{% Example Text Arguments
+    \comarg{parAxis}{\targmii{b}{\comone{smca}{a}}}
+}{% Example Function Call
+    \parAxis{b}{\smca{a}}
+}
+\index{equations!inertia|)}
+
+\newpage
+
+\subsection*{\blu{Short Inertia Equations}}
+\label{sec:inereqssh}
+\index{equations!inertia!shorthand|(}
+
+\entryl{% Command Name
+    rRelsh
+}{% Arguments
+    \targsiii{frame}{sys}{point}
+}{% Description
+    Relative displacement shorthand. This is the shorthand relative displacement vector for the inertia tensor of the system \meta{sys} relative to the point \meta{point} with respect to the frame \meta{frame}. 
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame}{Frame; letter (a-z, A-Z)}{%
+    	sys}{System name; expression}{%
+    	point}{Reference point; expression}%
+}{% Example Description
+    Say we want to define the relative displacement using shorthand summation of a mass element $m_i$ relative to the point $B$ in the body frame $\fr{B}$
+}{% Example Text Arguments
+    \comarg{rRelsh}{\targmiii{b}{m\string_i}{\comone{smca}{B}}}
+}{% Example Function Call
+    \rRelsh{b}{m_i}{\smca{B}}
+}
+
+\entryl{% Command Name
+    IxxSumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{xx}$ sum shorthand. Defines the $I_{xx}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{xx}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IxxSumsh}
+}{% Example Function Call
+    \IxxSumsh
+}
+
+\newpage
+
+\entryl{% Command Name
+    IxySumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{xy}$ sum shorthand. Defines the $I_{xy}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{xy}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IxySumsh}
+}{% Example Function Call
+    \IxySumsh
+}
+
+\entryl{% Command Name
+    IxzSumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{xz}$ sum shorthand. Defines the $I_{xz}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{xz}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IxzSumsh}
+}{% Example Function Call
+    \IxzSumsh
+}
+
+\newpage
+
+\entryl{% Command Name
+    IyxSumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{yx}$ sum shorthand. Defines the $I_{yx}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{yx}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IyxSumsh}
+}{% Example Function Call
+    \IyxSumsh
+}
+
+\entryl{% Command Name
+    IyySumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{yy}$ sum shorthand. Defines the $I_{yy}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{yy}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IyySumsh}
+}{% Example Function Call
+    \IyySumsh
+}
+
+\newpage
+
+\entryl{% Command Name
+    IyzSumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{yz}$ sum shorthand. Defines the $I_{yz}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{yz}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IyzSumsh}
+}{% Example Function Call
+    \IyzSumsh
+}
+
+\entryl{% Command Name
+    IzxSumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{zx}$ sum shorthand. Defines the $I_{zx}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{zx}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IzxSumsh}
+}{% Example Function Call
+    \IzxSumsh
+}
+
+\newpage
+
+\entryl{% Command Name
+    IzySumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{zy}$ sum shorthand. Defines the $I_{zy}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{zy}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IzySumsh}
+}{% Example Function Call
+    \IzySumsh
+}
+
+\entryl{% Command Name
+    IzzSumsh
+}{% Arguments
+    { }
+}{% Description
+    $I_{zz}$ sum shorthand. Defines the $I_{zz}$ term of the inertia tensor using summation and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{zz}$ term of the inertia tensor using shorthand summation notation.
+}{% Example Text Arguments
+    \cs{IzzSumsh}
+}{% Example Function Call
+    \IzzSumsh
+}
+
+\newpage
+
+\entryl{% Command Name
+    IxxInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{xx}$ sum shorthand. Defines the $I_{xx}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{xx}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IxxInt}
+}{% Example Function Call
+    \IxxInt
+}
+
+\entryl{% Command Name
+    IxyInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{xy}$ sum shorthand. Defines the $I_{xy}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{xy}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IxyInt}
+}{% Example Function Call
+    \IxyInt
+}
+
+\newpage
+
+\entryl{% Command Name
+    IxzInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{xz}$ sum shorthand. Defines the $I_{xz}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{xz}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IxzInt}
+}{% Example Function Call
+    \IxzInt
+}
+
+\entryl{% Command Name
+    IyxInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{yx}$ sum shorthand. Defines the $I_{yx}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{yx}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IyxInt}
+}{% Example Function Call
+    \IyxInt
+}
+
+\newpage
+
+\entryl{% Command Name
+    IyyInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{yy}$ sum shorthand. Defines the $I_{yy}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{yy}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IyyInt}
+}{% Example Function Call
+    \IyyInt
+}
+
+\entryl{% Command Name
+    IyzInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{yz}$ sum shorthand. Defines the $I_{yz}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{yz}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IyzInt}
+}{% Example Function Call
+    \IyzInt
+}
+
+\newpage
+
+\entryl{% Command Name
+    IzxInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{zx}$ sum shorthand. Defines the $I_{zx}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{zx}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IzxInt}
+}{% Example Function Call
+    \IzxInt
+}
+
+\entryl{% Command Name
+    IzyInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{zy}$ sum shorthand. Defines the $I_{zy}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{zy}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IzyInt}
+}{% Example Function Call
+    \IzyInt
+}
+
+\newpage
+
+\entryl{% Command Name
+    IzzInt
+}{% Arguments
+    { }
+}{% Description
+    $I_{zz}$ sum shorthand. Defines the $I_{zz}$ term of the inertia tensor using integration and shorthand notation.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Define the $I_{zz}$ term of the inertia tensor using shorthand integration notation.
+}{% Example Text Arguments
+    \cs{IzzInt}
+}{% Example Function Call
+    \IzzInt
+}
+
+\index{theorem!parallel axis!shorthand}
+\entryl{% Command Name
+    parAxissh
+}{% Arguments
+    { }
+}{% Description
+    Parallel axis theorem in shorthand matrix form. Defines the terms of the inertia tensor about using the parallel axis theorem and shorthand.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Say we want to define the inertia tensor in matrix form using the parallel axis theorem in shorthand notation.
+}{% Example Text Arguments
+    \cs{parAxissh}
+}{% Example Function Call
+    \parAxissh
+}
+\index{equations!inertia!shorthand|)}
+
+\newpage
+
+\subsection*{\blu{Angular Velocity Equations}}
+\label{sec:angveleqs}
+\index{equations!angular velocity|(}
+
+\entryd{% Command Name
+    angVdef
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Angular velocity definition. Defines the angular velocity of frame \meta{frame2} relative to frame \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the angular velocity of the $\fr{b}$ frame relative to the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{angVdef}{\targmii{a}{b}}
+}{% Example Function Call
+    \angVdef{a}{b}
+}
+
+\entryd{% Command Name
+    angVxdef
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Angular velocity x-component definition. Defines the x-component of the angular velocity of frame \meta{frame2} relative to frame \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the x-component of the angular velocity of the $\fr{b}$ frame relative to the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{angVxdef}{\targmii{a}{b}}
+}{% Example Function Call
+    \angVxdef{a}{b}
+}
+
+\newpage
+
+\entryd{% Command Name
+    angVydef
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Angular velocity y-component definition. Defines the y-component of the angular velocity of frame \meta{frame2} relative to frame \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the y-component of the angular velocity of the $\fr{b}$ frame relative to the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{angVydef}{\targmii{a}{b}}
+}{% Example Function Call
+    \angVydef{a}{b}
+}
+
+\entryd{% Command Name
+    angVzdef
+}{% Arguments
+    \targsii{frame1}{frame2}
+}{% Description
+    Angular velocity z-component definition. Defines the z-component of the angular velocity of frame \meta{frame2} relative to frame \meta{frame1}.
+}{% Argument Descriptions
+    \inputsii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}%
+}{% Example Description
+    Say we want to define the z-component of the angular velocity of the $\fr{b}$ frame relative to the $\fr{a}$ frame.
+}{% Example Text Arguments
+    \comarg{angVzdef}{\targmii{a}{b}}
+}{% Example Function Call
+    \angVzdef{a}{b}
+}
+
+\newpage
+
+\entryd{% Command Name
+    Pvecdef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector definition. Defines the P-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the P-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvecdef}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvecdef{a}{b}{\theta}
+}
+
+\entryd{% Command Name
+    Pvecxdef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector x-component definition. Defines the x-component of the P-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the x-component of the P-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvecxdef}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvecxdef{a}{b}{\theta}
+}
+
+\newpage
+
+\entryd{% Command Name
+    Pvecydef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector y-component definition. Defines the y-component of the P-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the y-component of the P-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pvecydef}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pvecydef{a}{b}{\theta}
+}
+
+\entryd{% Command Name
+    Pveczdef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    P-vector z-component definition. Defines the z-component of the P-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the z-component of the P-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\theta$.
+}{% Example Text Arguments
+    \comarg{Pveczdef}{\targmiii{a}{b}{\cs{theta}}}
+}{% Example Function Call
+    \Pveczdef{a}{b}{\theta}
+}
+
+\newpage
+
+\entryd{% Command Name
+    Tvecdef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector definition. Defines the T-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the T-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\beta$.
+}{% Example Text Arguments
+    \comarg{Tvecdef}{\targmiii{a}{b}{\cs{beta}}}
+}{% Example Function Call
+    \Tvecdef{a}{b}{\beta}
+}
+
+\entryd{% Command Name
+    Tvecxdef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector x-component definition. Defines the x-component of the T-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the x-component of the T-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\beta$.
+}{% Example Text Arguments
+    \comarg{Tvecxdef}{\targmiii{a}{b}{\cs{beta}}}
+}{% Example Function Call
+    \Tvecxdef{a}{b}{\beta}
+}
+
+\newpage
+
+\entryd{% Command Name
+    Tvecydef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector y-component definition. Defines the y-component of the T-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the y-component of the T-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\beta$.
+}{% Example Text Arguments
+    \comarg{Tvecydef}{\targmiii{a}{b}{\cs{beta}}}
+}{% Example Function Call
+    \Tvecydef{a}{b}{\beta}
+}
+
+\entryd{% Command Name
+    Tveczdef
+}{% Arguments
+    \targsiii{frame1}{frame2}{var}
+}{% Description
+    T-vector z-component definition. Defines the z-component of the T-vector of frame \meta{frame2} relative to frame \meta{frame1} with respect to \meta{var}.
+}{% Argument Descriptions
+    \inputsiii{%
+    	frame1}{Frame; letter (a-z, A-Z)}{%
+    	frame2}{Frame; letter (a-z, A-Z)}{%
+    	var}{Variable; symbol}%
+}{% Example Description
+    Say we want to define the z-component of the T-vector of the $\fr{b}$ frame relative to the $\fr{a}$ frame with respect to $\beta$.
+}{% Example Text Arguments
+    \comarg{Tveczdef}{\targmiii{a}{b}{\cs{beta}}}
+}{% Example Function Call
+    \Tveczdef{a}{b}{\beta}
+}
+\index{equations!angular velocity|)}
+
+\newpage
+
+\subsection*{\blu{Angular Momentum Equations}}
+\label{sec:angmomeqs}
+\index{equations!angular momentum|(}
+
+\entryd{% Command Name
+    angMomPart
+}{% Arguments
+    \targsiv{frame}{point1}{point2}{mass}
+}{% Description
+    Particle angular momentum definition. This command is used to define the angular momentum of a particle with mass \meta{mass} with respect to \meta{point2} with respect to \meta{point1}, relative to the frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiv{%
+        frame}{Letter (a-z, A-Z)}{%
+        point1}{Name of point1; expression}{%
+        point2}{Name of point2; expression}{%
+        mass}{Name of mass; expression}%
+}{% Example Description
+    Say we want to define the angular momentum of a particle of mass $m$ with respect to $P$ with respect to $Q$ expressed in the $\fr{f}$ frame.
+}{% Example Text Arguments
+    \comarg{angMomPart}{\targmiv{f}{\comone{smca}{q}}{\comone{smca}{p}}{m}}
+}{% Example Function Call \comone{smca}{}
+    \angMomPart{f}{\smca{q}}{\smca{p}}{m}
+}
+
+\newpage
+
+\entryl{% Command Name
+    angMomSys
+}{% Arguments
+    \targsiii{frame}{point1}{point2}
+}{% Description
+    System angular momentum. This command is used to express the angular momentum of a system with respect to \meta{point2} with respect to \meta{point1}, relative to the frame \meta{frame}.
+}{% Argument Descriptions
+    \inputsiii{%
+        frame}{Letter (a-z, A-Z)}{%
+        point1}{Name of point1; expression}{%
+        point2}{Name of point2; expression}%
+}{% Example Description
+    Say we want to define the angular momentum of a system with respect to $P$ with respect to $Q$ expressed in the $\fr{F}$ frame.
+}{% Example Text Arguments
+    \comarg{angMomSys}{\targmiii{f}{\comone{smca}{Q}}{\comone{smca}{P}}}
+}{% Example Function Call
+    \angMomSys{f}{\smca{Q}}{\smca{P}}
+}
+
+\entryd{% Command Name
+    angMomDefI
+}{% Arguments
+    { }
+}{% Description
+    Angular momentum definition I. Generic angular momentum expression.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the generic expression for angular momentum.
+}{% Example Text Arguments
+    \cs{angMomDefI}
+}{% Example Function Call
+    \angMomDefI
+}
+
+\newpage
+
+\entryd{% Command Name
+    angMomDefII
+}{% Arguments
+    { }
+}{% Description
+    Angular momentum definition II. Angular momentum of a rigid body.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the expression for the angular momentum of a rigid body.
+}{% Example Text Arguments
+    \cs{angMomDefII}
+}{% Example Function Call
+    \angMomDefII
+}
+
+\entryd{% Command Name
+    angMomDefIII
+}{% Arguments
+    { }
+}{% Description
+    Angular momentum definition III. Angular momentum about the origin with respect to a body frame.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the angular momentum definition III.
+}{% Example Text Arguments
+    \cs{angMomDefIII}
+}{% Example Function Call
+    \angMomDefIII
+}
+
+\newpage
+
+\entryd{% Command Name
+    angMomDefIV
+}{% Arguments
+    { }
+}{% Description
+    Angular momentum definition IV. Angular momentum about an arbitrary point $A$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the angular momentum definition IV.
+}{% Example Text Arguments
+    \cs{angMomDefIV}
+}{% Example Function Call
+    \angMomDefIV
+}
+\index{equations!angular momentum|)}
+
+\subsection*{\blu{Torque Equations}}
+\label{sec:torqueeqs}
+\index{equations!torque|(}
+
+\entryl{% Command Name
+    torqueDef
+}{% Arguments
+    { }
+}{% Description
+    Torque definition. Torque definition for a system of $n$ particles about point $P$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the torque definition.
+}{% Example Text Arguments
+    \cs{torqueDef}
+}{% Example Function Call
+    \torqueDef
+}
+
+\newpage
+
+\entryd{% Command Name
+    torqueDefI
+}{% Arguments
+    { }
+}{% Description
+    Torque definition I. Most general case, $\fr{O}$ is an IRF.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show torque definition I.
+}{% Example Text Arguments
+    \cs{torqueDefI}
+}{% Example Function Call
+    \torqueDefI
+}
+
+\entryd{% Command Name
+    torqueDefII
+}{% Arguments
+    { }
+}{% Description
+    Torque definition II. $Q$ = $O$, $P$ = $\mathit{CM}$, $\fr{O}$ is an IRF.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show torque definition II.
+}{% Example Text Arguments
+    \cs{torqueDefII}
+}{% Example Function Call
+    \torqueDefII
+}
+
+\newpage
+
+\entryd{% Command Name
+    torqueDefIII
+}{% Arguments
+    { }
+}{% Description
+    Torque definition III. $Q$ = $P$ = $\mathit{CM}$, $\fr{O}$ is an IRF.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show torque definition III.
+}{% Example Text Arguments
+    \cs{torqueDefIII}
+}{% Example Function Call
+    \torqueDefIII
+}
+
+\entryd{% Command Name
+    torqueDefIV
+}{% Arguments
+    { }
+}{% Description
+    Torque definition IV. $Q$ = $P$ = $O$, $\fr{O}$ is an IRF.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show torque definition IV.
+}{% Example Text Arguments
+    \cs{torqueDefIV}
+}{% Example Function Call
+    \torqueDefIV
+}
+
+\newpage
+
+\entryd{% Command Name
+    torqueDefV
+}{% Arguments
+    { }
+}{% Description
+    Torque definition V. $Q$ = $O$, $P$ is a fixed point with respect to $O$, $\fr{O}$ is an IRF.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show torque definition V.
+}{% Example Text Arguments
+    \cs{torqueDefV}
+}{% Example Function Call
+    \torqueDefV
+}
+\index{equations!torque|)}
+
+\subsection*{\blu{Kinetic Energy Equations}}
+\label{sec:kineneqs}
+\index{equations!kinetic energy|(}
+
+\entryl{% Command Name
+    kinEnDef
+}{% Arguments
+    { }
+}{% Description
+    Kinetic energy definition. Kinetic energy definition for a system of $n$ particles.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the kinetic energy definition.
+}{% Example Text Arguments
+    \cs{kinEnDef}
+}{% Example Function Call
+    \kinEnDef
+}
+
+\newpage
+
+\entryl{% Command Name
+    kinEnDefI
+}{% Arguments
+    { }
+}{% Description
+    Kinetic energy definition I. General expression for the kinetic energy for a system of $n$ particles and any frames $\fr{O}$ and $\fr{A}$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show kinetic energy definition I.
+}{% Example Text Arguments
+    \cs{kinEnDefI}
+}{% Example Function Call
+    \kinEnDefI
+}
+
+\entryd{% Command Name
+    kinEnDefII
+}{% Arguments
+    { }
+}{% Description
+    Kinetic energy definition II. Expression for the kinetic energy for a rigid body with body frame $\fr{A}$. Valid for any frames $\fr{O}$ and $\fr{A}$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show kinetic energy definition II.
+}{% Example Text Arguments
+    \cs{kinEnDefII}
+}{% Example Function Call
+    \kinEnDefII
+}
+
+\newpage
+
+\entryd{% Command Name
+    kinEnDefIII
+}{% Arguments
+    { }
+}{% Description
+    Kinetic energy definition III. Expression for the kinetic energy for a rigid body with body frame $\fr{A}$ and $A$ = $\mathit{CM}$. Valid for any frames $\fr{O}$ and $\fr{A}$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show kinetic energy definition III.
+}{% Example Text Arguments
+    \cs{kinEnDefIII}
+}{% Example Function Call
+    \kinEnDefIII
+}
+
+\entryd{% Command Name
+    kinEnDefIV
+}{% Arguments
+    { }
+}{% Description
+    Kinetic energy definition IV. Expression for the kinetic energy for a rigid body with body frame $\fr{A}$ and $A$ is a fixed point with respect to $O$ ($\relV{o}{\smca{A}}{\smca{O}}$ = $\vec{0}\,$). Valid for any frames $\fr{O}$ and $\fr{A}$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show kinetic energy definition IV.
+}{% Example Text Arguments
+    \cs{kinEnDefIV}
+}{% Example Function Call
+    \kinEnDefIV
+}
+\index{equations!kinetic energy|)}
+
+\newpage
+
+\subsection*{\blu{Alternate Kinetic Energy Equations}}
+\label{sec:altkineneqs}
+\index{equations!kinetic energy!alternate|(}
+\index{Liapunov|see {kinetic energy, alternate}}
+\index{Ljapunov|see {kinetic energy, alternate}}
+\index{stability|see {kinetic energy, alternate}}
+
+\entryd{% Command Name
+    TEq
+}{% Arguments
+    { }
+}{% Description
+    Alternative kinetic energy definition. Used to evaluate Ljapunov/Liapunov stability.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the alternative kinetic energy definition.
+}{% Example Text Arguments
+    \cs{TEq}
+}{% Example Function Call
+    \TEq
+}
+
+\entryd{% Command Name
+    TzeroEq
+}{% Arguments
+    { }
+}{% Description
+    $T_0$ equation. This command defines the zeroth-order term of the kinetic energy.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of $T_0$.
+}{% Example Text Arguments
+    \cs{TzeroEq}
+}{% Example Function Call
+    \TzeroEq
+}
+
+\newpage
+
+\entryl{% Command Name
+    ToneEq
+}{% Arguments
+    { }
+}{% Description
+    $T_1$ equation. This command defines the first-order term of the kinetic energy.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of $T_1$.
+}{% Example Text Arguments
+    \cs{ToneEq}
+}{% Example Function Call
+    \ToneEq
+}
+
+\entryl{% Command Name
+    TtwoEq
+}{% Arguments
+    { }
+}{% Description
+    $T_2$ equation. This command defines the second-order term of the kinetic energy.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of $T_2$.
+}{% Example Text Arguments
+    \cs{TtwoEq}
+}{% Example Function Call
+    \TtwoEq
+}
+\index{equations!kinetic energy!alternate|)}
+
+\newpage
+
+\subsection*{\blu{Euler's Equations of Motion}}
+\label{sec:eulerseqs}
+\index{equations!of motion!Euler's|(}
+\index{Euler|see {equations, of motion, Euler's}}
+
+\entryd{% Command Name
+    EulerEqx
+}{% Arguments
+    { }
+}{% Description
+    Euler's equation about the x-axis. This command defines Euler's equation of motion about the x-axis for a rigid body about its principal axes.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of Euler's equation of motion about the x-axis.
+}{% Example Text Arguments
+    \cs{EulerEqx}
+}{% Example Function Call
+    \EulerEqx
+}
+
+\entryd{% Command Name
+    EulerEqy
+}{% Arguments
+    { }
+}{% Description
+    Euler's equation about the y-axis. This command defines Euler's equation of motion about the y-axis for a rigid body about its principal axes.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of Euler's equation of motion about the y-axis.
+}{% Example Text Arguments
+    \cs{EulerEqy}
+}{% Example Function Call
+    \EulerEqy
+}
+
+\newpage
+
+\entryd{% Command Name
+    EulerEqz
+}{% Arguments
+    { }
+}{% Description
+    Euler's equation about the z-axis. This command defines Euler's equation of motion about the z-axis for a rigid body about its principal axes.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of Euler's equation of motion about the z-axis.
+}{% Example Text Arguments
+    \cs{EulerEqz}
+}{% Example Function Call
+    \EulerEqz
+}
+\index{equations!of motion!Euler's|)}
+
+\subsection*{\blu{Lagrange's Equations}}
+\label{sec:lagrangeseqs}
+\index{equations!Lagrange's|see {Lagrange's equations}}
+\index{Lagrange's equations|(}
+
+\entryd{% Command Name
+    Lagrangian
+}{% Arguments
+    { }
+}{% Description
+    Lagrangian. This command defines the Lagrangian. You can use \code{\$\comone{mathcal}{L}\$} to get $\mathcal{L}$.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show the definition of the Lagrangian.
+}{% Example Text Arguments
+    \cs{Lagrangian}
+}{% Example Function Call
+    \Lagrangian
+}
+
+\newpage
+
+\entryl{% Command Name
+    Lagrange
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Lagrange's equation. This command defines Lagrange's equation of a specified $q_n$ where $n$ = \meta{num}.
+}{% Argument Descriptions
+    \inputsi{num}{Number; positive integer}
+}{% Example Description
+    Say we want to define Lagrange's equation for an arbitrary $q_n$.
+}{% Example Text Arguments
+    \comarg{Lagrange}{\targmi{n}}
+}{% Example Function Call
+    \Lagrange{n}
+}
+
+\entryl{% Command Name
+    LagrangeTV
+}{% Arguments
+    \targsi{num}
+}{% Description
+    Lagrange's equation energy form. This command defines Lagrange's equation of a specified $q_n$ where $n$ = \meta{num} in terms of the kinetic and potential energy.
+}{% Argument Descriptions
+    \inputsi{num}{Number; positive integer}
+}{% Example Description
+    Say we want to define Lagrange's equation in energy form for an arbitrary $q_n$.
+}{% Example Text Arguments
+    \comarg{LagrangeTV}{\targmi{n}}
+}{% Example Function Call
+    \LagrangeTV{n}
+}
+\index{Lagrange's equations|)}
+
+\newpage
+
+\subsection*{\blu{Kane's Equations}}
+\label{sec:kaneseqs}
+\index{equations!Kane's|see {Kane's equations}}
+\index{Kane's equations|(}
+
+\entryd{% Command Name
+    KaneEq
+}{% Arguments
+    { }
+}{% Description
+    Kane's equation. This command defines Kane's equation of motion.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's equation of motion.
+}{% Example Text Arguments
+    \cs{KaneEq}
+}{% Example Function Call
+    \KaneEq
+}
+
+\entryl{% Command Name
+    Kaneqdot
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\dot{q}_{s}$ definition. Defines the time derivative of the generalized coordinate.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\dot{q}_{s}$ definition.
+}{% Example Text Arguments
+    \cs{Kaneqdot}
+}{% Example Function Call
+    \Kaneqdot
+}
+
+\newpage
+
+\entryl{% Command Name
+    Kaneomegar
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\pangVr{O}{B}{r}$ definition. Defines the rth partial angular velocity.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\pangVr{O}{B}{r}$ definition.
+}{% Example Text Arguments
+    \cs{Kaneomegar}
+}{% Example Function Call
+    \Kaneomegar
+}
+
+\entryl{% Command Name
+    Kaneomegat
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\pangVt{O}{B}$ definition. Defines the time partial angular velocity.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\pangVt{O}{B}$ definition.
+}{% Example Text Arguments
+    \cs{Kaneomegat}
+}{% Example Function Call
+    \Kaneomegat
+}
+
+\newpage
+
+\entryl{% Command Name
+    Kaneomega
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\angV{O}{B}$ definition. Defines the angular velocity.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\angV{O}{B}$ definition.
+}{% Example Text Arguments
+    \cs{Kaneomega}
+}{% Example Function Call
+    \Kaneomega
+}
+
+\entryl{% Command Name
+    Kanevcmr
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\ptraVr{O}{\CM}{r}$ definition. Defines the rth partial velocity.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\ptraVr{O}{\CM}{r}$ definition.
+}{% Example Text Arguments
+    \cs{Kanevcmr}
+}{% Example Function Call
+    \Kanevcmr
+}
+
+\newpage
+
+\entryl{% Command Name
+    Kanevcmt
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\ptraVr{O}{\CM}{t}$ definition. Defines the time partial velocity.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\ptraVr{O}{\CM}{t}$ definition.
+}{% Example Text Arguments
+    \cs{Kanevcmt}
+}{% Example Function Call
+    \Kanevcmt
+}
+
+\entryl{% Command Name
+    Kanevcm
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\relV{O}{\CM}{\smca{O}}$ definition. Defines the velocity.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Display Kane's $\relV{O}{\CM}{\smca{O}}$ definition.
+}{% Example Text Arguments
+    \cs{Kanevcm}
+}{% Example Function Call
+    \Kanevcm
+}
+
+\newpage
+
+\entryl{% Command Name
+    KaneFrPart
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\KFr{r}$ term for particles.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show Kane's $\KFr{r}$ term for particles.
+}{% Example Text Arguments
+    \cs{KaneFrPart}
+}{% Example Function Call
+    \KaneFrPart
+}
+
+\newpage
+
+\entryl{% Command Name
+    KaneFrsPart
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\KFrs{r}$ term for particles.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show Kane's $\KFrs{r}$ term for particles.
+}{% Example Text Arguments
+    \cs{KaneFrsPart}
+}{% Example Function Call
+    \KaneFrsPart
+}
+
+\entryl{% Command Name
+    KaneFrRig
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\KFr{r}$ term for rigid bodies.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show Kane's $\KFr{r}$ term for rigid bodies.
+}{% Example Text Arguments
+    \cs{KaneFrRig}
+}{% Example Function Call
+    \KaneFrRig
+}
+
+\newpage
+
+\entryl{% Command Name
+    KaneFrsRig
+}{% Arguments
+    { }
+}{% Description
+    Kane's $\KFrs{r}$ term for rigid bodies.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show Kane's $\KFrs{r}$ equation for rigid bodies.
+}{% Example Text Arguments
+    \cs{KaneFrsRig}
+}{% Example Function Call
+    \KaneFrsRig
+}
+
+\entryl{% Command Name
+    KaneFr
+}{% Arguments
+    { }
+}{% Description
+    Kane's generalized $\KFr{r}$ equation. The command defines Kane's $\KFr{r}$ equation for a general system of $N_{\!\smn{R}}$ rigid bodies and $N_{\!\smn{P}}$ particles.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show Kane's generalized $\KFr{r}$ equation.
+}{% Example Text Arguments
+    \cs{KaneFr}
+}{% Example Function Call
+    \KaneFr
+}
+
+\newpage
+
+\entryl{% Command Name
+    KaneFrs
+}{% Arguments
+    { }
+}{% Description
+    Kane's generalized $\KFrs{r}$ equation. The command defines Kane's $\KFrs{r}$ equation for a general system of $N_{\!\smn{R}}$ rigid bodies and $N_{\!\smn{P}}$ particles.
+}{% Argument Descriptions
+    \textit{No input arguments.}
+}{% Example Description
+    Show Kane's generalized $\KFrs{r}$ equation.
+}{% Example Text Arguments
+    \cs{KaneFrs}
+}{% Example Function Call
+    \KaneFrs
+}
+\index{Kane's equations|)}
+\index{equations|)}
