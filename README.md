@@ -51,7 +51,7 @@
 
 `advanceddynamics` provides a set of macros and commands to easily create equations and typeset in the notation of the graduate courses [*MAE 511 - Advanced Dynamics I*][1] and [*MAE 789 - Advanced Dynamics II*][2] taught by [Dr. Mazzoleni][3][^1] at [North Carolina State University][4][^2]. The primary intended use is to aid in typesetting derivations of equations of motion and to that end, in addition to providing commands to easily typeset individual terms, the package also includes many of the fundamental equations and definitions written in the notation of the aforementioned courses. 
 
-A full list of commands with examples, required packages, basic installation instructions, and more is located in the [Advanced Dynamics Notation Package Manual][5]. The manual is fully linked using hyperref, so downloading it is recommended.
+A full list of commands with examples, required packages, basic installation instructions, and more is located in the [Advanced Dynamics Notation Package Manual][5]. The manual is fully linked using `hyperref`, so downloading it is recommended.
 
 To easily get started, there are currently two main ways to use this package:
 - The first is to download the `advanceddynamics.sty` file from GitHub and simply place it in the same folder as your document. 
