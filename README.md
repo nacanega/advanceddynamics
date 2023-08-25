@@ -54,14 +54,23 @@
 A full list of commands with examples, required packages, basic installation instructions, and more is located in the [Advanced Dynamics Notation Package Manual][5]. The manual is fully linked using `hyperref`, so downloading it is recommended.
 
 To easily get started, there are currently two main ways to use this package:
-- The first is to download the `advanceddynamics.sty` file from GitHub and simply place it in the same folder as your document. 
-- The second is to copy the package to your local distribution so that you can use it from any document. More information can be found in the manual.
+- The first is to download the [`advanceddynamics.sty`][6] file from GitHub and simply place it in the same folder as your document. 
+- The second is to download a [release][7] and copy it to your local distribution so that you can use it from any document. More information can be found in the [manual][5].
+
+Dependencies:
+- `accents`
+- `amsmath`
+- `amssymb`
+- `mathttools`
+- `tensor`
 
 [1]: https://www.engineeringonline.ncsu.edu/course/mae-511-advanced-dynamics-with-applications-to-aerospace-systems/
 [2]: https://www.engineeringonline.ncsu.edu/course/mae-789-advanced-dynamics-ii/
 [3]: https://www.mae.ncsu.edu/people/apmazzol/
 [4]: https://www.ncsu.edu/
 [5]: ../master/doc/latex/advanceddynamics/advanceddynamicsmanual.pdf
+[6]: ../master/tex/latex/advanceddynamics/advanceddynamics.sty
+[7]: https://github.com/nacanega/advanceddynamics/releases
 
 [^1]: The material located in this respository is not endorsed, sponsored, or provided by or on behalf of Dr. Mazzoleni. Please do not contact Dr. Mazzoleni about this package, all communications about this package should be directed to Nolan Canegallo.
 [^2]: The material located in this repository is not endorsed, sponsored, or provided by or on behalf of North Carolina State University. 
